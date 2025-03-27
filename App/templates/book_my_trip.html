@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book My Trip</title>
+    <!-- Include your CSS links here -->
+</head>
+<style>
+    /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Book Trip Container */
+.book-trip-container {
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #2ecc71; /* Green border on focus */
+}
+
+/* Dropdown Arrows */
+select.form-control {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%232ecc71" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    background-color: #2ecc71; /* Green button */
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .book-trip-container {
+        padding: 15px;
+        margin: 20px;
+    }
+
+    .btn-submit {
+        font-size: 14px;
+    }
+}
+/* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+</style>
+<body>
+    <h2>Book My Trip</h2>
+    <form>
+        <div class="form-group">
+            <label for="from">From</label>
+            <select id="from" class="form-control">
+                <option>New York</option>
+                <option>Los Angeles</option>
+                <option>Chicago</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="to">To</label>
+            <select id="to" class="form-control">
+                <option>Delhi</option>
+                <option>Paris</option>
+                <option>London</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="depart">Depart on</label>
+            <input type="date" id="depart" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="return">Return on</label>
+            <input type="date" id="return" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="adult">1 Adult</label>
+            <select id="adult" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="children">0 Children</label>
+            <select id="children" class="form-control">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="infant">0 Infant</label>
+            <select id="infant" class="form-control">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="airline">Choose your Airline class</label>
+            <select id="airline" class="form-control">
+                <option>Business</option>
+                <option>Economy</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Detail</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #62a150c1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center the container horizontally */
+            align-items: center; /* Center the container vertically */
+            height: 100vh; /* Full viewport height */
+            position: relative; /* To position the back button */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+            justify-content: center; /* Center content vertically */
+            padding: 20px;
+            max-width: 600px;
+            background: #e7e7e7;
+            border-radius: 8px;
+            width: 100%; /* Ensure the container has full width */
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .detail-info {
+            text-align: center; /* Center the text */
+            font-size: 16px;
+        }
+        .actions {
+            display: flex;
+            justify-content: center; /* Center the buttons */
+            gap: 10px;
+        }
+        .actions button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .update { background-color: #4caf50; color: white; }
+        .delete { background-color: #f44336; color: white; }
+        .back {
+            position: absolute; /* Positioning the back button at top-left corner */
+            top: 20px;
+            left: 20px;
+            background-color: #607d8b;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back">&#8592; Back</a>
+    <div class="container">
+        <img src="{{ member.avatar }}" alt="Avatar" class="avatar">
+        <div class="detail-info">
+            <h2>Name: {{ member.name }}</h2>
+            <p>ID: {{ member.member_id }}</p>
+            <p>Gender: {{ member.gender }}</p>
+            <p>Phone no: {{ member.phone_number }}</p>
+            <p>Role: {{ member.role }}</p>
+            <p>Address: {{ member.address }}</p>
+        </div>
+        <div class="actions">
+            <button class="update">Update</button>
+            <button class="delete">Delete</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,424 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    margin-left: 0px;
+    width: 100%;
+  
+}
+.container {
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+header {
+    background-color: #004d40;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Space evenly between logo and navigation items */
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header ul {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+}
+
+header ul li {
+    display: inline;
+}
+
+header ul li a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header ul li a:hover {
+    color: #80cbc4;
+}
+
+/* Align navigation items to the right */
+header ul {
+    justify-content: flex-end;
+    text-align: right;
+}
+.profile-btn {
+    padding: 8px 15px;
+    background-color: #ffffff;
+    color: #0c665e;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.profile-btn:hover {
+    background-color: #e2f3f1;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Adjust the gap between the items if needed */
+    
+}
+
+.nav-menu ul li {
+    margin: 0;
+    
+}
+
+.nav-menu {
+    margin-left: auto;
+    margin-left: 1300px;
+}
+
+
+/* Hero Section */
+
+.hero {
+    
+        background-image: url('/static/images/background5.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 300px !important;
+        position: relative;
+        color: white;
+    }
+
+/* Move "Destination" text to the bottom left */
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute; /* Position relative to the hero section */
+    top: 200px; /* Adjust the distance from the bottom */
+    left: 20px; /* Adjust the distance from the left */
+    margin: 0;
+}
+
+.hero-overlay {
+    /* background-color: rgba(0, 0, 0, 0.6);  Black transparent background */ 
+    padding: 20px 40px; /* Adjust padding to match the rectangular shape */
+    text-align: center;
+    border-radius: 1px;
+    display: inline-block;
+    width:100%;
+    height:50%;
+}
+
+/* Center paragraph and search bar */
+.hero p {
+    font-size: 16px;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+    margin-top: 25px;
+    margin-right: 100px;
+    bottom: 50px;
+}
+
+.hero .search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0px;
+}
+
+.hero input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px; /* Adjust width */
+    border: none;
+    border-radius: 20px; /* Rounded edges for input */
+    outline: none; /* Remove input outline on focus */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #00a676; /* Match the green color from the design */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded button edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.hero button:hover {
+    background-color: #008c5a; /* Slightly darker green for hover effect */
+}
+
+
+/* Destinations Section */
+/* Destination Cards Section */
+.destination-cards {
+    padding: 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.destination-cards h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px; /* Space between the cards */
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures no content spills outside the card */
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+    width: 50%; /* Full width of the card */
+    height: 250px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures proper cropping */
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
+}
+
+.card h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.card button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #00a676;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #008c5a;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Quote Section */
+.quote {
+    background-color: #e0f2f1;
+    padding: 40px 20px;
+    text-align: center;
+    font-style: italic;
+}
+
+.quote p {
+    font-size: 18px;
+    color: #004d40;
+}
+
+/* Footer */
+footer {
+    background-color: #004d40;
+    color: white;
+    padding: 20px;
+    
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.footer-container h3, .footer-container h4 {
+    margin-bottom: 10px;
+}
+
+.footer-container p, .footer-container ul {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.footer-container ul {
+    list-style: none; /* Removes the bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+}
+
+.footer-container ul li {
+    margin: 0; /* Remove any extra space */
+    padding: 0;
+}
+
+
+.footer-container ul li a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer-container ul li a:hover {
+    color: #80cbc4;
+}
+.footer-icons {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-right:1500px!important;
+}
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: 1fr; /* 1 card per row for mobile */
+    }
+}
+.location-icon {
+    color: red;
+    font-size: 24px;
+    margin-top: 5px;
+}
+.card img {
+    width: 50%;
+    height: auto;
+    object-fit: cover; /* Ensure the image fills the container */
+    border-radius: 10px; /* Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Adds smooth transition */
+}
+
+/* Hover effect */
+.card img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+
+
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.card button {
+    margin-top: auto; /* Push button to the bottom of the card */
+    background-color:#0a8832;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.card button:hover {
+    background-color: #2bbd50;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the card */
+}
+
+/* Ensure all images have the same size */
+.card img {
+    width: 100%; /* Set the width to fill the container */
+    max-width: 300px; /* Limit the maximum width for consistency */
+    height: 200px; /* Set a fixed height for uniformity */
+    object-fit: cover; /* Ensure the image fills the container */
+    border-radius: 10px; /* Rounded corners for a polished look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+}
+/* Love icon container */
+.love-icon {
+    display: inline-block;
+    margin-left: 10px; /* Space between text and icon */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: #e74c3c;
+}
+
+/* Icon size and color */
+.love-icon i {
+    font-size: 20px; /* Adjust icon size */
+    color: #e74c3c; /* Default red color */
+}
+
+/* Hover effect for the icon */
+.love-icon:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+}
+
+/* Filled heart styling */
+.love-icon i.far {
+    color: gray; /* Default unfilled heart */
+}
+
+.love-icon i.fas {
+    color: red; /* Filled heart */
+}
+

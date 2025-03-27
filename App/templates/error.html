@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% else %}
+        <h1>Profile for {{ profile.user.username }}</h1>
+        <!-- Display profile details here -->
+    {% endif %}
+</body>
+</html>

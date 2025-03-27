@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style3.css' %}">
+    <style>
+        @media (max-width: 768px) {
+          .footer-column {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+      
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">Tour 365</span>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#about-us">ABOUT US</a></li>
+                <li><a href="#contact-us">CONTACT US</a></li>
+                <li><a href="{% url 'signin' %}">SIGN IN</a></li>
+                <li><a href="{% url 'signup' %}">SIGN UP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Carousel -->
+        <div class="carousel-container">
+            <div class="carousel">
+                <img src="{% static 'images/country1.jpg' %}" alt="Image 1" class="carousel-image">
+                <img src="{% static 'images/country2.jpg' %}" alt="Image 2" class="carousel-image">
+                <img src="{% static 'images/country3.jpg' %}" alt="Image 3" class="carousel-image">
+                <img src="{% static 'images/country5.jpg' %}" alt="Image 4" class="carousel-image">
+                <img src="{% static 'images/country6.jpg' %}" alt="Image 5" class="carousel-image">
+            </div>
+            <button class="carousel-button prev">&lt;</button>
+            <button class="carousel-button next">&gt;</button>
+            <div class="dots-container">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- Text next to Carousel -->
+        <aside class="carousel-side-text">
+            <h2> We travel not to  escape life , but for life not to escape.</h2>
+            <p> Embark on unforgettable adventures with us! Discover breathtaking destinations, immerse yourself in rich cultures, and create lasting memories. Whether you're seeking thrilling outdoor escapades, serene getaways, or cultural explorations, we have the perfect tour tailored just for you.</p>
+            <a href="{% url 'signin' %}"><button class="explore-btn">Explore Now</button></a>
+        </aside>
+    </main>
+</body>
+<script src="{% static 'script.js/script1.js' %}"></script>
+</html>

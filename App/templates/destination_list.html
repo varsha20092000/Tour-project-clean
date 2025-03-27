@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOUR365 - Destinations</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style5.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        @media (max-width: 768px) {
+          .footer-column {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+      
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">TOUR365</div>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                   
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <button class="profile-btn">Profile</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>Destination</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search your dream Destination">
+                <button id="searchButton" type="button">Search</button>
+
+            </div>
+            <p>Search your dream Destination<br>And make your dream real</p>
+        </div>
+    </section>
+
+
+
+    <section class="destinations">
+
+        <section class="destination-cards">
+            <h2>Most Famous Destinations</h2>
+            <div class="cards-container" id="cardsContainer">
+                <div class="card" data-id="1">
+                    <img src="{% static 'images/egypt.jpg' %}" alt="Egypt">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i> Egypt</h3>
+                    <p>Explore the ancient pyramids and rich history.</p>
+                    <a href="{% url 'book_destination' 1 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="2">
+                    <img src="{% static 'images/hong-kong.jpg' %}" alt="Hong Kong">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i> Hong Kong</h3>
+
+                    <p>Experience the vibrant city and culture.</p>
+                    <a href="{% url 'book_destination' 2 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="3">
+                    <img src="{% static 'images/thailand.jpg' %}" alt="Thailand">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Thailand</h3>
+                    <p>Enjoy beaches, temples, and delicious cuisine.</p>
+                    <a href="{% url 'book_destination' 3 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="4">
+                    <img src="{% static 'images/spain.jpg' %}" alt="Spain">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Spain</h3>
+                    <p>Discover art, architecture, and stunning landscapes.</p>
+                    <a href="{% url 'book_destination' 4 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="5">
+                    <img src="{% static 'images/italy1.jpg' %}" alt="Italy">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Italy</h3>
+                    <p>Indulge in pasta, wine, and historical landmarks.</p>
+                    <a href="{% url 'book_destination' 5 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="6">
+                    <img src="{% static 'images/germany1.jpg' %}" alt="Germany">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Germany</h3>
+                    <p>Explore castles, forests, and rich traditions.</p>
+                    <a href="{% url 'book_destination' 6 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="7">
+                    <img src="{% static 'images/france.jpg' %}" alt="France">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>France</h3>
+                    <p>Visit the Eiffel Tower and savor fine cuisine.</p>
+                    <a href="{% url 'book_destination' 7 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="8">
+                    <img src="{% static 'images/japan.jpg' %}" alt="Japan">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Japan</h3>
+                    <p>Immerse yourself in culture and cherry blossoms.</p>
+                    <a href="{% url 'book_destination' 8 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+                <div class="card" data-id="9">
+                    <img src="{% static 'images/australia.jpg' %}" alt="Australia">
+                    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>Australia</h3>
+                    <p>Enjoy beaches, outback, and wildlife.</p>
+                    <a href="{% url 'book_destination' 9 %}">
+                        <button>Book Now</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="quote">
+            <p>"Sometimes it's more about the journey than the destination. All you need is the plan, the road map, and
+                the courage to press on to your destination.Success is a journey, not a destination. The doing is often
+                more important than the outcome.The world is a book, and those who do not travel read only a page.” Man
+                cannot discover new oceans unless he has the courage to lose sight of the shore."</p>
+        </section>
+
+        <footer>
+            <div class="footer-container">
+                <div class="about">
+                    <h3>TOUR365</h3>
+                    <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+                </div>
+                <div class="links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Destination</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Packages</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="services">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <h4>Contact</h4>
+                    <p>Email: support@tour365.com</p>
+                    <p>Phone: +123-456-7890</p>
+                </div>
+            </div>
+            <div class="footer-icons">
+                <link rel="stylesheet" href="/static/css/style4.css">
+                <img src="/static/images/you1.jpg" alt="YouTube">
+                <img src="/static/images/facebook.jpg" alt="Facebook">
+                <img src="/static/images/insta.jpg" alt="Instagram">
+
+            </div>
+        </footer>
+</body>
+<script src="{% static 'script.js/script4.js' %}"></script>
+
+</html>

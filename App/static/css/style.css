@@ -1,0 +1,219 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://source.unsplash.com/1600x900/?beach,nature') no-repeat center center/cover;
+    height: 100%;
+    overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('/static/css/images/background.jpg'); 
+    background: url('../images/background.jpg') no-repeat center center/cover;
+
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Adjust padding to avoid overflow */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Optional: to add background color */
+    position: absolute;
+    top: 0;
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    max-width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-bar ul li {
+    display: inline;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.outer-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-top: 80px; /* To ensure space for the header */
+    box-sizing: border-box;
+    height: calc(100% - 80px); /* Adjusting height to fit within viewport */
+    overflow: hidden;
+}
+
+.left-container {
+    width: 40%;
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    margin-left: 100px;
+}
+
+.left-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.left-container p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.signin-box {
+    width: 20%;
+    box-sizing: border-box;
+    margin-right:  520px;
+}
+
+.signin-container {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px 30px;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.signin-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.signin-container p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.signin-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+.signin-container .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signin-container .btn:hover {
+    background-color: #218838;
+}
+
+.signin-container a {
+    color: #00c4ff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.signin-container .social-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.signin-container .social-login img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 16px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-container i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 16px;
+    cursor: pointer;
+}
+.google-logo {
+    width: 100px; /* Adjust width as needed */
+    height: auto;
+    margin-top: 1px;
+    margin-left: 10px;
+}
+
+input.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}

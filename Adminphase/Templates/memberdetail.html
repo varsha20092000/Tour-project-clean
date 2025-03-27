@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Member Detail</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #d4edda;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="window.history.back()">← Back</button>
+        <h1>Team Member Details</h1>
+        <p><strong>Name:</strong> {{ member.name }}</p>
+        <p><strong>Employee ID:</strong> {{ member.employee_id }}</p>
+        <p><strong>User ID:</strong> {{ member.user_id }}</p>
+        <p><strong>Phone:</strong> {{ member.phone_number }}</p>
+        <p><strong>Gender:</strong> {{ member.gender }}</p>
+        <p><strong>DOB:</strong> {{ member.dob }}</p>
+        <p><strong>Email:</strong> {{ member.email }}</p>
+        <p><strong>Address:</strong> {{ member.address }}</p>
+    </div>
+</body>
+</html>
+
+

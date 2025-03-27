@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #b6e087;
+            position: relative;
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            color: #000000;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 100px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .role-button {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .role-button span {
+            margin-left: 10px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .dropdown {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .selected-options {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+            width: 100%;
+        }
+
+        .selected-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .save-button, .add-button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        .save-button {
+            background-color: #007bff;
+            color: #ffffff;
+            position: absolute;
+            bottom: 320px;
+            left: calc(50% - 45px); /* Positioned near the left of the container */
+        }
+
+        .add-button {
+            background-color: #6c757d;
+            color: #ffffff;
+            position: absolute;
+            bottom: 20px;
+            right: 20px; /* Positioned at the bottom-right of the page */
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">Back</button>
+    <h1>
+        <img src="{% static 'images/set.png' %}"  class="settings-icon">
+
+Settings</h1>
+    <div class="container">
+        <div class="content">
+            <button class="role-button" onclick="toggleDropdown()">Role <span id="arrow">&#x25BC;</span></button>
+
+            <div class="dropdown" id="dropdown">
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="user-management" onchange="updateSelected()">
+                    <label for="user-management">User Management</label>
+                </div>
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="tour-management" onchange="updateSelected()">
+                    <label for="tour-management">Tour Management</label>
+                </div>
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="customer-management" onchange="updateSelected()">
+                    <label for="customer-management">Customer Management</label>
+                </div>
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="payment-management" onchange="updateSelected()">
+                    <label for="payment-management">Payment Management</label>
+                </div>
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="subscription-management" onchange="updateSelected()">
+                    <label for="subscription-management">Subscription Management</label>
+                </div>
+                <div class="dropdown-item">
+                    <input type="checkbox" class="checkbox" id="visa-management" onchange="updateSelected()">
+                    <label for="visa-management">VISA Management</label>
+                </div>
+            </div>
+
+            <div class="selected-options" id="selected-options"></div>
+        </div>
+    </div>
+
+    <button class="save-button" onclick="saveSettings()">Save</button>
+    <button class="add-button" onclick="addAnother()">+ Add Another</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            const arrow = document.getElementById('arrow');
+            dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+            arrow.style.transform = dropdown.style.display === 'flex' ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        function updateSelected() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const selectedOptions = document.getElementById('selected-options');
+            selectedOptions.innerHTML = '';
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const item = document.createElement('div');
+                    item.className = 'selected-item';
+                    item.innerHTML = `
+                        <input type="checkbox" checked disabled>
+                        <label>${checkbox.nextElementSibling.textContent}</label>
+                    `;
+                    selectedOptions.appendChild(item);
+                }
+            });
+        }
+
+        function saveSettings() {
+            alert('Settings saved!');
+        }
+
+        function addAnother() {
+            alert('Add another action clicked!');
+        }
+    </script>
+</body>
+</html>
+

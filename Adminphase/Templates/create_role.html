@@ -1,0 +1,43 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Role</title>
+    <link rel="stylesheet" href="{% static 'css/create_role.css' %}">
+</head>
+<body>
+    <div class="container">
+        <a href="javascript:void(0);" class="back-btn" onclick="goBack()">↩</a>
+
+        <h1>Create New Role</h1>
+
+        <div class="form-container">
+            <button class="add-role-btn">Add New Role <span>+</span></button>
+            
+            <form id="role-form" method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div>
+                    {{ form.role_name.label_tag }}
+                    {{ form.role_name }}
+                </div>
+                <div>
+                    {{ form.phone_number.label_tag }}
+                    {{ form.phone_number }}
+                </div>
+                <div>
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        
+            <button class="add-another-btn" id="add-another-btn">+ Add another</button>
+        </div>
+        
+    </div>
+    <script src="{% static 'js/create_role.js' %}"></script>
+</body>
+</html>

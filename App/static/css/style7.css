@@ -1,0 +1,868 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    background: url('/static/images/background5.jpg') no-repeat center center/cover;
+    color: white;
+    height: 400px; /* Increased height for background image */
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.top-bar {
+    background-color: #004d40; /* Green background */
+    color: white;
+    padding: 10px 20px; /* Padding inside the top bar */
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center;
+    width: 100%;
+    position: fixed; /* Keep it fixed at the top */
+    top: 0;
+    z-index: 1000; /* Ensures it stays above other elements */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+.top-bar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.top-bar nav {
+    margin-left: auto; /* Push navigation to the right */
+}
+
+.top-bar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar nav ul li {
+    display: inline-block;
+}
+
+.top-bar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.top-bar nav ul li a:hover {
+    color: #80cbc4; /* Light green on hover */
+}
+
+.profile-btn {
+    padding: 8px 15px;
+    background-color: #ffffff;
+    color: #0c665e;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 30px; /* Space between the profile button and nav items */
+}
+
+.profile-btn:hover {
+    background-color: #e2f3f1;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute; /* Position relative to the hero section */
+    top: 350px; /* Move closer to the top by reducing the value */
+    left: 80px; /* Move more to the left by reducing the value */
+    margin: 0;
+    color: #f3f8f8;
+}
+.h2{
+    color: #f3f8f8;
+}
+
+
+
+
+.content {
+    margin-top: 70px; /* Adds space to compensate for the fixed top bar */
+}
+
+.profile-btn {
+    padding: 8px 15px;
+    background-color: #ffffff;
+    color: #0c665e;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.profile-btn:hover {
+    background-color: #e2f3f1;
+}
+
+nav ul li a:hover {
+    color: #80cbc4; /* Light green on hover */
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    color: #000000;
+    margin-top: 50px; /* Moves the section up */
+    font-weight: bold;   /* Make the text bold */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Optional shadow effect */
+    z-index: 2;           /* Ensure it sits above other content */
+    position: relative;
+}
+
+.big-offers {
+    display: flex;
+    gap: 1rem;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.big-offers img {
+    width: 100%; /* Full width */
+    height: 300px; /* Fixed height for rectangle shape */
+    object-fit: cover; /* Ensures the image covers both width and height */
+    border-radius: 10px;
+}
+
+.big-offers .details {
+    position: absolute; /* Ensures this sits inside the stacking context */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-left: 600px;
+    padding: 1rem;
+    
+}
+
+.big-offers h2 {
+    color: #333;
+}
+
+.big-offers .price {
+    color: green;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.big-offers .btn {
+    position: absolute; /* Position the button independently */
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #004d40; /* Dark green button */
+    color: #ffffff; /* White text */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.carousel-item .btn {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #1c6109; /* Blue background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+}
+
+.carousel-item .btn:hover {
+    background-color: #2acd50; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+/* Responsive Button */
+@media screen and (max-width: 768px) {
+    .carousel-item .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+.big-offers .btn:hover {
+    background-color: #58d53c;
+}
+.carousel {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    width: 300%;
+    transition: transform 1.5s ease-in-out;
+}
+
+.carousel-item {
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Image Styling */
+.carousel-item img {
+    width: 100%;
+    max-height: 400px; /* Set a reasonable maximum height */
+    object-fit: cover;
+    display: block;
+    width: 1550px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 360px;
+
+}
+
+/* Details positioned inside the image */
+.details {
+    
+        position: absolute; /* Positioning the details on the image */
+        top: 20%;
+        left: 20%;
+        right:2% ;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 1rem;
+       
+        z-index: 2; /* Ensures text stays above image */
+        text-align: center;
+   
+    
+}
+
+.dots {
+    text-align: center;
+    margin-top: -310px; /* Controls the spacing between dots and slides */
+}
+
+.dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px; /* Adjust this value to reduce the gap */
+    cursor: pointer;
+    margin-top: -910px; /* Adjust this value to control the gap */
+    
+}
+
+.dot.active {
+    background-color: #4eb930;
+}
+
+/* Section Title Styling */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    color: #000000;
+    margin-top: 100px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .big-offers img {
+        max-height: 200px;
+    }
+}
+
+/* Reduce gap between dots and image slides */
+.carousel-item + .dots {
+    margin-top: -60px; /* Adjust this value to control the gap */
+    margin-bottom: -40px;
+}
+footer {
+    background-color: #004d40;
+    color: white;
+    padding: 20px;
+    
+}
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0px;
+}
+
+.footer-container h3, .footer-container h4 {
+    margin-bottom: 10px;
+}
+
+.footer-container p, .footer-container ul {
+    font-size: 14px;
+    line-height: 1.6;
+  
+}
+.footer-container ul {
+    list-style: none; /* Removes the bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+
+}
+
+.footer-container ul li {
+    margin: 0; /* Remove any extra space */
+    padding: 0;
+}
+
+
+.footer-container ul li a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer-container ul li a:hover {
+    color: #80cbc4;
+}
+.footer-icons {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 20px; /* Adjust spacing between icons */
+    margin-left: -1500px;
+}
+
+/* For icon size (if using <img> tags) */
+.footer-icons img {
+    width: 40px; /* Reduce width */
+    height: 40px; /* Reduce height */
+    
+}
+
+/* For icon size (if using <i> or <svg> elements) */
+.footer-icons i,
+.footer-icons svg {
+    font-size: 40px; /* Adjust font size for icons */
+}
+
+/* Optional: Adjust hover effect for clarity */
+.footer-icons img:hover,
+.footer-icons i:hover,
+.footer-icons svg:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    transition: transform 0.2s ease-in-out;
+}
+/* Section Title */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Card Container */
+.other-packages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+}
+
+/* Card Styling */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+   height: 98%;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Move card slightly upward on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 300px; /* Adjust height as needed */
+    object-fit: cover;
+    
+    z-index: 1;
+    
+}
+
+/* Content inside the Card */
+.card .content {
+    padding: 15px;
+    margin-bottom: 1px;
+    
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+    margin-top: -20px;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Button Styling */
+.card .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green background */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card .btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+}
+
+/* Responsive Design for Small Screens */
+@media screen and (max-width: 768px) {
+    .other-packages {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .other-packages {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+}
+.card .content {
+    padding: 15px;
+    text-align: left; /* Align all text in the content to the right */
+}
+
+.card .content h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-align:left; /* Ensure heading text aligns right */
+}
+
+.card .content p {
+    font-size: 1rem;
+    color: #777;
+    text-align: left; /* Align price text to the right */
+}
+
+.card .content .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center; /* Center-align text inside the button */
+}
+/* Card Styling */
+.card1 {
+    position: relative; /* Establish positioning context for children */
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%; /* Adjust width as needed */
+    height: 300px; /* Set desired height */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card1:hover {
+    transform: translateY(-10px); /* Lift the card slightly on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.card1 img {
+    position: absolute; /* Cover the entire card */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image scales to fill the area */
+    z-index: 1; /* Place behind the content */
+}
+
+/* Content Overlay */
+.card1 .content {
+    position: absolute; /* Overlay on top of the image */
+    bottom: 20px; /* Adjust position as needed */
+    left: 20px; /* Adjust position as needed */
+    z-index: 2; /* Place above the image */
+    color: white; /* White text for contrast */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Enhance readability */
+}
+
+.card1 h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+}
+
+.card1 p {
+    font-size: 1rem;
+    margin: 0 0 10px;
+}
+
+/* Button Styling */
+.card1 .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card1 .btn:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+}
+.card h3 {
+    font-size: 1.2rem;
+    margin: 15px 0; /* Add some vertical spacing */
+    color: #333;
+    display: flex; /* Align the text and icon */
+    align-items: center; /* Center align the icon with the text */
+    margin-top: 20px;
+    margin-left: 120px; /* Move the h3 down slightly */
+}
+
+.card h3 i {
+    margin-right: 8px; /* Add spacing between the icon and the text */
+    margin-bottom: -2px; /* Fine-tune the vertical alignment */
+}
+.card .content {
+    padding: 15px;
+    text-align: left; /* Align all content to the left */
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 15px 0; /* Add spacing */
+    color: #333;
+    text-align: left; /* Ensure heading text aligns to the left */
+    display: flex; /* Align icon and text together */
+    align-items: center; /* Vertically center-align the icon with the text */
+    margin-top: 10px;
+}
+
+.card h3 i {
+    margin-right: 8px; /* Add space between the icon and text */
+    margin-bottom: -2px; /* Fine-tune vertical alignment of the icon */
+}
+
+.card p {
+    font-size: 1rem;
+    color: #777;
+    text-align: left; /* Align price text to the left */
+}
+
+.card .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center; /* Center the text inside the button itself */
+}
+.card .content {
+    padding: 10px; /* Reduce padding to move content upward */
+    text-align: left; /* Align the content text to the left */
+    margin-top: -20px; /* Adjust this value to move the content upward */
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0; /* Adjust spacing */
+    color: #333;
+    display: flex; /* Align icon and text together */
+    align-items: center; /* Vertically center-align the icon with the text */
+    justify-content: center; /* Center the location and icon */
+    margin-top: 0; /* Adjust the spacing if necessary */
+    text-align: center; /* Center-align text within the container */
+}
+
+.card h3 i {
+    margin-right: 8px; /* Add space between the icon and text */
+    margin-bottom: -2px; /* Fine-tune vertical alignment of the icon */
+}
+
+.card p {
+    font-size: 1rem;
+    color: #777;
+    text-align: left; /* Align the price text to the left */
+    margin-top: 5px; /* Adjust spacing for a better layout */
+}
+
+.card .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center; /* Center the text inside the button */
+}
+.section-title1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    color: #000000;
+    margin-top: 50px; /* Moves the section up */
+    font-weight: bold;   /* Make the text bold */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Optional shadow effect */
+    z-index: 2;           /* Ensure it sits above other content */
+    position: relative;
+}
+/* General Section Styles */
+.section-title1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Offers Container */
+.offers-container {
+    background-image: url('/static/images/th.jpeg') ;
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+}
+
+/* Offers Title */
+.offers-title h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(31, 74, 9);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+/* Holiday Packages Grid */
+.holiday-packages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.8rem;
+    margin-bottom: 2rem;
+   margin-right: 30px;
+}
+
+.card1 {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card1 img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card1 .content {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.card1 h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.card1 p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.card1 p span {
+    color: red;
+    font-weight: bold;
+}
+
+.card1 .btn {
+    display: block;
+    text-align: left;
+    margin-top: auto;
+    font-size: 0.9rem;
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card1 .btn:hover {
+    text-decoration: underline;
+}
+
+.card1 .t-and-c {
+    font-size: 0.8rem;
+    color: #0c0b0b;
+    margin-top: 0.5rem;
+}
+
+/* View All Button */
+.view-all {
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.view-all a {
+    color: #28a745;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.view-all a:hover {
+    text-decoration: underline;
+}
+.card1 {
+    /* background-image: url('{% static "images/your-background-image.jpg" %}'); Replace with your background image path */
+    background-size: cover; /* Make the background cover the entire card */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: rgb(21, 19, 19); /* Ensure the text stands out on the background */
+    padding: 1rem; /* Add padding for inner content */
+}
+.heart-icon {
+    color: gray; /* Default color */
+    cursor: pointer; /* Show pointer cursor for interactivity */
+    margin-left: 10px; /* Space between text and icon */
+    font-size: 1.2rem; /* Adjust size as needed */
+    transition: color 0.3s ease; /* Smooth color change */
+}
+
+.heart-icon.active {
+    color: green; /* Toggled color */
+}
+
+
+.fas.fa-heart {
+    color: grey;  /* Default color of the heart icon */
+}
+
+.filled {
+    color: green;  /* Green color when the heart icon is filled */
+}
+
+.package-details {
+    display: flex;
+    align-items:left; /* Aligns the top of the image and text */
+    gap: 40px; /* Reduced space between the image and text */
+}
+
+.image-container img {
+    max-width: 550px; /* Adjust the image width */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 40px;
+}
+
+.details-container {
+    flex: 1; /* Takes up the remaining space */
+    text-align: left; /* Aligns the text to the right */
+    margin-top: 40px;
+}
+
+.details-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.details-container p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.details-container .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.heart-icon.filled {
+    color: red;
+}

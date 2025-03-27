@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="avatar">
+                <img src="{% static 'images/avatar.jpg' %}" alt="Admin Avatar">
+            </div>
+            <h2>Admin Login</h2>
+            <form action="{% url 'adminlogin' %}" method="POST">
+
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="admin-id">Admin ID</label>
+                    <input type="text" id="admin-id" name="admin-id" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+
+            <!-- Display error message if login fails -->
+            {% if error %}
+                <p style="color:red;">{{ error }}</p>
+            {% endif %}
+            
+        </div>
+    </div>
+</body>
+</html>

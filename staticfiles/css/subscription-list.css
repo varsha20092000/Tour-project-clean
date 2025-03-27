@@ -1,0 +1,467 @@
+.green-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.green-btn:hover {
+    background-color: #218838;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    
+}
+
+.add-package-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.add-package-btn:hover {
+    background-color: #218838;
+}
+.sidebar .menu li:nth-child(6) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 45px;
+}
+
+.sidebar .menu li:nth-child(6) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(4) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(4) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(7) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(7) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(3) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.sidebar .menu li:nth-child(3) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(8) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(8) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(1) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(1) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(2) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(2) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.sidebar .menu li:nth-child(5) {
+    display: flex;
+    align-items: center; /* Center icon and text vertically */
+    gap: 5px; /* Reduce the gap between the icon and text */
+    padding: 8px 15px; /* Keep consistent padding */
+    margin: 5px 0; /* Ensure consistent spacing between list items */
+    list-style: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 35px;
+}
+
+.sidebar .menu li:nth-child(5) i {
+    font-size: 18px; /* Adjust icon size if necessary */
+}
+.dropdown-menu .dropdown-item a {
+    color: inherit; /* Inherit the color from the parent element */
+    text-decoration: none; /* Remove underline */
+}
+
+.dropdown-menu .dropdown-item a:hover {
+    color: white; /* Change the text color on hover */
+    background-color: #c6da6c; /* Optional: change background color on hover */
+    border-radius: 5px; /* Optional: add border radius for rounded corners */
+    padding: 5px; /* Optional: add padding for better appearance */
+}
+
+
+.sidebar {
+    width: 290px;
+    background-color: #004c2f;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sidebar h1 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #f9f1f1;
+    margin-top: 30px;
+}
+
+.sidebar h1 i {
+    margin-right: 20px; /* Space between icon and text */
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.menu > li {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu > li i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.dropdown-arrow {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 12px 16px;
+    background-color: rgb(156, 222, 91);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #c6da6c;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+/* Sidebar Adjustments */
+.sidebar {
+    width: 220px; /* Reduced width for better spacing */
+}
+
+/* Main Content Section */
+.main-content {
+    margin-left: 230px; /* Matches the sidebar width + some padding */
+    padding: 20px;
+}
+
+/* Section for better alignment */
+section {
+    margin-left: -5px; /* Ensure it doesn't overlap with the sidebar */
+    padding: 20px;
+    overflow-x: auto; /* Add horizontal scroll for the table if necessary */
+}
+
+/* Responsive Table */
+table {
+    width: calc(100% - 20px); /* Reduce the table width slightly */
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    overflow-x: auto; /* Ensure horizontal scrolling for smaller screens */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+/* Optional: Add media queries for better responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 180px; /* Shrink sidebar for smaller screens */
+    }
+
+    .main-content,
+    section {
+        margin-left: 190px; /* Match the new sidebar width */
+    }
+
+    table {
+        font-size: 14px; /* Reduce table font size for smaller screens */
+    }
+}
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #004c2f;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 240px; /* Matches the sidebar width */
+    padding: 20px;
+    overflow-x: hidden; /* Prevents content from overflowing horizontally */
+}
+
+/* Table Container */
+.table-container {
+    overflow-x: auto; /* Adds horizontal scrolling for wide tables */
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Table */
+table {
+    width: 100%; /* Makes table take full width of the container */
+    table-layout: auto; /* Automatically adjusts column width */
+    border-collapse: collapse;
+}
+
+/* Table Header and Cells */
+th, td {
+    border: 1px solid #bcd0be;
+    padding: 0.5rem;
+    text-align: left;
+    word-wrap: break-word; /* Prevents content from overflowing */
+}
+
+/* Optional: Adjust Specific Column Widths */
+th:nth-child(6), td:nth-child(6) {
+    width: 200px; /* Set enough space for "Admin Action" column */
+}
+
+/* Table Header Background */
+th {
+    background-color: #86e467;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* Remove margin for smaller screens */
+    }
+
+    th, td {
+        font-size: 14px; /* Smaller text for better fit */
+    }
+
+    th:nth-child(6), td:nth-child(6) {
+        width: auto; /* Let the column adjust automatically */
+    }
+}
+.sidebar {
+    width: 250px;
+    background-color: #004c2f;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sidebar h1 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #f9f1f1;
+    margin-top: 30px;
+}
+
+.sidebar h1 i {
+    margin-right: 20px; /* Space between icon and text */
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.menu > li {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu > li i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.dropdown-arrow {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-menu .dropdown-item {
+    padding: 12px 16px;
+    background-color: rgb(156, 222, 91);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #c6da6c;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+#filter-options {
+    background-color: green;  /* Makes the background green */
+    color: white;             /* Changes text color to white */
+    border: none;             /* Removes border */
+    padding: 10px;            /* Adds some padding for better appearance */
+    font-size: 16px;          /* Increases font size for better readability */
+    cursor: pointer; 
+    width: 7%;        /* Changes the cursor to a pointer on hover */
+}
+
+#filter-options:focus {
+    outline: none;            /* Removes the default focus outline */
+}
+
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+}
+.green-header {
+    background-color: #d4edda;
+}
+
+.green-btn {
+    background-color: #17812f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}

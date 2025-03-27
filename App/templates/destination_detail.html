@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ destination.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style5.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @media (max-width: 768px) {
+          .footer-column {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+      
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">TOUR365</div>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <button class="profile-btn">Profile</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>{{ destination.name }}</h1>
+        </div>
+    </section>
+
+    <section class="destinations">
+        <div class="destination-detail">
+            <div class="card">
+                {% if destination.name %}
+                <img src="{% static 'images/' %}{{ destination.name|slugify }}.jpg" alt="{{ destination.name }}">
+                {% else %}
+                <img src="{% static 'images/placeholder.jpg' %}" alt="No Image Available">
+                {% endif %}
+                <h3>{{ destination.name }}</h3>
+                <p>{{ destination.description }}</p>
+                <p>
+                    <strong>Location:</strong> {{ destination.location }}
+                    <span class="love-icon" data-name="{{ destination.name }}"
+                        data-description="{{ destination.description }}" data-location="{{ destination.location }}"
+                        data-image="{% static 'images/' %}{{ destination.name|slugify }}.jpg">
+                        <i class="far fa-heart"></i>
+                    </span>
+                </p>
+                {% if destination.best_time_to_visit %}
+                <p><strong>Best Time to Visit:</strong> {{ destination.best_time_to_visit }}</p>
+                {% endif %}
+                <button>Book Now</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="quote">
+        <p>"Sometimes it's more about the journey than the destination. All you need is the plan, the road map, and the
+            courage to press on to your destination. Success is a journey, not a destination."</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="about">
+                <h3>TOUR365</h3>
+                <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+            </div>
+            <div class="links">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="services">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="contact">
+                <h4>Contact</h4>
+                <p>Email: support@tour365.com</p>
+                <p>Phone: +123-456-7890</p>
+            </div>
+        </div>
+        <div class="footer-icons">
+            <img src="{% static 'images/you1.jpg' %}" alt="YouTube" style="width: 30px; height: 30px;">
+            <img src="{% static 'images/facebook.jpg' %}" alt="Facebook" style="width: 30px; height: 30px;">
+
+            <img src="{% static 'images/insta.jpg' %}" alt="Instagram" style="width: 30px; height: 30px;">
+
+        </div>
+    </footer>
+</body>
+<script src="{% static 'script.js/script8.js' %}"></script>
+
+</html>     

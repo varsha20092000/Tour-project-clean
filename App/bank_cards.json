@@ -1,0 +1,23 @@
+[
+    {
+      "bank_name": "Axis Bank",
+      "card_number": "8395",
+      "logo_path": "images/logo1.jpeg"
+    },
+    {
+      "bank_name": "HDFC Bank",
+      "card_number": "6246",
+      "logo_path": "images/logo2.jpeg"
+    },
+    {
+      "bank_name": "SBI",
+      "card_number": "7865",
+      "logo_path": "images/logo3.png"
+    },
+    {
+      "bank_name": "ICICI",
+      "card_number": "9321",
+      "logo_path": "images/logo4.png"
+    }
+  ]
+  

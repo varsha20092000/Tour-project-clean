@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Destination - {{ destination.name }}</title>
+  <link rel="stylesheet" href="{% static 'css/style8.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    .booking-container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+    .booking-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .destination-details {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .destination-details img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+    .details {
+      flex: 1;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .booking-container {
+  margin-top: 850px; /* or the height of your header */
+}
+.details {
+      flex: 1;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #2e9415;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #2be84a;
+    }
+    /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <h2>Book Your Trip to {{ destination.name }}</h2>
+    <!-- Destination Details -->
+    <div class="destination-details">
+      <img src="{% static 'images/' %}{{ destination.name|slugify }}.jpg" alt="{{ destination.name }}">
+      <div class="details">
+        <h2>{{ destination.name }}</h2>
+        <p>{{ destination.description }}</p>
+        <p><strong>Location:</strong> {{ destination.location }}</p>
+      </div>
+    </div>
+    <!-- Booking Form -->
+    <form method="post" action="{% url 'book_destination' destination.id %}">
+      {% csrf_token %}
+      <!-- Hidden field for destination ID -->
+      <input type="hidden" name="destination" value="{{ destination.id }}">
+
+      <!-- Booking Details -->
+      <label for="booking_date">Booking Date:</label>
+      <input type="date" id="booking_date" name="booking_date" required>
+
+      <label for="number_of_people">Number of People:</label>
+      <input type="number" id="number_of_people" name="number_of_people" required min="1">
+
+      <!-- User Information -->
+      <h3>User Information</h3>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required placeholder="Enter your numbe r">
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="3" required placeholder="Street, City, Country"></textarea>
+
+      <!-- Additional Trip Preferences -->
+      <h3>Trip Preferences</h3>
+      <label for="trip_type">Trip Type:</label>
+      <select id="trip_type" name="trip_type">
+        <option value="honeymoon">Honeymoon</option>
+        <option value="adventure">Adventure</option>
+        <option value="family">Family</option>
+        <option value="solo">Solo</option>
+      </select>
+
+      <label for="meal_preference">Meal Preference:</label>
+      <select id="meal_preference" name="meal_preference">
+        <option value="standard">Standard</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="gluten_free">Gluten Free</option>
+      </select>
+
+      <!-- Additional Details -->
+      <h3>Additional Details</h3>
+      <label for="special_requests">Special Requests / Additional Information:</label>
+      <textarea id="special_requests" name="special_requests" rows="4" placeholder="Any special instructions or requests?"></textarea>
+    
+      <!-- Preferred Accommodation -->
+      <label for="preferred_accommodation">Preferred Accommodation Type:</label>
+      <select id="preferred_accommodation" name="preferred_accommodation">
+        <option value="hotel">Hotel</option>
+        <option value="resort">Resort</option>
+        <option value="hostel">Hostel</option>
+        <option value="apartment">Apartment</option>
+      </select>
+
+      <!-- Travel Insurance -->
+      <label for="travel_insurance">Do you need travel insurance?</label>
+      <select id="travel_insurance" name="travel_insurance">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <!-- Budget Range -->
+      <label for="budget_range">Approximate Budget Range (USD):</label>
+      <input type="text" id="budget_range" name="budget_range" placeholder="e.g. 1000-1500">
+
+      <!-- Emergency Contact -->
+      <label for="emergency_contact">Emergency Contact Name:</label>
+      <input type="text" id="emergency_contact" name="emergency_contact" placeholder="Enter contact name">
+
+      <label for="emergency_phone">Emergency Contact Phone:</label>
+      <input type="tel" id="emergency_phone" name="emergency_phone" placeholder="Enter contact phone number">
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+</body>
+</html>

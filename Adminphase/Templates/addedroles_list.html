@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Added Roles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #e6f0e6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #c9cbbb;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background-color: #66d9c2;
+        }
+
+        .btn-delete {
+            background-color: #ff4d4d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: black;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+
+        .pagination a.active {
+            background-color: #66d9c2;
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 8px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .filter-btn {
+            background-color: #66d9c2;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Added Roles</h1>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" class="search-input" placeholder="Search for a role" />
+            <button class="filter-btn" onclick="filterRoles()">Filter</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Roles</th>
+                    <th>Created Date</th>
+                    <th>Option for Editing</th>
+                </tr>
+            </thead>
+            <tbody id="role-table">
+                <tr>
+                    <td>Agent</td>
+                    <td>23/07/2024</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Agent')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tour Guide</td>
+                    <td>22/03/22</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Tour Guide')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Manager</td>
+                    <td>11/01/2025</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Manager')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Customer Management</td>
+                    <td>01/12/2024</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Customer Management')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hotel Manager</td>
+                    <td>09/08/2023</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Hotel Manager')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tourist Bus Owner</td>
+                    <td>20/09/2020</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Tourist Bus Owner')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Guide</td>
+                    <td>29/04/2025</td>
+                    <td>
+                        <button class="btn btn-edit">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteRole('Guide')">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul class="pagination">
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">40</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function deleteRole(roleName) {
+            if (confirm(`Are you sure you want to delete the role "${roleName}"?`)) {
+                alert(`Role "${roleName}" has been deleted successfully.`);
+                // Add deletion logic here to remove it from the backend or dynamically update the table
+            }
+        }
+        
+
+    </script>
+</body>
+</html>
+

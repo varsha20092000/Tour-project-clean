@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About Us - Tour365</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style7.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        header a:hover {
+            background-color: #444;
+        }
+        .main-content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: black;
+        }
+        .subheading {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+            color: black;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #333;
+        }
+        .section p {
+            font-size: 1.1em;
+        }
+        .list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .list li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="logo">TOUR365</div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="{% url 'profile' %}">
+                <button class="profile-btn">Profile</button>
+              </a>
+              
+        </div>
+
+        <!-- Hero Section -->
+
+    </header>
+
+    <section class="hero">
+        <h1>About Us</h1>
+    </section>
+
+<div class="main-content">
+    <h1>About Us - Tour365</h1>
+    
+    <div class="subheading">Discover Your Next Adventure with Tour365</div>
+    
+    <p>Welcome to Tour365, your gateway to unforgettable journeys and unique experiences around the globe. Whether you're dreaming of lounging on sun-kissed beaches, exploring vibrant cities, or immersing yourself in rich cultures, we curate the perfect travel packages tailored just for you.</p>
+    
+    <div class="section">
+        <h2>Vision</h2>
+        <p>To challenge and motivate each and every traveler to walk the world with a spirit of adventure and openness, bringing memories that will never be erased and interrelations with a variety of cultures and landscapes into their travel lives.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Mission</h2>
+        <p>At Tour365, we have the mission to make travel an easy and delightful adventure for everyone. We work hard to offer professional advice, recommendations tailored to you, and easy booking options so that you can discover new places, plan the ideal trip, and create fond memories. Through our unique platform, committed customer service, and dedication to sustainability, we want to improve your travel experience and make it a happy, stress-free adventure in discovering the world.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why Choose Us?</h2>
+        <ul class="list">
+            <li><strong>Expert Guidance:</strong> Our team of seasoned travel experts is dedicated to crafting the ideal itinerary that matches your interests and preferences. From hidden gems to iconic landmarks, we ensure every detail is covered.</li>
+            <li><strong>Diverse Destinations:</strong> Explore a wide range of destinations, from the enchanting landscapes of Europe to the breathtaking beauty of Asia and beyond. Each location offers its own charm, culture, and adventure waiting to be discovered.</li>
+            <li><strong>Personalized Experiences:</strong> We believe every traveler is unique. Our customizable packages allow you to mix and match activities, accommodations, and experiences to create your perfect getaway.</li>
+            <li><strong>Quality Assurance:</strong> We partner with trusted local guides and providers to ensure you receive exceptional service and support throughout your journey.</li>
+            <li><strong>Community & Sustainability:</strong> We are committed to responsible travel practices. By choosing us, you're supporting local communities and eco-friendly initiatives that help preserve the beauty of our planet.</li>
+        </ul>
+    </div>
+
+    <p><strong>Join Us in Exploring the World!</strong></p>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="about">
+            <h3>TOUR365</h3>
+            <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+        </div>
+        <div class="links">
+            <h4>Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Destination</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Packages</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="services">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="contact">
+            <h4>Contact</h4>
+            <p>Email: support@tour365.com</p>
+            <p>Phone: +123-456-7890</p>
+        </div>
+    </div>
+    <div class="footer-icons">
+        <link rel="stylesheet" href="/static/css/style7.css">
+        <img src="/static/images/you1.jpg" alt="YouTube">
+        <img src="/static/images/facebook.jpg" alt="Facebook">
+        <img src="/static/images/insta.jpg" alt="Instagram">
+
+    </div>
+</footer>
+
+</body>
+</html>

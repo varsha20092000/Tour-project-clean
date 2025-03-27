@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Team Members</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8aa771;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            height: 100vh; /* Take up the full viewport height */
+        }
+        .container {
+            text-align: center; /* Center the text */
+            padding: 20px;
+            width: 80%; /* Control width */
+            max-width: 900px; /* Prevent it from getting too wide */
+            margin-bottom: 190px;
+        }
+        .member-card {
+            display: flex;
+            align-items: center;
+            background: #e7e7e7;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%; /* Make the card take the full width */
+            max-width: 400px; /* Set a max width for each card */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .member-info {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Team Members</h1>
+        <div>
+            {% for member in members %}
+            <div class="member-card" onclick="location.href='{{ member.member_id }}/';">
+                <img src="{% static 'images/' %}{{ member.avatar }}" alt="Avatar" class="avatar">
+                <div class="member-info">
+                    Name: {{ member.name }}<br>
+                    ID: {{ member.member_id }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+

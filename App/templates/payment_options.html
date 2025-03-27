@@ -1,0 +1,708 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Options</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Main container for the page */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+    }
+
+    /* Page heading */
+    h1 {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Payment section boxes */
+    .payment-section {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .payment-section h2 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    /* Radio List Items */
+    .radio-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1rem;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .radio-item:hover {
+      background-color: #f3f3f3;
+    }
+    .radio-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .radio-left img {
+      width: 40px; /* Icon size */
+      height: 40px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .radio-left .brand-name {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    .radio-right {
+      display: flex;
+      align-items: center;
+    }
+    .radio-right input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #007bff; /* For modern browsers to color the radio */
+    }
+
+    /* "Add new" items style */
+    .add-new {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: #007bff;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .add-new i {
+      font-size: 1.2rem;
+    }
+
+    /* Footer with Price & Buttons */
+    .payment-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .price-info {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .price-info .plan-link {
+      font-size: 0.9rem;
+      margin-left: 10px;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+    }
+    .btn-pay {
+      background-color: #008080;
+      color: #fff;
+    }
+    .btn-pay:hover {
+      background-color: #006666;
+    }
+    .btn-cancel {
+      background-color: #ddd;
+      color: #333;
+    }
+    .btn-cancel:hover {
+      background-color: #bbb;
+    }
+
+    /* Sticky footer at bottom */
+    footer {
+      background-color: #eee;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .price-info {
+  position: relative;
+  top: -5px; /* moves the price and "View plan details" up */
+  transform: translateY(-5px);
+}
+
+.button-group {
+  position: relative;
+  top: 5px; /* moves the buttons down */
+  transform: translateY(5px);
+}
+.modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal content container */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 5px;
+    }
+
+    /* Close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
+
+    /* Header styling */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .modal-header .bank-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .modal-title {
+      color: green;
+      margin: 0;
+    }
+
+    /* Form styling */
+    form .form-group {
+      margin-bottom: 15px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    form input[type="text"],
+    form input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    
+    /* Button styling */
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .btn-pay {
+      background-color: green;
+      color: white;
+    }
+    #paymentSuccessModal .modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 40px;               /* increased padding */
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;            /* increased max width */
+  text-align: center;
+  position: relative;
+}
+
+/* Make the icon container larger if needed */
+.success-icon {
+  margin-bottom: 20px;
+}
+
+/* Title styling */
+.success-title {
+  font-size: 1.5rem;           /* larger font */
+  color: #34c759;
+  margin-bottom: 20px;
+}
+
+/* Larger success button */
+.btn-success {
+  background-color: #34c759;
+  color: #fff;
+  padding: 14px 28px;          /* increased padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;             /* larger font */
+}
+.btn-success:hover {
+  background-color: #28a745;
+}
+
+/* Close button styling */
+.close.success-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -10px;
+}
+.close.success-close:hover {
+  color: #000;
+}
+/* Payment Section Styles */
+.payment-section { margin: 20px; }
+    .radio-list { margin-bottom: 20px; }
+    .radio-item {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 10px; 
+      border: 1px solid #ccc; 
+      margin-bottom: 10px; 
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .radio-left { display: flex; align-items: center; }
+    .radio-left img { width: 50px; margin-right: 10px; }
+    .add-new { display: flex; align-items: center; color: #007bff; cursor: pointer; }
+    .add-new i { margin-right: 5px; }
+    
+    /* Hidden panel for other bank options */
+    .other-banks-panel {
+      display: none; /* Hidden initially */
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .other-banks-panel h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .bank-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .bank-option {
+      width: calc(25% - 10px); /* Adjust as needed to fit more banks in a row */
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .bank-option:hover {
+      border-color: #007bff;
+    }
+    .bank-option img {
+      width: 50px;
+      margin-bottom: 5px;
+    }
+    /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Payment Options</h1>
+
+    <!-- Credit & Debit Cards Section -->
+    <div class="payment-section"> 
+      <h2>Credit & Debit Cards</h2>
+      <div class="radio-list">
+        <!-- Axis Bank -->
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/logo1.jpeg' %}" alt="Axis Bank Logo">
+            <span class="brand-name">Axis Bank **** **** **** 8395</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="card">
+          </div>
+        </label>
+        <!-- HDFC Bank (Visa) -->
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/logo2.jpeg' %}" alt="VISA/HDFC Logo">
+            <span class="brand-name">HDFC Bank **** **** **** 6246</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="card">
+          </div>
+        </label>
+      </div>
+      <!-- Trigger to add new card -->
+      <div class="add-new" id="addNewCard">
+        <i class="fas fa-plus-circle"></i>
+        <span>Add New Card</span>
+      </div>
+  
+      <!-- Hidden Panel: Other Bank Options -->
+      <div class="other-banks-panel" id="otherBanksPanel">
+        <h3>Select Your Bank</h3>
+        <div class="bank-grid">
+          <!-- Example: SBI -->
+          <div class="bank-option" data-bank="SBI">
+            <img src="{% static 'images/logo3.png' %}" alt="SBI Logo">
+            <div>SBI</div>
+          </div>
+          <!-- Example: ICICI -->
+          <div class="bank-option" data-bank="ICICI">
+            <img src="{% static 'images/logo4.png' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="South Indian Bank">
+            <img src="{% static 'images/logo5.jpg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="Punjab national Bank">
+            <img src="{% static 'images/pun.jpeg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="muthoot Bank">
+            <img src="{% static 'images/muth.jpeg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="Canara Bank">
+            <img src="{% static 'images/can.jpeg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="Indian Bank">
+            <img src="{% static 'images/ind.jpeg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <div class="bank-option" data-bank="Central Bank">
+            <img src="{% static 'images/central.jpeg' %}" alt="ICICI Logo">
+            <div>ICICI</div>
+          </div>
+          <!-- Add additional bank options as needed -->
+          <!-- You can duplicate the .bank-option block for more banks -->
+        </div>
+      </div>
+    </div>
+
+    <!-- UPI Section -->
+    <div class="payment-section">
+      <h2>UPI</h2>
+      <div class="radio-list">
+        <!-- Google Pay -->
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/download.jpeg' %}" alt="Google Pay Logo">
+            <span class="brand-name">Google Pay</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="upi" />
+          </div>
+        </label>
+        <!-- PhonePe -->
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/logo4.jpeg' %}" alt="PhonePe Logo">
+            <span class="brand-name">PhonePe</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="upi" />
+          </div>
+        </label>
+      </div>
+      <div class="add-new">
+        <i class="fas fa-plus-circle"></i>
+        <span>Add New UPI ID</span>
+      </div>
+    </div>
+
+    <!-- More Payment Options -->
+    <div class="payment-section">
+      <h2>More Payment Options</h2>
+      <div class="radio-list">
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/wallet.jpeg' %}" alt="Wallet Logo">
+            <span class="brand-name">Wallet</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="more" />
+          </div>
+        </label>
+        <label class="radio-item">
+          <div class="radio-left">
+            <img src="{% static 'images/logo5.jpeg' %}" alt="NetBanking Logo">
+            <span class="brand-name">Net Banking</span>
+          </div>
+          <div class="radio-right">
+            <input type="radio" name="more" />
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Footer with Price & Buttons -->
+    <div class="payment-footer">
+      <div class="price-info">
+        $19.99
+        <a href="{% url 'subscription_plans' %}" class="plan-link">View plan details</a>
+      </div>
+      
+      <div class="button-group">
+        <button class="btn btn-pay" id="proceedToPayBtn">Proceed to Pay</button>
+        <button class="btn btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Modal structure -->
+  <div id="bankDetailsModal" class="modal">
+    <div class="modal-content">
+      <!-- Close icon -->
+      <span class="close">&times;</span>
+      <!-- Modal header -->
+      <div class="modal-header">
+        <img src="{% static 'images/logo5.jpeg' %}" alt="Bank Icon" class="bank-icon">
+        <h2 class="modal-title">Bank Details</h2>
+      </div>
+      <!-- Bank details form -->
+      <form id="bankDetailsForm">
+        <div class="form-group">
+          <label for="bankName">Bank Name</label>
+          <input type="text" id="bankName" name="bankName" placeholder="Enter your bank name" required>
+        </div>
+        <div class="form-group">
+          <label for="upiNumber">UPI Number</label>
+          <input type="text" id="upiNumber" name="upiNumber" placeholder="Enter your UPI number" required>
+        </div>
+        <div class="form-group">
+          <label for="ifscCode">IFSC Code</label>
+          <input type="text" id="ifscCode" name="ifscCode" placeholder="Enter IFSC code" required>
+        </div>
+        <div class="form-group">
+          <label for="accountNumber">Account Number</label>
+          <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter account number" required>
+        </div>
+        <div class="form-group">
+          <label for="panNumber">PAN Number</label>
+          <input type="text" id="panNumber" name="panNumber" placeholder="Enter PAN number" required>
+        </div>
+        <div class="form-group">
+          <label for="mobileNumber">Mobile Number</label>
+          <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter mobile number" required>
+        </div>
+        <div class="form-group">
+          <label for="adharCard">Aadhar Card Number</label>
+          <input type="text" id="adharCard" name="adharCard" placeholder="Enter Aadhar card number" required>
+        </div>
+        <div class="form-group">
+          <label for="idProof">Upload ID Proofs</label>
+          <input type="file" id="idProof" name="idProof" required>
+        </div>
+        <!-- Additional fields can be added here -->
+        <button type="submit" class="btn btn-pay">Proceed to Pay</button>
+      </form>
+    </div>
+  </div>
+  <!-- Success Modal -->
+<div id="paymentSuccessModal" class="modal">
+  <div class="modal-content">
+    <span class="close success-close">&times;</span>
+    <div class="success-icon">
+      <!-- You can replace this inline SVG with an actual image if you have one -->
+      <svg
+      width="80"
+      height="80"
+      viewBox="0 0 64 64"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="32" cy="32" r="32" fill="#34c759" />
+      <path
+        fill="#000"
+        d="M16 33.94l3.52-3.52L27 37.91l20.48-20.48 3.52 3.52L27 44.94z"
+      />
+    </svg>
+    </div>
+    <h2 class="success-title">Payment successful</h2>
+    <button class="btn btn-success" id="goToProfileBtn">Go back to profile page</button>
+  </div>
+</div>
+
+  <footer>
+    &copy; 2023 TOUR365. All rights reserved.
+  </footer>
+  <script>
+    // Get modal element and button
+    var modal = document.getElementById("bankDetailsModal");
+    var btn = document.getElementById("proceedToPayBtn");
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Open modal when button is clicked
+    btn.addEventListener("click", function() {
+      modal.style.display = "block";
+    });
+
+    // Close modal when the close button (×) is clicked
+    closeBtn.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    // Close modal when clicking outside of the modal content
+    window.addEventListener("click", function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+    var bankDetailsModal = document.getElementById("bankDetailsModal");
+  var successModal = document.getElementById("paymentSuccessModal");
+  
+  // Grab the bank details form
+  var bankDetailsForm = document.getElementById("bankDetailsForm");
+  
+  // When the form is submitted, show the success modal
+  bankDetailsForm.addEventListener("submit", function(e) {
+    e.preventDefault(); // Stop normal form submission
+    
+    // 1. Hide the bank details modal
+    bankDetailsModal.style.display = "none";
+    
+    // 2. Show the success modal
+    successModal.style.display = "block";
+  });
+  
+  // Close button on the success modal
+  var successCloseBtn = document.querySelector(".success-close");
+  successCloseBtn.addEventListener("click", function() {
+    successModal.style.display = "none";
+  });
+  
+  // "Go back to profile page" button
+  var goToProfileBtn = document.getElementById("goToProfileBtn");
+  goToProfileBtn.addEventListener("click", function() {
+    // For example, redirect to the user's profile
+    window.location.href = "/profile"; // replace with your actual profile URL
+  });
+  
+  // Optionally, close the success modal if user clicks outside it
+  window.addEventListener("click", function(event) {
+    if (event.target === successModal) {
+      successModal.style.display = "none";
+    }
+  });
+  document.getElementById('addNewCard').addEventListener('click', function() {
+      var panel = document.getElementById('otherBanksPanel');
+      if (panel.style.display === 'none' || panel.style.display === '') {
+        panel.style.display = 'block';
+      } else {
+        panel.style.display = 'none';
+      }
+    });
+
+    // Optional: handle bank option selection from the panel
+    var bankOptions = document.querySelectorAll('.bank-option');
+    bankOptions.forEach(function(option) {
+      option.addEventListener('click', function() {
+        // Example: highlight the selected bank option
+        bankOptions.forEach(function(opt) {
+          opt.style.borderColor = '#ccc'; // Reset others
+        });
+        this.style.borderColor = '#28a745'; // Highlight selected bank
+        var selectedBank = this.getAttribute('data-bank');
+        console.log("Selected bank:", selectedBank);
+        // Optionally, you could also set a hidden input field with the selected bank value
+      });
+    });
+  </script>
+
+</body>
+</html>
+

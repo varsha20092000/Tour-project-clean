@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOUR365 - Package Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style7.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        @media (max-width: 768px) {
+          .footer-column {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+      
+</head>
+
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">TOUR365</div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="{% url 'package-list' %}">Packages</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                   
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="profile-btn">Profile</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Package Details</h1>
+    </section>
+
+    <div class="container">
+        <section>
+            <div class="package-details">
+                <div class="image-container">
+                    {% if package.images %}
+                    <img src="{% static '' %}{{ package.images }}" alt="{{ package.name }}">
+                    {% else %}
+                    <img src="{% static 'images/placeholder.jpg' %}" alt="No image available">
+                    {% endif %}
+                </div>
+                <div class="details-container">
+                    <h2>{{ package.name }}</h2>
+                    <p>{{ package.description }}</p>
+                    <p>Duration: {% if package.duration %}{{ package.duration }} days{% else %}N/A{% endif %}</p>
+                    <div class="price">${{ package.price }}</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+
+    <footer>
+        <div class="footer-container">
+            <div class="about">
+                <h3>TOUR365</h3>
+                <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+            </div>
+            <div class="links">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Destination</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Packages</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="services">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="contact">
+                <h4>Contact</h4>
+                <p>Email: support@tour365.com</p>
+                <p>Phone: +123-456-7890</p>
+            </div>
+        </div>
+        <div class="footer-icons">
+            <link rel="stylesheet" href="/static/css/style7.css">
+            <img src="/static/images/you1.jpg" alt="YouTube">
+            <img src="/static/images/facebook.jpg" alt="Facebook">
+            <img src="/static/images/insta.jpg" alt="Instagram">
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
+

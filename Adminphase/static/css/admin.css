@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background image */
+body {
+    background-image: url('../images/c1.jpeg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Container for the login box */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Login box */
+/* Login box */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+    height: auto;
+    border: 5px solid #8BC34A; /* Add a light green border */
+}
+
+
+/* Avatar */
+.avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Input group */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Labels and inputs */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button */
+.btn {
+    background-color: #8BC34A;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 70px; /* Add margin to push the button down */
+}
+
+.btn:hover {
+    background-color: #7CB342;
+}
+form {
+    margin-top: 60px; /* Push the form content down */
+}
+

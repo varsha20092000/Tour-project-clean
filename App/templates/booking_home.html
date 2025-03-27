@@ -1,0 +1,382 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Your Trip</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#c4e0ac;
+            color: #333;
+
+            
+        }
+        
+        /* Main container for the form + image */
+        .form-container {
+            max-width: 500px;        /* Adjust as needed */
+            margin: 40px auto;        
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;         
+          
+           
+        }
+
+        /* Flex container for image (left) + form (right) */
+        .form-columns {
+            display: flex;
+            flex-wrap: wrap;         /* Allow wrapping on small screens */
+            align-items: stretch;    /* Columns match in height (based on the form's height) */
+        }
+
+        /* Left column for the image */
+        .image-column {
+            flex: 0 0 40%;           /* 40% width for the image column */
+            display: flex;           /* So we can center the image if desired */
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Fallback background if image is smaller */
+        }
+        .image-column img {
+            max-width: 100%;
+            height: auto; 
+            
+        }
+
+        /* Right column for the form */
+        .form-column {
+            flex: 1;                 
+            padding: 30px;
+        }
+        .form-column h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        /* Section titles */
+        .section-title {
+            color: green;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* Labels and inputs */
+        label {
+            display: block;
+            margin: 12px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="month"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+        }
+
+        .passport-info {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Payment sections */
+        .payment-section {
+            margin-top: 10px;
+            padding: 15px;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Submit button */
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .image-column img {
+    max-width: 400%;
+    height: auto;
+}
+
+ /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+       
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="form-columns">
+        <!-- LEFT COLUMN: IMAGE -->
+      <!-- LEFT COLUMN: IMAGE -->
+
+
+
+        <!-- RIGHT COLUMN: BOOKING FORM -->
+        <div class="form-column">
+            <h2>Book Your Trip</h2>
+            <form method="post" action="{% url 'booknow_home' %}">
+                {% csrf_token %}
+
+                <!-- PERSONAL DETAILS -->
+                <h3 class="section-title">Personal Details</h3>
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" placeholder="enter your name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="enter your Email" required>
+
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" placeholder="enter your number" required>
+
+                <label for="country">Country of Residence:</label>
+                <select id="country" name="country" required>
+                    <option value="">-- Select Country --</option>
+                    <option value="IN">India</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                    <!-- Add more countries as needed -->
+                </select>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">-- Select Gender --</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" placeholder="Street, City, State, Zip Code" required></textarea>
+
+                <!-- TRAVEL DETAILS -->
+                <h3 class="section-title">Travel Details</h3>
+                <label for="booking_date">Booking Start Date:</label>
+                <input type="date" id="booking_date" name="booking_date" required>
+
+                <label for="return_date">Return Date (if applicable):</label>
+                <input type="date" id="return_date" name="return_date">
+
+                <label for="number_of_people">Number of Travelers:</label>
+                <input type="number" id="number_of_people" name="number_of_people" required min="1">
+
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="e.g., Canada, Finland, etc." required>
+
+                <label for="special_requests">Special Requests / Notes:</label>
+                <textarea id="special_requests" name="special_requests" rows="3" placeholder="Allergies, seat preferences, etc."></textarea>
+
+                <!-- PASSPORT DETAILS -->
+                <h3 class="section-title">Passport Details</h3>
+                <p class="passport-info">
+                    If you are traveling internationally, please provide your passport information.
+                    Otherwise, you may leave these fields blank if not applicable.
+                </p>
+                <label for="passport_number">Passport Number:</label>
+                <input type="text" id="passport_number" name="passport_number" placeholder="e.g., A1234567">
+
+                <label for="passport_country">Issuing Country:</label>
+                <select id="passport_country" name="passport_country">
+                    <option value="">-- Select Country --</option>
+                    <option value="IN">India</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                    <!-- Add more countries as needed -->
+                </select>
+
+                <label for="passport_issue_date">Issue Date:</label>
+                <input type="date" id="passport_issue_date" name="passport_issue_date">
+
+                <label for="passport_expiry_date">Expiry Date:</label>
+                <input type="date" id="passport_expiry_date" name="passport_expiry_date">
+
+                <!-- PAYMENT DETAILS -->
+                <h3 class="section-title">Payment Details</h3>
+                <label for="payment_method">Payment Method:</label>
+                <select id="payment_method" name="payment_method" required>
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="debit_card">Debit Card</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="net_banking">Net Banking</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+
+                <!-- Debit Card -->
+                <div id="debit_card_section" class="payment-section hidden">
+                    <h4>Debit Card Details</h4>
+                    <label for="debit_card_provider">Bank Name:</label>
+                    <input type="text" id="debit_card_provider" name="debit_card_provider" placeholder="e.g., Chase, SBI, etc.">
+            
+                    <label for="debit_card_number">Card Number:</label>
+                    <input type="text" id="debit_card_number" name="debit_card_number" placeholder="XXXX-XXXX-XXXX-XXXX">
+            
+                    <label for="debit_expiration_date">Expiration Date (MM/YYYY):</label>
+                    <input type="month" id="debit_expiration_date" name="debit_expiration_date">
+            
+                    <label for="debit_cvv">CVV:</label>
+                    <input type="text" id="debit_cvv" name="debit_cvv" maxlength="3" placeholder="123">
+                </div>
+        
+                <!-- Credit Card -->
+                <div id="credit_card_section" class="payment-section hidden">
+                    <h4>Credit Card Details</h4>
+                    <label for="credit_card_provider">Bank Name:</label>
+                    <input type="text" id="credit_card_provider" name="credit_card_provider" placeholder="e.g., Citi, HSBC, etc.">
+            
+                    <label for="credit_card_number">Card Number:</label>
+                    <input type="text" id="credit_card_number" name="credit_card_number" placeholder="XXXX-XXXX-XXXX-XXXX">
+            
+                    <label for="credit_expiration_date">Expiration Date (MM/YYYY):</label>
+                    <input type="month" id="credit_expiration_date" name="credit_expiration_date">
+            
+                    <label for="credit_cvv">CVV:</label>
+                    <input type="text" id="credit_cvv" name="credit_cvv" maxlength="3" placeholder="123">
+                </div>
+        
+                <!-- Net Banking -->
+                <div id="net_banking_section" class="payment-section hidden">
+                    <h4>Net Banking Details</h4>
+                    <label for="net_banking_provider">Bank Name:</label>
+                    <input type="text" id="net_banking_provider" name="net_banking_provider" placeholder="e.g., HDFC, Wells Fargo, etc.">
+            
+                    <label for="account_number">Account Number:</label>
+                    <input type="text" id="account_number" name="account_number">
+            
+                    <label for="ifsc_code">IFSC / Routing Code:</label>
+                    <input type="text" id="ifsc_code" name="ifsc_code" placeholder="e.g., ABCD0123456">
+                </div>
+        
+                <!-- PayPal -->
+                <div id="paypal_section" class="payment-section hidden">
+                    <h4>PayPal Details</h4>
+                    <label for="paypal_email">PayPal Email:</label>
+                    <input type="email" id="paypal_email" name="paypal_email" placeholder="paypal@example.com">
+                </div>
+        
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+  /* Show/hide payment sections based on user selection */
+  document.addEventListener("DOMContentLoaded", function() {
+    const paymentMethodSelect = document.getElementById("payment_method");
+    const debitCardSection = document.getElementById("debit_card_section");
+    const creditCardSection = document.getElementById("credit_card_section");
+    const netBankingSection = document.getElementById("net_banking_section");
+    const paypalSection = document.getElementById("paypal_section");
+
+    function hideAllPaymentSections() {
+      debitCardSection.style.display = "none";
+      creditCardSection.style.display = "none";
+      netBankingSection.style.display = "none";
+      paypalSection.style.display = "none";
+    }
+
+    paymentMethodSelect.addEventListener("change", function() {
+      hideAllPaymentSections();
+      switch (paymentMethodSelect.value) {
+        case "debit_card":
+          debitCardSection.style.display = "block";
+          break;
+        case "credit_card":
+          creditCardSection.style.display = "block";
+          break;
+        case "net_banking":
+          netBankingSection.style.display = "block";
+          break;
+        case "paypal":
+          paypalSection.style.display = "block";
+          break;
+      }
+    });
+
+    hideAllPaymentSections();
+  });
+</script>
+
+</body>
+</html>
+

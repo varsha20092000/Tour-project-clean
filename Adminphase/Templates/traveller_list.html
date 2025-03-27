@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour 365</title>
+   
+    <link rel="stylesheet" href="{% static 'css/travel.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+</head>
+<body>
+    <header>
+        <div class="back-icon">
+            
+        </div>
+        
+       
+
+        <button id="filterButton">Filter</button>
+    </header>
+    <div class="sidebar">
+        <a href="javascript:void(0);" onclick="window.history.back();">
+            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </a>
+        <h1>Tour 365</h1>
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+            <hr>
+        <ul class="menu">
+            <li>
+                <i class="fas fa-users"></i> User Management
+                <span class="dropdown-arrow" id="userDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="userDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'traveller_list' %}">Traveller</a></button>
+                    <button class="dropdown-item"><a href="{% url 'company_list' %}">Company</a></button>
+                </div>
+            </li>
+            
+            <li>
+                <i class="fas fa-plane"></i> Tour Management
+                <span class="dropdown-arrow" id="tourDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="tourDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'customized_tour_management' %}">Customized Tour Managemen</a> </button>
+                    <button class="dropdown-item"><a href="{% url 'Addpackage' %}">Add New Package</a></button>
+                </div>
+            </li>
+            <li><a href="{% url 'customer_info' %}" class="no-underline"><i class="fas fa-user"></i> Customer Management</a></li>
+
+
+            <li><a href="{% url 'payment_management' %}" class="no-underline"><i class="fas fa-user"></i> Payment Management</a></li>
+            <li><a href="{% url 'subscription_list' %}" class="no-underline"><i class="fas fa-user"></i> Subscription Management</a></li>
+            <li><a href="{% url 'visa_management' %}" class="no-underline"><i class="fas fa-user"></i> Visa Management</a></li>
+            <li>
+                <i class="fas fa-cogs"></i> Global Settings
+                <span class="dropdown-arrow" id="globalDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="globalDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'create_role' %}">Create New Role</a></button>
+                        <button class="dropdown-item"><a href="{% url 'roles_list' %}">Added/Existing Roles</a></button>
+                        <button class="dropdown-item"><a href="{% url 'settings_page' %}">setting</a></button>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-users-cog"></i> Team Management
+                <span class="dropdown-arrow" id="teamDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="teamDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'create_profile' %}">Create a New Team Member</a></button>
+                    <button class="dropdown-item"><a href="{% url 'member_list'%}">Team Member Details</a></button>
+                    <button class="dropdown-item"><a href="{% url 'generate_credentials' %}">Generate Credentials</a></button>
+                    <button class="dropdown-item"> <a href="{% url 'teammembers_list' %}">Credential Details</a></button>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    
+    
+    <nav>
+       
+    </nav>
+    <main>
+        <h2>Traveller's List</h2>
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchBox" 
+                placeholder="Search user by name or ID" 
+            />
+            <button id="searchButton">Search</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Country Code</th>
+                    <th>Registration Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for traveller in travellers %}
+                <tr>
+                    <td>{{ traveller.user_id }}</td>
+
+                    <td>{{ traveller.user.username }}</td>
+                    <td>{{ traveller.phone }}</td>
+                    <td>{{ traveller.user.email }}</td>
+                    <td>{{ traveller.country_code }}</td>
+                    <td>{{ traveller.created_at }}</td>
+                </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No travellers found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        
+       
+    </main>
+    <footer>
+        <p>Tour 365 © 2025</p>
+    </footer>
+    <script src="{% static 'js/travel.js' %}"></script>
+</body>
+</html>

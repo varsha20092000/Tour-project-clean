@@ -1,0 +1,724 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TOUR365 Profile</title>
+  <!-- Font Awesome for icons (if needed) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    /* HEADER */
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #008080; /* or any brand color */
+    }
+    .nav-links a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    /* HERO / TOP IMAGE SECTION */
+    .hero {
+      width: 100%;
+      height: 300px;
+      background: url("https://via.placeholder.com/1200x300?text=Your+Hero+Image") no-repeat center center;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+    .hero-content {
+      background-color: rgba(0,0,0,0.5);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+    }
+    .hero-content p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .hero-content a {
+      color: #fffefa; /* gold color for link */
+      text-decoration: underline;
+    }
+    .hero-content button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    .hero-content button:hover {
+      background-color: #218838;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 20px;
+     
+    }
+    .greeting {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .welcome-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    /* SERVICE CARD */
+    .service-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .service-textarea {
+      width: 100%;
+      height: 80px;
+      resize: none;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
+    .price-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+    .price-info p {
+      margin: 0;
+    }
+    .service-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .service-actions button {
+      background-color: #16992c;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .service-actions button:hover {
+      background-color: #0dae28;
+    }
+
+    /* PAYMENTS SECTION */
+    .payments-section {
+      margin-top: 2rem;
+    }
+    .payments-section h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .no-payments {
+      font-size: 1rem;
+      color: #555555;
+    }
+    .no-payments a {
+      color: #1b9135;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #50973d;
+      border-top: 1px solid #ddd;
+      margin-top: 3rem;
+      padding: 2rem 20px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      color: #faf3f3;
+    }
+    .footer-column {
+      flex: 1 1 200px;
+    }
+    .footer-column h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.9rem;
+      color: #fff6f6;
+      text-decoration: none;
+    }
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+    .footer-icons {
+      margin-top: 1rem;
+    }
+    .footer-icons img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    .footer-icons img:hover {
+      opacity: 0.8;
+    }
+    /* Header Layout */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #12c40c;
+    padding: 10px 20px;
+    color: white;
+    position: sticky; /* Optional: Sticky header */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+}
+
+/* Center Navigation */
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex: 1; /* Take up remaining space */
+    gap: 20px; /* Space between links */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #93d461;
+    border-radius: 5px;
+}
+
+/* Right Section (Profile + Logout) */
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Profile Button */
+.profile-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-btn:hover {
+    background-color: #388E3C;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #5faa36;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border: none;
+}
+
+.logout-btn:hover {
+    background-color: #4c973f;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hide menu on small screens (for mobile menu later) */
+    }
+    
+    .right-section {
+        gap: 8px;
+    }
+}
+.profile-btn {
+    text-decoration: none;
+}
+.subscription-section {
+  margin-top: 70px;  /* Adjust spacing if needed; ensure it's below the fixed header */
+  text-align: center;
+}
+
+.subscription-section img {
+  width: 100%;
+  max-height: 400px;  /* Adjust height as needed */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: -100px;
+}
+
+.subscription-button-container {
+  margin-top: 20px;
+}
+
+.subscription-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscription-btn:hover {
+  background-color: #218838;
+}
+body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Center the main content and set a max width */
+    .main-content {
+      max-width: 700px;
+      margin: 80px auto; /* 80px top margin if you have a header above */
+      padding: 0 20px;
+    }
+
+    .greeting {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .welcome-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    /* Service Card */
+    .service-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 2rem; /* space below the card */
+    }
+    .service-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .service-textarea {
+      width: 100%;
+      height: 80px;
+      resize: none;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
+    .price-info {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+    .price-info p {
+      margin: 0;
+    }
+    .service-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .service-actions button {
+      background-color: #24b373;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .service-actions button:hover {
+      background-color: #16ba79;
+    }
+
+    /* Payments Section */
+    .payments-section {
+      margin-top: 2rem;
+    }
+    .payments-section h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .no-payments {
+      font-size: 1rem;
+      color: #555;
+    }
+    .no-payments a {
+      color: #0b9c5a;
+      text-decoration: underline;
+      margin-left: 0.5rem;
+    }
+    .main-content {
+  max-width: 700px;
+  margin: -30px auto; /* This 80px is pushing content down */
+  padding: 0 20px;
+}
+/* Modal Styles */
+.popup-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background-color: #fff;
+  padding: 40px;  /* Increased padding */
+  border-radius: 8px;
+  width: 400px;  /* Increased width from 300px to 400px */
+  text-align: center;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  animation: fadeIn 0.4s;
+}
+.check-circle {
+  width: 100px;  /* Increased size */
+  height: 100px; /* Increased size */
+  background-color: #28a745;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.check-circle i {
+  color: #fff;
+  font-size: 3rem;  /* Bigger check icon */
+}
+.popup-content h2 {
+  font-size: 1.4rem;  /* Bigger heading */
+  margin-bottom: 10px;
+  color: #333;
+}
+.popup-content p {
+  font-size: 1.1rem;  /* Slightly bigger text */
+  color: #555;
+}
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #333;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.footer-icons {
+      margin-top: 1rem;
+    }
+    .footer-icons img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    .footer-icons img:hover {
+      opacity: 0.8;
+    }
+/* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Tour365</div>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'destination_list' %}">Destination</a>
+        <a href="{% url 'package-list' %}">Packages</a>
+        <a href="{% url 'wishlist' %}">Wishlist</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+    <div class="logout-container">
+        <a href="{% url 'signin' %}" class="logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        </a>
+    </div>
+    <a href="{% url 'profile' %}" class="profile-btn">Profile</a>
+
+</header>
+<!-- Subscription Section: Image + Get Subscription Button -->
+<div class="subscription-section">
+  <img src="{% static 'images/adv.jpg' %}" alt="Subscription Banner">
+  <div class="subscription-button-container">
+   
+</div>
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div class="hero-content">
+      <p>Free access to profile for 7 days for further access 
+        <a href="{% url 'subscription_plans' %}">click here</a></p>
+      <button>Get subscription</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <p class="greeting">Hi , SPACE CENTRE</p>
+    <p class="welcome-text">Welcome to your Tour 365 Profile</p>
+
+    <!-- Service Card -->
+    <div class="service-card">
+      <h3>Services</h3>
+      <textarea class="service-textarea" placeholder="Provide your service description">15 day free trial to profile</textarea>
+
+      <div class="price-info">
+        <p>Price : $ 15.00</p>
+        <p>Discount price : $ 5.00</p>
+      </div>
+
+      <div class="service-actions">
+        <button id="paymentBtn">Payment</button>
+        <button id="submitBtn">Submit</button>
+      </div>
+    </div>
+    <div id="popup" class="popup-modal">
+      <div class="popup-content">
+        <span class="close">&times;</span>
+        <div class="check-circle">
+          <i class="fas fa-check"></i>
+        </div>
+        <h2>Admin will contact you soon.</h2>
+        <p>Keep in touch....</p>
+      </div>
+    </div>
+    <!-- Payments Section -->
+    <div class="payments-section">
+      <h4>Payments</h4>
+      <p class="no-payments">No Payments Yet 
+        <a href="{%url 'payment_options'%}">Make a plan</a>.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h3>TOUR365</h3>
+        <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+        <div class="footer-icons">
+          <img src="{% static 'images/you.jpg' %}" alt="YouTube">
+          <img src="{% static 'images/facebook.jpg' %}" alt="Facebook">
+          <img src="{% static 'images/insta.jpg' %}" alt="Instagram">
+        </div>
+      </div>
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Destination</a></li>
+          <li><a href="#">Wishlist</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Column 3 -->
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <!-- Column 4 -->
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <p>Email: support@tour365.com</p>
+        <p>Phone: +123-456-7890</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const submitBtn = document.getElementById('submitBtn');
+      const paymentBtn = document.getElementById('paymentBtn');
+
+      submitBtn.addEventListener('click', () => {
+        alert('Service description submitted!');
+      });
+
+      paymentBtn.addEventListener('click', () => {
+        alert('Redirecting to payment...');
+      });
+    });
+    document.getElementById('paymentBtn').addEventListener('click', () => {
+      alert('Redirecting to payment...');
+    });
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      alert('Service description submitted!');
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const submitBtn = document.getElementById('submitBtn');
+      const popup = document.getElementById('popup');
+      const closeBtn = document.querySelector('.popup-content .close');
+
+      // Show the popup when the Submit button is clicked
+      submitBtn.addEventListener('click', function() {
+        popup.style.display = 'flex';
+      });
+
+      // Hide the popup when the close button is clicked
+      closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      // Hide the popup when clicking outside the popup content
+      window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+          popup.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

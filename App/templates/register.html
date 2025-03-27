@@ -1,0 +1,482 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <title>Sign Up</title>
+  <style>
+    /* OTP input and button styling */
+    .input-container.otp-container .otp-group {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .otp-group .form-control {
+      flex: 1;
+      margin-right: 8px;
+    }
+
+    .otp-btn {
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      background-color: #28a745;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .otp-btn:hover {
+      background-color: #218838;
+    }
+
+    /* Popup overlay used for OTP feedback (and reused for other popups) */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    .popup-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .popup-box h2 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      color: #000;
+    }
+
+    .popup-box button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 1px;
+      right: 2px;
+      background: transparent;
+      border: none;
+      font-size: 1px;
+      /* Reduced from 24px */
+      line-height: 0;
+      /* Ensures the character isn't extra tall */
+      padding: 0;
+      /* Remove default padding */
+      color: #333;
+      cursor: pointer;
+      width: 1%;
+      /* Optional: define a fixed width/height */
+      height: 1%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .popup-box {
+      position: relative;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo-container">
+      <span class="logo-text">Tour 365</span>
+    </div>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        <li><a href="{% url 'signin' %}">Sign In</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="outer-container">
+    <div class="left-container">
+      <h1>We travel not to escape life, but for life not to escape</h1>
+      <p>We are organizing unforgettable tours for you with the best services. Join us for unforgettable tours and
+        adventures. Explore the world with us and create lasting memories!</p>
+    </div>
+
+    <div class="outer-container">
+      <div class="register-box">
+        <div class="register-container">
+          <h1>Sign Up</h1>
+          <div class="register-type">
+           
+            <button class="btn" id="companyBtn">Company</button>
+            <button class="btn active" id="travellerBtn">Traveller</button>
+
+            <!-- Service Popup (if needed) -->
+            <div class="popup-overlay" id="popupOverlay">
+              <div class="popup-box">
+                <h2>Specify your Service</h2>
+                <input type="text" id="serviceInput" placeholder="Enter your service..." />
+                <button id="serviceSubmitBtn">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <p>We are organizing unforgettable tours for you with the best services.</p>
+
+          <form id="registerForm" action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+
+             <input type="hidden" name="isTraveller" id="isTraveller" value="true">
+          <input type="hidden" name="isCompany" id="isCompany" value="false">
+
+
+            <div class="input-container">
+              <i class="fas fa-user"></i>
+              <input type="text" name="first_name" placeholder="Enter First Name" required>
+              <span class="error-message">* First name is required</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-user"></i>
+              <input type="text" name="last_name" placeholder="Enter Last Name" required>
+              <span class="error-message">* Last name is required</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" id="username" placeholder="Enter Username" required>
+              <span class="error-message" id="usernameError">* Username already exists</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" id="emailInput" placeholder="Enter Email" required>
+              <span class="error-message" id="emailError">* Invalid email</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-phone"></i>
+              <div class="input-group">
+                <select name="country_code" required>
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                </select>
+                <input type="text" name="phone" placeholder="Enter Phone Number" required>
+
+              </div>
+              <span class="error-message" id="phoneError">* Invalid phone number</span>
+            </div>
+
+            <!-- OTP Field -->
+            <div class="input-container otp-container">
+              <i class="fas fa-key"></i>
+              <div class="otp-group">
+                <input type="text" name="otp" id="otpInput" placeholder="Enter OTP" required>
+                <button type="button" class="otp-btn" id="send-otp-btn">Send OTP</button>
+                <button type="button" class="otp-btn" id="verify-otp-btn">Verify OTP</button>
+              </div>
+              <span class="error-message" id="otpError">* Invalid OTP</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-eye-slash" id="togglePassword"></i>
+              <input type="password" name="password1" id="password1" placeholder="Enter Password" required>
+              <span class="error-message" id="passwordError">* Passwords must match</span>
+            </div>
+
+            <div class="input-container">
+              <i class="fas fa-eye-slash" id="toggleConfirmPassword"></i>
+              <input type="password" name="password2" id="password2" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="btn" id="registerBtn" disabled>Register</button>
+           
+          </form>
+
+          <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+    {% if popup_error %}
+<div id="popup" class="popup-box">
+    <span class="close-btn" onclick="closePopup()">✖</span>
+    <p>{{ popup_error }}</p>
+</div>
+
+<style>
+.popup-box {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: red;
+    padding: 20px 30px;
+    border: 2px solid red;
+    z-index: 9999;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+.close-btn {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+}
+</style>
+
+<script>
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+{% endif %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const registerForm = document.getElementById("registerForm");
+        const registerBtn = document.getElementById("registerBtn");
+        let otpVerified = false;
+
+        // ✅ Handle Traveller/Company selection
+        const isTravellerInput = document.getElementById("isTraveller");
+        const isCompanyInput = document.getElementById("isCompany");
+        const travellerBtn = document.getElementById("travellerBtn");
+        const companyBtn = document.getElementById("companyBtn");
+
+        // ✅ Set Default Selection (Traveller is Default)
+        isTravellerInput.value = "true";
+        isCompanyInput.value = "false";
+
+        travellerBtn.addEventListener("click", function () {
+          isTravellerInput.value = "true";
+          isCompanyInput.value = "false";
+          travellerBtn.classList.add("active");
+          companyBtn.classList.remove("active");
+
+          console.log("🚀 Selected: Traveller -> isTraveller:", isTravellerInput.value, "isCompany:", isCompanyInput.value);
+        });
+
+        companyBtn.addEventListener("click", function () {
+          isTravellerInput.value = "false";
+          isCompanyInput.value = "true";
+          companyBtn.classList.add("active");
+          travellerBtn.classList.remove("active");
+
+          console.log("🏢 Selected: Company -> isTraveller:", isTravellerInput.value, "isCompany:", isCompanyInput.value);
+        });
+
+        // ✅ Ensure Correct Value is Sent Before Form Submission
+        registerForm.addEventListener("submit", function (event) {
+          // Debug log to confirm correct values are sent
+          console.log("📌 Form Submitting -> isTraveller:", isTravellerInput.value, "isCompany:", isCompanyInput.value);
+
+          if (isTravellerInput.value === "false" && isCompanyInput.value === "false") {
+            alert("⚠ ERROR: Please select either Traveller OR Company before registering!");
+            event.preventDefault();
+            return;
+          }
+
+          if (!otpVerified) {
+            event.preventDefault();
+            alert("❌ OTP must be verified before registration!");
+          }
+        });
+
+        // ✅ Prevent form submission if required fields are empty
+        registerForm.addEventListener("submit", function (event) {
+          let isValid = true;
+          const inputs = document.querySelectorAll("input[required]");
+
+          inputs.forEach(input => {
+            if (!input.value.trim()) {
+              isValid = false;
+              if (input.nextElementSibling) {
+                input.nextElementSibling.style.display = "block";
+                input.nextElementSibling.innerText = "* Please fill this field.";
+              }
+            } else {
+              if (input.nextElementSibling) {
+                input.nextElementSibling.style.display = "none";
+              }
+            }
+          });
+
+          if (!isValid || !otpVerified) {
+            event.preventDefault();
+            alert("❌ Please fill all required fields and verify OTP before registering.");
+          }
+        });
+
+        // ✅ Send OTP to email
+        document.getElementById("send-otp-btn").addEventListener("click", () => {
+          const email = document.getElementById("emailInput").value.trim();
+
+          if (!email) {
+            alert("⚠ Please enter your email first.");
+            return;
+          }
+
+          fetch("{% url 'send_registration_otp' %}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
+            body: JSON.stringify({ email })
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                alert("✅ OTP sent successfully! Check your email.");
+              } else {
+                alert("❌ Error sending OTP: " + data.error);
+              }
+            })
+            .catch(error => console.error("Error sending OTP:", error));
+        });
+
+        // ✅ Verify OTP
+        document.getElementById("verify-otp-btn").addEventListener("click", () => {
+          const otp = document.getElementById("otpInput").value.trim();
+          const email = document.getElementById("emailInput").value.trim();
+
+          if (!otp || !email) {
+            alert("⚠ Please enter the OTP and email before verifying.");
+            return;
+          }
+
+          fetch("{% url 'verify_otp' %}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
+            body: JSON.stringify({ otp, email })
+          })
+            .then(response => response.json())
+            .then(data => {
+              const otpError = document.getElementById("otpError");
+              if (data.success) {
+                alert("✅ OTP Verified!");
+                otpVerified = true;
+                registerBtn.disabled = false;
+                if (otpError) otpError.style.display = "none";
+              } else {
+                if (otpError) {
+                  otpError.style.display = "block";
+                  otpError.innerText = "* Incorrect OTP. Please try again.";
+                }
+                otpVerified = false;
+              }
+            })
+            .catch(error => console.error("Error verifying OTP:", error));
+        });
+
+        // ✅ Ensure passwords match
+        document.getElementById("password2").addEventListener("input", () => {
+          const password1 = document.getElementById("password1").value;
+          const password2 = document.getElementById("password2").value;
+          const passwordError = document.getElementById("passwordError");
+
+          if (password1 !== password2) {
+            if (passwordError) {
+              passwordError.style.display = "block";
+              passwordError.innerText = "* Passwords do not match.";
+            }
+            registerBtn.disabled = true;
+          } else {
+            if (passwordError) {
+              passwordError.style.display = "none";
+            }
+            if (otpVerified) registerBtn.disabled = false;
+          }
+        });
+
+        // ✅ Redirect to login after successful registration
+        registerForm.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent normal form submission
+
+          console.log("📌 Form Submitting -> isTraveller:", isTravellerInput.value, "isCompany:", isCompanyInput.value);
+
+          fetch(registerForm.action, {
+            method: "POST",
+            body: new FormData(registerForm),
+          })
+            .then(response => {
+              if (response.redirected) {
+                console.log("🔄 Redirecting to:", response.url);
+                window.location.href = response.url; // ✅ Redirect to login
+              } else {
+                return response.text();
+              }
+            })
+            .then(html => {
+              if (html) {
+                document.body.innerHTML = html; // Show form errors if any
+              }
+            })
+            .catch(error => console.error("Error during registration:", error));
+        });
+
+        // ✅ Utility function to get CSRF token
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie) {
+            const cookies = document.cookie.split(";").map(c => c.trim());
+            for (let cookie of cookies) {
+              if (cookie.startsWith(name + "=")) {
+                cookieValue = decodeURIComponent(cookie.split("=")[1]);
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+      });
+      function closePopup() {
+    const popup = document.getElementById("popup");
+    if (popup) {
+      popup.style.display = "none";
+    }
+  }
+    </script>
+
+</body>
+
+</html>

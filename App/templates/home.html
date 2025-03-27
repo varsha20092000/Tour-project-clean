@@ -1,0 +1,460 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour365 - Home</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    .logout-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns the button to the right */
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between the icon and text */
+    background-color: #5ab44c; /* Red color for the logout button */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+  
+}
+
+.logout-btn i {
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background-color: #e60000; /* Darker red on hover */
+    cursor: pointer;
+}
+/* Header Layout */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+    position: sticky; /* Optional: Sticky header */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+}
+
+/* Center Navigation */
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex: 1; /* Take up remaining space */
+    gap: 20px; /* Space between links */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #93d461;
+    border-radius: 5px;
+}
+
+/* Right Section (Profile + Logout) */
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Profile Button */
+.profile-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-btn:hover {
+    background-color: #388E3C;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #5faa36;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border: none;
+}
+
+.logout-btn:hover {
+    background-color: #4c973f;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hide menu on small screens (for mobile menu later) */
+    }
+    
+    .right-section {
+        gap: 8px;
+    }
+}
+.profile-btn {
+    text-decoration: none;
+}
+/* Package Section Styles */
+.packages {
+    padding: 20px;
+    text-align: center;
+}
+
+.package-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px; /* Clear gap between packages */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.package {
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.package img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.book-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.book-button:hover {
+    background-color: #45a049;
+}
+
+/* Hover Effect: Slightly lift package cards on hover */
+.package:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .package-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .package-list {
+        grid-template-columns: 1fr;
+    }
+}
+/* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Tour365</div>
+        <nav class="navbar">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'destination_list' %}">Destination</a>
+            <a href="{% url 'package-list' %}">Packages</a>
+            <a href="{% url 'wishlist' %}">Wishlist</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+        <div class="logout-container">
+            <a href="{% url 'signin' %}" class="logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+        </div>
+        <a href="{% url 'profile' %}" class="profile-btn">Profile</a>
+
+    </header>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Holidays in</h1>
+                <div class="search-box">
+                    <div class="search-field">
+
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" placeholder="Where do you want to go?">
+                    </div>
+                    <div class="search-field">
+                        <label for="date">Date</label>
+                        <input type="date" id="date">
+                    </div>
+                    <div class="search-field">
+                        <label for="people">People</label>
+                        <input type="number" id="people" placeholder="How many people?">
+                    </div>
+                    <button class="search-button">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-section">
+            <h2>Dream Destinations</h2>
+            <div class="carousel-wrapper"> <button class="carousel-arrow carousel-arrow-left"
+                    id="prevButton">&#10094;</button>
+                <div class="carousel-slide"> <img src="{% static 'images/spain1.jpg' %}" alt="Spain">
+                    <div class="black-box"><i class="fas fa-map-marker-alt location-icon"> </i> Spain</div>
+                </div>
+                <div class="carousel-slide"> <img src="{% static 'images/germany.jpg' %}" alt="Germany">
+                    <div class="black-box"><i class="fas fa-map-marker-alt location-icon"> </i> Germany</div>
+                </div>
+                <div class="carousel-slide"> <img src="{% static 'images/italy.jpg' %}" alt="Italy">
+                    <div class="black-box"><i class="fas fa-map-marker-alt location-icon"> </i> Italy</div>
+                </div>
+                <div class="carousel-slide"> <img src="{% static 'images/Oman.jpg' %}" alt="Oman">
+                    <div class="black-box"><i class="fas fa-map-marker-alt location-icon"> </i> Oman</div>
+                </div>
+                <div class="carousel-slide"> <img src="{% static 'images/dubai.jpg' %}" alt="Dubai">
+                    <div class="black-box"><i class="fas fa-map-marker-alt location-icon"> </i> Dubai</div>
+                </div> <button class="carousel-arrow carousel-arrow-right" id="nextButton">&#10095;</button>
+            </div>
+            
+        </div>
+
+
+    </section>
+
+
+
+    <section class="packages">
+        <h2>Packages</h2>
+        <h3>Choose Best Packages</h3>
+        <div class="package-list">
+            <div class="package">
+                <img src="{% static 'images/package1.jpg' %}" alt="Canada">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> Canada</h3>
+                <p>4 days in Canada, Ottawa</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <div class="package">
+                <img src="{% static 'images/package2.jpg' %}" alt="Finland">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> Finland</h3>
+                <p>4 days in Finland, Southside</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <div class="package">
+                <img src="{% static 'images/package3.jpg' %}" alt="Sweden">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> Sweden</h3>
+                <p>4 days in Sweden, Jönköping</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <div class="package">
+                <img src="{% static 'images/package4.jpg' %}" alt="England">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> England</h3>
+                <p>4 days in England, London</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <div class="package">
+                <img src="{% static 'images/package5.jpg' %}" alt="Iceland">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> Iceland</h3>
+                <p>5 days in Iceland, Myvatn</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <div class="package">
+                <img src="{% static 'images/package6.jpg' %}" alt="Norway">
+                <h3><i class="fas fa-map-marker-alt location-icon"></i> Norway</h3>
+                <p>4 days in Norway, Oslo</p>
+                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+            </div>
+            <!-- Add more packages as needed -->
+        </div>
+    </section>
+    
+
+
+    <!-- Travel Types Section -->
+    <section class="travel-types">
+        <h2>What Types Of Travel Do We Specialize In?</h2>
+        <p><strong>
+            Sometimes it’s more about the journey than the destination.
+             All you need is the plan, the road map, and the
+            courage to press on to your destination. 
+            Success is a journey, not a destination.travel confidently and make the most of your experiences.
+            The doing is often more important than the outcome.
+        </strong></p>
+        <div class="travel-options">
+            <div class="option">
+                <img src="{% static 'images/exp.jpg' %}" alt="Explore">
+                <div class="overlay-text">Explore</div>
+            </div>
+            <div class="option">
+                <img src="{% static 'images/adv.jpg' %}" alt="adventure">
+                <div class="overlay-text">Adventure</div>
+            </div>
+            <div class="option">
+                <img src="{% static 'images/culture.jpg' %}" alt="culture">
+                <div class="overlay-text">Cultural</div>
+            </div>
+            <div class="option">
+                <img src="{% static 'images/eco.jpg' %}" alt="Eco">
+
+                <div class="overlay-text">Eco</div>
+            </div>
+            <div class="option">
+                <img src="{% static 'images/beach.webp' %}" alt="beach">
+                <div class="overlay-text">Beach</div>
+            </div>
+            <div class="option">
+                <img src="{% static 'images/wildlife.jpg' %}" alt="wildlife">
+                <div class="overlay-text">Wildlife</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-description">
+                <h4>TOUR365</h4>
+                <p>No matter your travel style—be it luxury, adventure, family-friendly, or solo exploration—Tour365 is
+                    here to make your travel dreams a reality. Browse our carefully curated packages, get inspired, and
+                    start planning your next adventure today!</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'destination_list' %}">Destination</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Packages</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-services">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog & Articles</a></li>
+                    <li><a href="#">Term and Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>Customer support</p>
+                <p>Email: <a href="mailto:Tour365@gmail.com">Tour365@gmail.com</a></p>
+                <p>Phone: +908642728625</p>
+            </div>
+        </div>
+        <div class="footer-icons">
+            <link rel="stylesheet" href="/static/css/style4.css">
+            <img src="/static/images/you1.jpg" alt="YouTube">
+            <img src="/static/images/facebook.jpg" alt="Facebook">
+            <img src="/static/images/insta.jpg" alt="Instagram">
+
+        </div>
+
+
+    </footer>
+
+
+
+</body>
+<script src="{% static 'script.js/script3.js' %}"></script>
+
+</html>

@@ -1,0 +1,301 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Header */
+header {
+    background-color: #004d40; /* Green header */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #80cbc4; /* Light green on hover */
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('/static/images/background5.jpg'); /* Ensure a high-quality image */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    height: 300px !important;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute; /* Position relative to the hero section */
+    top: 200px; /* Adjust the distance from the bottom */
+    left: 20px; /* Adjust the distance from the left */
+    margin: 0;
+}
+
+/* Buttons */
+.card button,
+.hero button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background: #00a676; /* Green buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.card button:hover,
+.hero button:hover {
+    background: #008c5a; /* Darker green on hover */
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
+
+.card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    filter: contrast(1.2) brightness(1.1); /* Enhance clarity */
+}
+
+.card h3 {
+    margin: 15px 0;
+    font-size: 1.25rem;
+}
+
+/* Footer */
+footer {
+    background: #004d40; /* Green footer */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #80cbc4; /* Light green links */
+    text-decoration: none;
+}
+/* General Section Styling */
+.section {
+    text-align: center; /* Centers all content within the section */
+    padding: 50px 20px;
+}
+
+.section h2 {
+    font-size: 2rem; /* Adjust size as needed */
+    margin-bottom: 20px;
+    text-align: center; /* Center-aligns the heading */
+    font-weight: bold; /* Optional: Makes the text bold */
+}
+
+/* Optional: Center the Cards Below the Headings */
+.cards {
+    display: flex;
+    justify-content: center; /* Centers the cards horizontally */
+    gap: 20px; /* Adds spacing between cards */
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+}
+/* Footer */
+footer {
+    background-color: #004d40;
+    color: white;
+    padding: 20px;
+    
+}
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0px;
+}
+
+.footer-container h3, .footer-container h4 {
+    margin-bottom: 10px;
+}
+
+.footer-container p, .footer-container ul {
+    font-size: 14px;
+    line-height: 1.6;
+  
+}
+.footer-container ul {
+    list-style: none; /* Removes the bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+
+}
+
+.footer-container ul li {
+    margin: 0; /* Remove any extra space */
+    padding: 0;
+}
+
+
+.footer-container ul li a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer-container ul li a:hover {
+    color: #80cbc4;
+}
+.footer-icons {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-right:1500px!important;
+}
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: 1fr; /* 1 card per row for mobile */
+    }
+}
+/* Section Styling */
+.lakshadweep-section {
+    padding: 50px 20px; /* Space around the section */
+    text-align: center; /* Center the heading text */
+    background-color: #f9f9f9; /* Light background color */
+    width: 99%; /* Full width for responsiveness */
+}
+
+/* Section Heading */
+.lakshadweep-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #020908; /* Dark heading color */
+    font-weight: bold;
+}
+
+/* Lakshadweep Card Styling */
+.lakshadweep-card {
+    display: flex; /* Horizontal layout for image and text */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Add spacing between image and content */
+    background: #ffffff; /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+    border-radius: 15px; /* Rounded corners */
+    overflow: hidden;
+    max-width: 900px; /* Maximum width of the card */
+    margin: 0 auto; /* Center the card */
+    width: 2900px; /* Responsive width */
+    height: 200px; /* Fixed height for consistent layout */
+    position: relative; /* For positioning child elements like buttons */
+}
+
+/* Image Styling */
+.lakshadweep-card img {
+    width: 300%; /* Half the width of the card */
+    height: 100%; /* Full height of the card */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+/* Card Content Styling */
+.lakshadweep-card h3 {
+    font-size: 1.8rem;
+    margin: 15px 20px 10px 20px;
+    color: #004d40; /* Dark green text */
+    text-align: left; /* Align text to the left */
+}
+
+.lakshadweep-card p {
+    font-size: 1rem;
+    margin: 0 20px 20px 20px;
+    color: #555555; /* Gray text for the description */
+    text-align: left;
+}
+
+/* Button Styling */
+.lakshadweep-card button {
+    position: absolute; /* Position the button independently */
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #004d40; /* Dark green button */
+    color: #ffffff; /* White text */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.lakshadweep-card button:hover {
+    background-color: #0d910d; /* Slightly brighter green on hover */
+}
+#dream-destination-cards {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}

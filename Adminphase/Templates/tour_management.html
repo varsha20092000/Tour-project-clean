@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customized Tour Management</title>
+    <link rel="stylesheet" href="tour_management.css">
+    <link rel="stylesheet" href="{% static 'css/tour_management.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="javascript:void(0);" onclick="window.history.back();">
+            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </a>
+        <h1>Tour 365</h1>
+        <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+            <hr>
+        <ul class="menu">
+            <li>
+                <i class="fas fa-users"></i> User Management
+                <span class="dropdown-arrow" id="userDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="userDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'traveller_list' %}">Traveller</a></button>
+                    <button class="dropdown-item"><a href="{% url 'company_list' %}">Company</a></button>
+                </div>
+            </li>
+            
+            <li>
+                <i class="fas fa-plane"></i> Tour Management
+                <span class="dropdown-arrow" id="tourDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="tourDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'customized_tour_management' %}">Customized Tour Managemen</a> </button>
+                    <button class="dropdown-item"><a href="{% url 'Addpackage' %}">Add New Package</a></button>
+                </div>
+            </li>
+            <li><a href="{% url 'customer_info' %}" class="no-underline"><i class="fas fa-user"></i> Customer Management</a></li>
+
+
+            <li><a href="{% url 'payment_management' %}" class="no-underline"><i class="fas fa-user"></i> Payment Management</a></li>
+            <li><a href="{% url 'subscription_list' %}" class="no-underline"><i class="fas fa-user"></i> Subscription Management</a></li>
+            <li><a href="{% url 'visa_management' %}" class="no-underline"><i class="fas fa-user"></i> Visa Management</a></li>
+            <li>
+                <i class="fas fa-cogs"></i> Global Settings
+                <span class="dropdown-arrow" id="globalDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="globalDropdownMenu">
+                    <button class="dropdown-item"><a href="{% url 'create_role' %}">Create New Role</a></button>
+                    <button class="dropdown-item">Added/Existing Roles</button>
+                    <button class="dropdown-item">Setting</button>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-users-cog"></i> Team Management
+                <span class="dropdown-arrow" id="teamDropdownToggle">&#9660;</span>
+                <div class="dropdown-menu" id="teamDropdownMenu">
+                    <button class="dropdown-item">Create a New Team Member</button>
+                    <button class="dropdown-item">Team Member Details</button>
+                    <button class="dropdown-item">Generate Credentials</button>
+                    <button class="dropdown-item">Credential Details</button>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="main-content">
+        <section>
+            <h2>Customized Tour Management</h2>
+            <div class="filter-container" style="position: relative;">
+                <!-- Filter options -->
+                <input type="text" placeholder="Search">
+                <button>Search</button>
+                <button id="filter-btn">Filter</button>
+            
+                <!-- Dropdown with options -->
+                <div id="dropdown-menu" style="
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    margin-top: 5px;
+                    width: 200px;
+                    background-color: #f1f1f1;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+                ">
+                    <div style="padding: 10px; cursor: pointer;" id="filter-name">Filter by Name</div>
+                    <div style="padding: 10px; cursor: pointer;" id="filter-id">Filter by ID</div>
+                </div>
+            </div>
+    
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Travel Request ID</th>
+                            <th>Phone Number</th>
+                            <th>Requested Date/Time</th>
+                            <th>Package Info</th>
+                            <th>Admin Action</th> <!-- Fully visible now -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example row -->
+                        <tr>
+                            <td>John Doe</td>
+                            <td>12345</td>
+                            <td>+1234567890</td>
+                            <td>2025-01-24 14:00</td>
+                            <td>Basic Package</td>
+                            <td><button class="btn btn-complete">Complete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    
+
+    <script src="{% static 'js/tour_management.js' %}"></script>
+</body>
+</html>

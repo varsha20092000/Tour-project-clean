@@ -1,0 +1,306 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - {{ package.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style8.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Ensuring full display */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-y: auto; /* Allows scrolling if content overflows */
+        }
+
+        /* Booking Container */
+        .booking-container {
+            width: 750px; /* Increased width */
+            max-height: 90vh; /* Ensures content fits within the viewport */
+            overflow-y: auto; /* Scrollable if needed */
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Package Image */
+        .package-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Package Details */
+        .details {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details h2 {
+            font-size: 26px;
+            color: #0a6e19;
+            margin-bottom: 5px;
+        }
+
+        .details p {
+            font-size: 15px;
+            color: #0a6e19;
+            margin-bottom: 5px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            margin-top: 15px;
+            background: #1f7e0e;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #39c24e;
+        }
+
+        /* Payment Sections */
+        .hidden {
+            display: none;
+        }
+
+        .payment-section {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        .payment-section h4 {
+            margin-bottom: 10px;
+            color: #34b330;
+        }
+        .booking-container {
+    width: 80%; /* Responsive width */
+    max-width: 750px; /* Limits to 750px */
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevents side scrolling */
+    width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+/* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+    {% block content %}
+    <div class="booking-container">
+        <h2>Book Your Trip</h2>
+
+        <!-- Package Details -->
+        <div class="package-details">
+            <img src="{% static '' %}{{ package.images }}" alt="{{ package.name }}" class="package-img">
+            <div class="details">
+                <h2>{{ package.name }}</h2>
+                <p>{{ package.description }}</p>
+                <p><strong>Duration:</strong> {{ package.duration }} days</p>
+                <p><strong>Price:</strong> ${{ package.price }}</p>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <form method="post" action="{% url 'booknow' package.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="package" value="{{ package.id }}">
+        
+            <!-- Booking Details -->
+            <label for="booking_date">Booking Date:</label>
+            <input type="date" id="booking_date" name="booking_date" required>
+        
+            <label for="number_of_people">Number of People:</label>
+            <input type="number" id="number_of_people" name="number_of_people" required min="1">
+        
+            <!-- User Information -->
+            <h3>User Information</h3>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="1">
+        
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" required>
+        
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+        
+            <!-- Passport Details Section -->
+            <h3>Passport Details</h3>
+            <label for="passport_number">Passport Number:</label>
+            <input type="text" id="passport_number" name="passport_number" required>
+        
+            <label for="passport_country">Issuing Country:</label>
+            <select id="passport_country" name="passport_country" required>
+                <option value="">Select Country</option>
+                <option value="IN">India</option>
+                <option value="US">United States</option>
+                <option value="UK">United Kingdom</option>
+                <!-- Add more countries as needed -->
+            </select>
+        
+            <label for="passport_issue_date">Passport Issue Date:</label>
+            <input type="date" id="passport_issue_date" name="passport_issue_date" required>
+        
+            <label for="passport_expiry_date">Passport Expiry Date:</label>
+            <input type="date" id="passport_expiry_date" name="passport_expiry_date" required>
+        
+            <!-- Payment Section -->
+            <h3>Payment Information</h3>
+            <label for="payment_method">Payment Method:</label>
+            <select id="payment_method" name="payment_method" required>
+                <option value="">Select Payment Method</option>
+                <option value="net_banking">Net Banking</option>
+                <option value="debit_card">Debit Card</option>
+            </select>
+        
+            <!-- Net Banking -->
+            <div id="net_banking_section" class="payment-section hidden">
+                <h4>Net Banking Details</h4>
+                <label for="net_banking_provider">Bank Name:</label>
+                <input type="text" id="net_banking_provider" name="net_banking_provider">
+                
+                <label for="account_number">Account Number:</label>
+                <input type="text" id="account_number" name="account_number">
+        
+                <label for="ifsc_code">IFSC Code:</label>
+                <input type="text" id="ifsc_code" name="ifsc_code">
+            </div>
+        
+            <!-- Debit Card -->
+            <div id="debit_card_section" class="payment-section hidden">
+                <h4>Debit Card Details</h4>
+                <label for="debit_card_provider">Bank Name:</label>
+                <input type="text" id="debit_card_provider" name="debit_card_provider">
+                
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="card_number">
+        
+                <label for="expiration_date">Expiration Date (MM/YYYY):</label>
+                <input type="month" id="expiration_date" name="expiration_date">
+        
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3">
+            </div>
+        
+            <button type="submit">Confirm Booking</button>
+        </form>
+        
+    </div>
+    {% endblock %}
+
+    <script>
+        document.getElementById("payment_method").addEventListener("change", function () {
+            let netBankingSection = document.getElementById("net_banking_section");
+            let debitCardSection = document.getElementById("debit_card_section");
+
+            netBankingSection.classList.add("hidden");
+            debitCardSection.classList.add("hidden");
+
+            if (this.value === "net_banking") {
+                netBankingSection.classList.remove("hidden");
+            } else if (this.value === "debit_card") {
+                debitCardSection.classList.remove("hidden");
+            }
+        });
+    </script>
+
+</body>
+</html>

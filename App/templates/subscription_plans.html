@@ -1,0 +1,430 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscription Plans</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+    /* Plans Container: 2x2 grid */
+    .plans-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      justify-items: center;
+      align-items: start;
+    }
+
+    /* Plan Card */
+    .plan-card {
+      background-color: #fff;
+      width: 550px;  /* Card width, adjust as needed */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .plan-card img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      object-fit: cover; /* If you want to maintain aspect ratio */
+    }
+    .plan-price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #1aa45f;
+      margin-bottom: 0.5rem;
+    }
+    .plan-duration {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .buy-btn {
+      background-color: #008080;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buy-btn:hover {
+      background-color: #006666;
+    }
+    .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #12c40c;
+    padding: 10px 20px;
+    color: white;
+    position: sticky; /* Optional: Sticky header */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 20px;
+}
+
+/* Center Navigation */
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex: 1; /* Take up remaining space */
+    gap: 20px; /* Space between links */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #93d461;
+    border-radius: 5px;
+}
+
+/* Right Section (Profile + Logout) */
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Profile Button */
+.profile-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-btn:hover {
+    background-color: #388E3C;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #5faa36;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border: none;
+}
+
+.logout-btn:hover {
+    background-color: #4c973f;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Hide menu on small screens (for mobile menu later) */
+    }
+    
+    .right-section {
+        gap: 8px;
+    }
+}
+.profile-btn {
+    text-decoration: none;
+}
+ /* FOOTER */
+ footer {
+      background-color: #50973d;
+      border-top: 1px solid #ddd;
+      margin-top: 3rem;
+      padding: 2rem 20px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      color: #faf3f3;
+    }
+    .footer-column {
+      flex: 1 1 200px;
+    }
+    .footer-column h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.9rem;
+      color: #fff6f6;
+      text-decoration: none;
+    }
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+    .footer-icons {
+      margin-top: 1rem;
+    }
+    .footer-icons img {
+      width: 30px;
+      height: 30px;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    .footer-icons img:hover {
+      opacity: 0.8;
+    }
+    .subscription-section {
+  margin-top: 70px;  /* Adjust spacing if needed; ensure it's below the fixed header */
+  text-align: center;
+}
+
+.subscription-section img {
+  width: 100%;
+  max-height: 400px;  /* Adjust height as needed */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: -100px;
+  z-index: 1000;
+      height: 460px;
+}
+.footer-column {
+      flex: 1 1 200px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 0.95rem;
+      color: #fff6f6;
+      text-decoration: none;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-icons img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .footer-icons img:hover {
+      opacity: 0.8;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #12c40c;
+      padding: 15px 20px;
+      color: white;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      height: 60px;
+    }
+    @media (max-width: 768px) {
+    .footer-column {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+  </style>
+</head>
+<body>
+     <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Tour365</div>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'destination_list' %}">Destination</a>
+        <a href="{% url 'package-list' %}">Packages</a>
+        <a href="{% url 'wishlist' %}">Wishlist</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+    <div class="logout-container">
+        <a href="{% url 'signin' %}" class="logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+        </a>
+    </div>
+    <a href="{% url 'company_profile' %}" class="profile-btn">Profile</a>
+
+</header>
+{% if show_popup %}
+<div id="popup-overlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+">
+  <div style="
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      width: 300px;
+  ">
+    <span onclick="document.getElementById('popup-overlay').style.display='none'" style="
+        position: absolute;
+        top: 10px; right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+    ">✖</span>
+    <h3 style="color: red;">⚠ Please try a plan!</h3>
+    <p>You must choose a subscription to continue using the platform.</p>
+  </div>
+</div>
+{% endif %}
+
+<!-- Subscription Section: Image + Get Subscription Button -->
+<div class="subscription-section">
+  <img src="{% static 'images/adv.jpg' %}" alt="Subscription Banner">
+  <div class="subscription-button-container">
+   
+  </div>
+</div>
+  <h2>Subscription Plans</h2>
+  <div class="plans-container">
+    {% for plan in plans %}
+    <div class="plan-card">
+      <!-- Space for image -->
+      <img src="{% static 'images/men.png' %}" alt="Plan Image">
+
+      <div class="plan-price">{{ plan.price }}</div>
+      <div class="plan-duration">{{ plan.duration }}</div>
+
+      <a href="{% url 'payment_options' %}">
+        <button class="buy-btn">Buy now</button>
+      </a>
+      
+    </div>
+    {% endfor %}
+  </div>
+  
+  <footer>
+    <div class="footer-container">
+      <!-- Column 1 -->
+      <div class="footer-column">
+        <h3>TOUR365</h3>
+        <p>Explore new travel styles & tours with TOUR365. Travel the world with us!</p>
+        <div class="footer-icons">
+          <img src="{% static 'images/you.jpg' %}" alt="YouTube">
+          <img src="{% static 'images/facebook.jpg' %}" alt="Facebook">
+          <img src="{% static 'images/insta.jpg' %}" alt="Instagram">
+        </div>
+      </div>
+      <!-- Column 2 -->
+      <div class="footer-column">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Destination</a></li>
+          <li><a href="#">Wishlist</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Column 3 -->
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <!-- Column 4 -->
+      <div class="footer-column">
+        <h3>Contact</h3>
+        <p>Email: support@tour365.com</p>
+        <p>Phone: +123-456-7890</p>
+      </div>
+    </div>
+  </footer>
+  {% if show_popup %}
+  <div id="popup-box" style="position:fixed; top:20%; left:50%; transform:translateX(-50%); background:#fff; padding:20px 30px; border:2px solid red; z-index:9999; box-shadow:0 0 15px rgba(0,0,0,0.3);">
+    <span onclick="document.getElementById('popup-box').style.display='none'" style="float:right;cursor:pointer;">✖</span>
+    <h3 style="color:red;">⚠ Please try a plan!</h3>
+  </div>
+  {% endif %}
+  
+</body>
+</html>

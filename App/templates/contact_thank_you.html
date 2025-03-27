@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Submitted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .confirmation-box {
+            background-color: #ffffff;
+            border: 1px solid #d4d4d4;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .confirmation-box .icon {
+            font-size: 50px;
+            color: #4CAF50;
+        }
+        .confirmation-box h2 {
+            margin: 20px 0 10px;
+        }
+        .confirmation-box p {
+            color: #666666;
+        }
+        .confirmation-box a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #ffffff;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <div class="icon">✔️</div>
+        <h2>Thank You!</h2>
+        <p>Your message has been successfully submitted. We will contact you shortly.</p>
+        <a href="{% url 'home' %}">Return to Home</a>
+    </div>
+</body>
+</html>
+

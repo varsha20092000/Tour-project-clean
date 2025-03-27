@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Successful</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    /* Center the success container */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .success-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 50%;
+      max-width: 600px;
+    }
+    .success-container h2 {
+      color: #28a745;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .success-container p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+    }
+    .btn-home {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn-home:hover {
+      background-color: #0056b3;
+    }
+    /* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <h2>🎉 Booking Confirmed!</h2>
+    <p>Thank you for your booking. We have received your details.</p>
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+    <p><strong>Tour:</strong> {{ booking.tour.title }}</p>
+    <p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+    <p><strong>Number of People:</strong> {{ booking.number_of_people }}</p>
+    <p><strong>Total Price:</strong> ${{ booking.total_price }}</p>
+    <a href="{% url 'home' %}" class="btn-home">🏠 Go to Homepage</a>
+  </div>
+</body>
+</html>

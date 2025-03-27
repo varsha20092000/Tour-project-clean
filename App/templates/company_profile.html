@@ -1,0 +1,154 @@
+<!-- company_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Profile</title>
+  <!-- Link to your CSS file; adjust the path as needed -->
+  <style>
+    /* company_profile.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #8ca777;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 600px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0d9139;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745; /* Green submit button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+/* Default styles for desktop */
+.navbar a {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plans-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Company Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_name">Company Name:</label>
+        {{ form.name }}
+      </div>
+      <div class="form-group">
+        <label for="id_icon">Company Icon:</label>
+        {{ form.icon }}
+      </div>
+      <div class="form-group">
+        <label for="id_phone_number">Phone Number:</label>
+        {{ form.phone_number }}
+      </div>
+      <div class="form-group">
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+      </div>
+      <div class="form-group">
+        <label for="id_location">Location:</label>
+        {{ form.location }}
+      </div>
+      <div class="form-group">
+        <label for="id_description">Description:</label>
+        {{ form.description }}
+      </div>
+      <div class="form-group">
+        <label for="id_programmes_file">Programmes File:</label>
+        {{ form.programmes_file }}
+      </div>
+      <div class="form-group">
+        <label for="id_package_details_file">Package Details File:</label>
+        {{ form.package_details_file }}
+      </div>
+      <div class="form-group">
+        <label for="images">Upload Images (you can select multiple):</label>
+        <input type="file" name="images" id="images" multiple>
+      </div>
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

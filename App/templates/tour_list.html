@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media (max-width: 768px) {
+          .footer-column {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+      
+</head>
+<body>
+    <!-- tour_list.html -->
+{% for tour in tours %}
+<div class="card">
+    <img src="{% static 'images/package1.jpg' %}" alt="{{ tour.name }}">
+    <h3><i class="fas fa-map-marker-alt" style="color: red;"></i>{{ tour.name}}</h3>
+    <div class="content">
+        <h3>{{ tour.description }}</h3>
+        <p>{{ tour.price }}</p>
+        <a href="{% url 'book_now' tour.id %}" class="btn">Book Now</a>
+    </div>
+</div>
+{% endfor %}
+
+</body>
+</html>

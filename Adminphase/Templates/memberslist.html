@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Member List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px; /* Increased container width */
+            background-color: #d4edda; /* Light green background */
+            border-radius: 8px;
+            padding: 20px;
+            margin: 0 auto; /* Center horizontally */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 10px; /* Push down slightly */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #007bff; /* Blue color */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #search-bar {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #filter-btn {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #filter-btn:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Heading -->
+    <h1>Team Member List</h1>
+
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+
+    <!-- Main content container -->
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search by Name" onkeyup="filterMembers()">
+            <button id="filter-btn">Filter</button>
+        </div>
+
+        <!-- Team Members Table -->
+        <table id="team-member-table">
+            <thead>
+                <tr>
+                    <th>Profile Picture</th>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody id="member-list">
+                {% for member in members %}
+                    <tr class="member-row">
+                        <!-- Clickable Profile Picture -->
+                        <td>
+                            <a href="{% url 'member_detail' member.employee_id %}">
+                                <img src="{% static 'images/' %}{{ member.profile_picture }}" alt="Profile Picture" class="profile-img">
+                            </a>
+                        </td>
+                        <!-- Clickable Name -->
+                        <td>
+                            <a href="{% url 'member_detail' member.employee_id %}">
+                                {{ member.name }}
+                            </a>
+                        </td>
+                        <td>{{ member.employee_id }}</td>
+                        <td>{{ member.phone_number }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+
+    <script>
+        // Filter function for searching team members
+        function filterMembers() {
+            const searchInput = document.getElementById('search-bar').value.toLowerCase();
+            const rows = document.querySelectorAll('.member-row');
+            rows.forEach(row => {
+                const nameCell = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                if (nameCell.indexOf(searchInput) === -1) {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = '';
+                }
+            });
+        }
+
+        // Optional: Implement Filter button functionality
+        document.getElementById('filter-btn').addEventListener('click', filterMembers);
+    </script>
+</body>
+</html>

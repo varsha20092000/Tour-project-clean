@@ -1,0 +1,363 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://source.unsplash.com/1600x900/?beach,nature') no-repeat center center/cover;
+    height: 100%;
+    overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('/static/css/images/background.jpg'); 
+    background: url('../images/background.jpg') no-repeat center center/cover;
+
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Optional: to add background color */
+    position: absolute;
+    top: 0;
+    box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    max-width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-bar ul li {
+    display: inline;
+}
+
+.nav-bar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-bar ul li a:hover {
+    text-decoration: underline;
+}
+
+.outer-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    padding: 20px;
+    margin-top: 80px; /* To ensure space for the header */
+    box-sizing: border-box;
+    height: calc(100% - 80px); /* Adjusting height to fit within viewport */
+    overflow: hidden;
+}
+
+.left-container {
+    width: 30%; /* Adjust as needed */
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    text-align: left;
+    margin-left: 300px;
+}
+
+.left-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.left-container p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.signin-box {
+    width: 30%; /* Adjust as needed */
+    box-sizing: border-box;
+}
+
+.signin-container {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px 30px;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-right: 20px; /* Move the container slightly to the left by decreasing right margin */
+}
+
+.signin-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.signin-container p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.register-box {
+    width: 60%; /* Increase the width */
+    box-sizing: border-box;
+    margin-left: auto; /* Center the signup box */
+    margin-right: auto;
+}
+
+.register-container {
+    background: rgba(0, 0, 0, 0.7); /* Adjust transparency for better readability */
+    border-radius: 10px;
+    padding: 30px 40px; /* Increase padding for better spacing */
+    color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Enhance shadow effect */
+    text-align: left;
+}
+
+
+.register-container .register-type {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.register-container .register-type .btn {
+    margin: 0 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.register-container .register-type .btn.active {
+    background-color: white;
+    color: #28a745;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.register-container p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ddd; /* Lighten color for readability */
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 16px;
+}
+
+.input-container input,
+.input-container select {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.input-container input,
+.input-container select,
+.btn {
+    width: 100%; /* Full-width elements */
+}
+.input-container {
+    margin-bottom: 20px; /* Increase margin between inputs */
+}
+@media screen and (max-width: 768px) {
+    .register-box {
+        width: 90%; /* Make the signup box responsive */
+    }
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group select {
+    width: 30%;
+    margin-right: 10px;
+}
+
+.otp-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: auto; /* Adjust width to fit content */
+    text-align: center;
+    border-radius: 20px; /* Oval shape */
+    font-size: 14px; /* Smaller font size */
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+.register-container a {
+    color: #00c4ff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.register-container small {
+    display: block;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.register-container .input-group {
+    width: 100%; /* Ensure input group spans full width */
+}
+
+.register-container .input-group input {
+    flex-grow: 1; /* Ensure the input field uses remaining space */
+}
+.otp-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.otp-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 150px;
+}
+
+.send-otp-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.send-otp-button:hover {
+    background-color: #0056b3;
+}
+.otp-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.otp-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 150px;
+}
+
+.send-otp-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.send-otp-button:hover {
+    background-color: #0056b3;
+}
+.otp-container {
+    display: flex;
+    justify-content: flex-start; /* Ensure the elements are aligned from the start */
+    align-items: center; /* Vertically center the elements */
+    gap: 10px; /* Space between input and button */
+}
+
+.otp-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 150px;
+}
+
+.send-otp-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.send-otp-button:hover {
+    background-color: #0056b3;
+}
+.register-type .btn {
+    background: #ddd;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 10px;
+  }
+  
+  /* Active state styling */
+  .register-type .btn.active {
+    background: #007bff; /* Blue background when active */
+    color: #fff;         /* White text when active */
+  }
+  
