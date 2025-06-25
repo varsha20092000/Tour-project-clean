@@ -173,3 +173,20 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 *.jpeg
+*.exe
+*.dll
+*.zip
+*.bin
+*.bak
+*.log
+*.py[cod]
+*.pyo
+*.pyd
+__pycache__/
+
+media/
+.vscode/
+.idea/
+*.jpeg
+*.jpg
+*.png
