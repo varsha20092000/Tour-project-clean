@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: tour-job-portal
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn journy.wsgi:application"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: your-secret-key
+      - key: DJANGO_SETTINGS_MODULE
+        value: journy.settings
