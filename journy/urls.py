@@ -23,9 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Adminphase.urls')),   # This shows your added roles on "/"
     path('app/', include('App.urls')),      # Make sure App (login/register) URLs are here
-    path('jobs/', include('jobs.urls')),    # If you have a jobs app
+    
 ]
     
-     
-    
-+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Add static file handling (safe)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
