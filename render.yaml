@@ -9,3 +9,8 @@ services:
         value: your-secret-key
       - key: DJANGO_SETTINGS_MODULE
         value: journy.settings
+
+
+buildCommand: |
+  pip install -r requirements.txt
+  python manage.py migrate
