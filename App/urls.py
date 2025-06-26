@@ -4,8 +4,9 @@ from App import views
 from django.conf import settings 
 from django.conf.urls.static import static
 from .views import send_otp
-
+from django.views.generic import RedirectView
 urlpatterns = [
+    path('', RedirectView.as_view(url='/signin/', permanent=False)),
     path('welcome/',views. WelcomeView.as_view(), name='welcome'),
     path('signup/',views.SignUpView, name="signup"),
     path('signin/',views.SignInView.as_view(), name='signin'),
