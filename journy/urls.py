@@ -21,9 +21,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Adminphase.urls')),   # This shows your added roles on "/"
-    path('app/', include('App.urls')),      # Make sure App (login/register) URLs are here
-    
+     # This shows your added roles on "/"
+    path('', include('App.urls')),      # Make sure App (login/register) URLs are here
+    path('adminphase/', include('Adminphase.urls')),  
 ]
     
 # Add static file handling (safe)
