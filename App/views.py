@@ -40,6 +40,7 @@ from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import now, timedelta
 from .models import Traveller
+from django.core.cache import cache
 
 # Function to generate a 6-digit OTP
 def generate_otp():
@@ -67,6 +68,8 @@ def send_registration_otp(request):
             message = f"Your OTP code is: {otp}. It expires in 5 minutes."
             from_email = "noreply@yourwebsite.com"
             send_mail(subject, message, from_email, [email], fail_silently=False)
+            cache.set(f"otp_{email}", otp, timeout=300)  # 5 minutes
+
 
             return JsonResponse({"success": True, "message": "OTP sent successfully!"})
 
