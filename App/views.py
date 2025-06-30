@@ -47,7 +47,7 @@ def generate_otp():
 
 @csrf_exempt
 def send_registration_otp(request):
-    print("✅ OTP view hit with method:", request.method)
+    print("✅ send_registration_otp triggered with", request.method)
     """Send OTP to the user's email."""
     if request.method == "POST":
         try:
