@@ -118,7 +118,6 @@
       margin-top: 5px;
       display: none;
     }
-    
   </style>
 </head>
 
@@ -149,7 +148,7 @@
         <div class="register-container">
           <h1>Sign Up</h1>
           <div class="register-type">
-           
+
             <button class="btn" id="companyBtn">Company</button>
             <button class="btn active" id="travellerBtn">Traveller</button>
 
@@ -168,8 +167,8 @@
           <form id="registerForm" action="{% url 'signup' %}" method="post">
             {% csrf_token %}
 
-             <input type="hidden" name="isTraveller" id="isTraveller" value="true">
-          <input type="hidden" name="isCompany" id="isCompany" value="false">
+            <input type="hidden" name="isTraveller" id="isTraveller" value="true">
+            <input type="hidden" name="isCompany" id="isCompany" value="false">
 
 
             <div class="input-container">
@@ -232,7 +231,7 @@
             </div>
 
             <button type="submit" class="btn" id="registerBtn" disabled>Register</button>
-           
+
           </form>
 
           <p>Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
@@ -240,38 +239,39 @@
       </div>
     </div>
     {% if popup_error %}
-<div id="popup" class="popup-box">
-    <span class="close-btn" onclick="closePopup()">✖</span>
-    <p>{{ popup_error }}</p>
-</div>
+    <div id="popup" class="popup-box">
+      <span class="close-btn" onclick="closePopup()">✖</span>
+      <p>{{ popup_error }}</p>
+    </div>
 
-<style>
-.popup-box {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    color: red;
-    padding: 20px 30px;
-    border: 2px solid red;
-    z-index: 9999;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
-.close-btn {
-    float: right;
-    cursor: pointer;
-    font-weight: bold;
-}
-</style>
+    <style>
+      .popup-box {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        color: red;
+        padding: 20px 30px;
+        border: 2px solid red;
+        z-index: 9999;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+      }
 
-<script>
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-</script>
-{% endif %}
+      .close-btn {
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    </style>
+
+    <script>
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+    {% endif %}
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -359,11 +359,15 @@
           }
 
           fetch("/send-registration-otp/", {
-
             method: "POST",
-            headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
-            body: JSON.stringify({ email })
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            credentials: "same-origin", // ✅ this ensures session is maintained
+            body: JSON.stringify({ email }),
           })
+
             .then(response => response.json())
             .then(data => {
               if (data.success) {
@@ -386,11 +390,15 @@
           }
 
           fetch("/verify-otp/", {
-
             method: "POST",
-            headers: { "Content-Type": "application/json", "X-CSRFToken": getCookie("csrftoken") },
-            body: JSON.stringify({ otp, email })
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            credentials: "same-origin", // ✅ ensures same session
+            body: JSON.stringify({ otp, email }),
           })
+
             .then(response => response.json())
             .then(data => {
               const otpError = document.getElementById("otpError");
@@ -472,11 +480,11 @@
         }
       });
       function closePopup() {
-    const popup = document.getElementById("popup");
-    if (popup) {
-      popup.style.display = "none";
-    }
-  }
+        const popup = document.getElementById("popup");
+        if (popup) {
+          popup.style.display = "none";
+        }
+      }
     </script>
 
 </body>
