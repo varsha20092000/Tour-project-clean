@@ -75,6 +75,8 @@ MIDDLEWARE = [
     'App.restrict_company_access.RestrictCompanyWithoutSubscriptionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
