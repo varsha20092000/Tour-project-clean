@@ -11,6 +11,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
 }
 
 /* Header */
@@ -534,7 +535,7 @@ body {
     max-width: 1300px;
     margin: 30px auto; /* Center horizontally and add spacing */
     position: relative; /* Enables left adjustment */
-    left: 20px; /* Moves the container slightly to the right */
+    left: 100px; /* Moves the container slightly to the right */
 }
 
 /* Header */

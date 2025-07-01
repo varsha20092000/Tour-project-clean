@@ -501,52 +501,6 @@ body {
     color: #666;
 }
 
-.package-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.package {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    padding: 20px;
-    max-width: 300px;
-    flex: 1 1 300px;
-}
-
-.package img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.package h3 {
-    font-size: 1.2rem;
-    margin: 10px 0;
-}
-
-.package p {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.package button {
-    background-color: #0c665e;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.package button:hover {
-    background-color: #09584d;
-}
 
 /* Footer */
 .footer {

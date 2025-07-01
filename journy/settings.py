@@ -73,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'App.restrict_company_access.RestrictCompanyWithoutSubscriptionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 # settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

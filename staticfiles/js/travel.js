@@ -38,12 +38,52 @@ document.addEventListener('DOMContentLoaded', function() {
         teamDropdownMenu.style.display = isDropdownVisible ? 'none' : 'block';
         teamDropdownToggle.innerHTML = isDropdownVisible ? '&#9650;' : '&#9660;'; // Start with ▲ and switch to ▼
     });
-  });
-  document.getElementById('userDropdownToggle').addEventListener('click', function() {
+
+    // Search Functionality
+    document.getElementById('searchButton').addEventListener('click', function() {
+        let input = document.getElementById('searchBox').value.toLowerCase().trim();
+        let table = document.querySelector('table tbody');
+        let rows = table.getElementsByTagName('tr');
+        let found = false;
+
+        // Reset all rows' styles
+        for (let row of rows) {
+            row.style.boxShadow = 'none';
+            row.style.backgroundColor = '';
+        }
+
+        if (input === "") {
+            alert("Please enter a name or ID to search.");
+            return;
+        }
+
+        for (let row of rows) {
+            let userId = row.cells[0].textContent.toLowerCase();
+            let username = row.cells[1].textContent.toLowerCase();
+
+            if (userId.includes(input) || username.includes(input)) {
+                row.style.boxShadow = "0 0 10px green";
+                row.style.backgroundColor = "#e8f5e9";  // light green background
+                found = true;
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                break;  // Stop after finding the first match
+            }
+        }
+
+        if (!found) {
+            alert("No such user with that name or ID found.");
+        }
+    });
+});
+
+// Additional Dropdown toggle
+
+
+document.getElementById('userDropdownToggle').addEventListener('click', function() {
     document.getElementById('userDropdownMenu').classList.toggle('show');
-  });
-  
-  window.onclick = function(event) {
+});
+
+window.onclick = function(event) {
     if (!event.target.matches('.dropdown-arrow')) {
         var dropdowns = document.getElementsByClassName("dropdown-menu");
         var i;
@@ -54,4 +94,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-  }
+}
