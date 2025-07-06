@@ -188,5 +188,6 @@ media/
 .vscode/
 .idea/
 *.jpeg
-*.jpg
+# *.jpg
+
 *.png
