@@ -13,6 +13,12 @@ if os.environ.get("RENDER") == "true":
         call_command("loaddata", "App/fixtures/destinations.json")
     except Exception as e:
         print("Fixture load error:", e)
+
+if os.environ.get("RENDER") == "true":
+    try:
+        call_command("loaddata", "App/fixtures/packages.json")
+    except Exception as e:
+        print("Fixture load error:", e)
 urlpatterns = [
     path('', RedirectView.as_view(url='/signin/', permanent=False)),
     path('welcome/',views. WelcomeView.as_view(), name='welcome'),
