@@ -5,6 +5,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import send_otp
 from django.views.generic import RedirectView
+from django.core.management import call_command
+import os
+# Run loaddata ONLY if not already done
+if os.environ.get("RENDER") == "true":
+    try:
+        call_command("loaddata", "App/fixtures/destinations.json")
+    except Exception as e:
+        print("Fixture load error:", e)
 urlpatterns = [
     path('', RedirectView.as_view(url='/signin/', permanent=False)),
     path('welcome/',views. WelcomeView.as_view(), name='welcome'),
