@@ -1,0 +1,137 @@
+[
+{
+    "model": "App.package",
+    "pk": 1,
+    "fields": {
+        "name": "Sample Package 2",
+        "description": "Another sample package",
+        "destination": 1,
+        "tour": null,
+        "duration": 7,
+        "price": "200.00",
+        "images": "images/package4.jpg",
+        "created_at": "2025-01-16T13:35:10.742Z",
+        "updated_at": "2025-01-17T07:41:45.781Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 2,
+    "fields": {
+        "name": "Travel in Europe",
+        "description": "Explore multiple countries in Europe!",
+        "destination": 10,
+        "tour": null,
+        "duration": 10,
+        "price": "3200.00",
+        "images": "images/package3.jpg",
+        "created_at": "2025-01-16T13:56:40.527Z",
+        "updated_at": "2025-01-17T07:47:16.372Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 3,
+    "fields": {
+        "name": "Luxury Vacation",
+        "description": "Experience luxury like never before!",
+        "destination": 11,
+        "tour": null,
+        "duration": 14,
+        "price": "5000.00",
+        "images": "images/package2.jpg",
+        "created_at": "2025-01-16T13:56:40.584Z",
+        "updated_at": "2025-01-17T07:48:03.805Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 4,
+    "fields": {
+        "name": "Test Package",
+        "description": "This is a test package.",
+        "destination": 6,
+        "tour": null,
+        "duration": 5,
+        "price": "1000.00",
+        "images": "images/package1.jpg",
+        "created_at": "2025-01-16T14:23:22.902Z",
+        "updated_at": "2025-01-17T07:48:48.551Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 5,
+    "fields": {
+        "name": "Iceland",
+        "description": "Experience the mesmerizing Northern Lights, glaciers, and hot springs.",
+        "destination": 10,
+        "tour": null,
+        "duration": 8,
+        "price": "80000.00",
+        "images": "images/fini.jpeg",
+        "created_at": "2025-02-16T14:33:52.868Z",
+        "updated_at": "2025-02-16T17:39:00.099Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 6,
+    "fields": {
+        "name": "Finland",
+        "description": "Discover the beauty of Lapland, the land of a thousand lakes, and the enchanting Santa Claus Village.",
+        "destination": 10,
+        "tour": null,
+        "duration": 10,
+        "price": "70000.00",
+        "images": "images/country6.jpg",
+        "created_at": "2025-02-16T14:34:13.357Z",
+        "updated_at": "2025-02-16T17:39:00.125Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 7,
+    "fields": {
+        "name": "Germany",
+        "description": "Explore Germany's rich history, fairy-tale castles, and vibrant cities like Berlin and Munich.",
+        "destination": 10,
+        "tour": null,
+        "duration": 7,
+        "price": "75000.00",
+        "images": "images/germ.jpeg",
+        "created_at": "2025-02-16T14:34:13.437Z",
+        "updated_at": "2025-02-16T17:39:00.140Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 8,
+    "fields": {
+        "name": "London",
+        "description": "Experience the charm of London with iconic landmarks like Big Ben, Buckingham Palace, and the Thames River.",
+        "destination": 10,
+        "tour": null,
+        "duration": 6,
+        "price": "72000.00",
+        "images": "images/la.jpeg",
+        "created_at": "2025-02-16T14:34:23.326Z",
+        "updated_at": "2025-02-16T17:39:00.154Z"
+    }
+},
+{
+    "model": "App.package",
+    "pk": 9,
+    "fields": {
+        "name": "Norway",
+        "description": "Experience the stunning fjords, northern lights, and breathtaking landscapes of Norway.",
+        "destination": 10,
+        "tour": null,
+        "duration": 7,
+        "price": "85000.00",
+        "images": "images/country5.jpg",
+        "created_at": "2025-02-16T17:50:47.034Z",
+        "updated_at": "2025-02-16T17:50:47.034Z"
+    }
+}
+]
