@@ -5,6 +5,5 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py migrate
-      python manage.py loaddata user_fixture.json
-      python manage.py collectstatic --noinput
-    startCommand: gunicorn journy.wsgi:application
+      python manage.py loaddata App/fixtures/destinations.json
+    startCommand: gunicorn journy.wsgi
