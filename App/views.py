@@ -670,10 +670,19 @@ def subscription_plans_view(request):
 
 def payment_options_view(request):
     return render(request, "payment_options.html")
+from django.utils.text import slugify
+
 def book_destination(request, destination_id):
     # Retrieve the destination object or return 404 if not found
     destination = get_object_or_404(Destination, pk=destination_id)
-    
+    image_map = {
+        "Hong Kong": "hongkong_dest.jpg",
+        "France": "france.jpg",
+        # Add more mappings as needed
+    }
+
+    # Get image filename from the map, fallback to slugified default
+    image_filename = image_map.get(destination.name, f"{slugify(destination.name)}.jpg")
     if request.method == "POST":
         
         pass

@@ -155,7 +155,8 @@
     <h2>Book Your Trip to {{ destination.name }}</h2>
     <!-- Destination Details -->
     <div class="destination-details">
-      <img src="{% static 'images/' %}{{ destination.name|slugify }}.jpg" alt="{{ destination.name }}">
+      <img src="{% static 'images/' %}{{ image_filename }}" alt="{{ destination.name }}">
+
       <div class="details">
         <h2>{{ destination.name }}</h2>
         <p>{{ destination.description }}</p>
