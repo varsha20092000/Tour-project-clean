@@ -187,7 +187,8 @@ __pycache__/
 media/
 .vscode/
 .idea/
-*.jpeg
-# *.jpg
+- *.jpeg
+- *.png
++#*.jpeg
++#*.png
 
-*.png
