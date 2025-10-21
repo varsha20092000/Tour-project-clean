@@ -2,165 +2,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - TOUR365</title>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=YOUR_ACTUAL_API_KEY" async defer></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="{% static 'css/style8.css' %}">
-  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <style>
-    .confirmation-box {
-      display: none;
-      background-color: #ffffff;
-      border: 1px solid #d4d4d4;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      max-width: 400px;
-      margin: 20px auto;
-    }
-    .confirmation-box .icon {
-      font-size: 50px;
-      color: #4CAF50;
-    }
-    .confirmation-box h2 {
-      margin: 20px 0 10px;
-    }
-    .confirmation-box p {
-      color: #666666;
-    }
-    /* Updated map image styling */
-    .contact-map img {
-      width: 100%;        /* Full container width */
-      height: 400px;      /* Fixed height */
-      object-fit: cover;  /* Crop the image to fill the container */
-      display: block;
-      margin: 0 auto;     /* Center the image if container is narrower */
-    }
-    /* Default styles for desktop */
-.navbar a {
-  padding: 10px 20px;
-  display: inline-block;
-}
-
-.plans-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-/* ✅ Mobile view */
-@media (max-width: 768px) {
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .navbar a {
-    display: block;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .plans-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .plan-card {
-    width: 90%;
-    margin-bottom: 20px;
-  }
-}
-
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Support - TOUR365</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
-<div class="contact-container">
-  <header>
-    <h1>TOUR365</h1>
-    <nav>
-      <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'destination_list' %}">Destination</a></li>
-        <li><a href="{% url 'package-list' %}">Packages</a></li>
-        <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
-        <li><a href="{% url 'contact' %}" class="active">Contact</a></li>
-      </ul>
-    </nav>
+  <!-- Site Header -->
+  <header class="bg-green-800 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="{% url 'home' %}" class="hover:text-yellow-300">
+        <h1 class="text-2xl font-bold">TOUR365</h1>
+      </a>
+      <nav class="space-x-4">
+        <a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a>
+        <a href="{% url 'destination_list' %}" class="hover:text-yellow-300">Destination</a>
+        <a href="{% url 'package-list' %}" class="hover:text-yellow-300">Packages</a>
+        <a href="{% url 'wishlist' %}" class="hover:text-yellow-300">Wishlist</a>
+        <a href="{% url 'contact' %}" class="underline text-yellow-300 font-semibold">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="contact-form">
-      <h2>Get in touch</h2>
-      <form id="contact-form" method="post">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto py-16 px-4 flex-grow">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-lg rounded-xl overflow-hidden">
+      <!-- Left: Image -->
+      <div class="w-full h-80 md:h-auto">
+        <img src="{% static 'images/call.jpg' %}" alt="Support" class="w-full h-full object-cover">
+      </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+      <!-- Right: Contact Form -->
+      <div class="p-8">
+        <h2 class="text-2xl font-bold text-green-800 mb-6">Get in Touch</h2>
 
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
+        <form method="POST" action="{% url 'contact' %}" class="space-y-4">
+          {% csrf_token %}
+          <div>
+            <label class="block text-gray-700 font-semibold">Your Name</label>
+            <input type="text" name="name" required class="w-full border rounded px-4 py-2 focus:ring-blue-500 focus:outline-none">
+          </div>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
+          <div>
+            <label class="block text-gray-700 font-semibold">Your Email</label>
+            <input type="email" name="email" required class="w-full border rounded px-4 py-2 focus:ring-blue-500 focus:outline-none">
+          </div>
 
-        <button type="submit">Send</button>
-      </form>
-    </section>
+          <div>
+            <label class="block text-gray-700 font-semibold">Message</label>
+            <textarea name="message" rows="4" required class="w-full border rounded px-4 py-2 focus:ring-blue-500 focus:outline-none"></textarea>
+          </div>
 
-    <div class="confirmation-box" id="confirmation-box">
-      <div class="icon">✔️</div>
-      <h2>Thank You!</h2>
-      <p>Your message has been successfully submitted. We will contact you shortly.</p>
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded font-semibold">
+            Send Message
+          </button>
+        </form>
+        {% if messages %}
+  <div class="mt-4">
+    {% for message in messages %}
+      <p class="{% if message.tags == 'success' %}text-green-600{% else %}text-red-600{% endif %}">
+        {{ message }}
+      </p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+        <!-- Urgent Phone -->
+        <div class="mt-6">
+          <p class="text-sm font-semibold text-gray-700">For urgent inquiries, call us at:</p>
+          <p class="text-lg font-bold text-red-600 mt-1">📞 +91-999-999-9999</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-green-800 text-white py-5">
+  <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap justify-between items-start">
+      
+      <!-- TOUR365 Section moved fully to the left -->
+      <div class="w-full sm:w-1/2 md:w-1/4 mb-6 md:mb-0 text-left">
+        <h3 class="text-xl font-bold mb-2">TOUR365</h3>
+        <p>Explore new travel styles & tours with TOUR365. Travel the world with us!  Capture your trips and memories in a personal way that goes beyond photos, allowing you to tell your unique story with every adventur</p>
+      </div>
+    <!-- Links -->
+    <div>
+      <h4 class="text-lg font-semibold mb-2">Links</h4>
+      <ul class="space-y-1">
+        <li><a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a></li>
+        <li><a href="{% url 'destination_list' %}" class="hover:text-yellow-300">Destination</a></li>
+        <li><a href="{% url 'wishlist' %}" class="hover:text-yellow-300">Wishlist</a></li>
+        <li><a href="{% url 'package-list' %}" class="hover:text-yellow-300">Packages</a></li>
+        <li><a href="{% url 'contact' %}" class="hover:text-yellow-300">Contact</a></li>
+      </ul>
     </div>
 
-    <section class="contact-info">
-      <h2>Contact Information</h2>
-      <p>Address: 123 Street Name, City, Country</p>
-      <p>Phone: +124 4537 9756</p>
-      <p>Email: tour365@gmail.com</p>
-      <p>Open: 8 AM - 8 PM</p>
-    </section>
+    <!-- Services -->
+    <div>
+      <h4 class="text-lg font-semibold mb-2">Services</h4>
+      <ul class="space-y-1">
+      <li>
+  <a href="{% url 'blog_list' %}" class="hover:text-yellow-300">Blog</a>
+</li>
 
-    <section class="contact-map">
-      <h2>Our Location</h2>
-      <!-- Removed inline styling so that CSS rules take effect -->
-      <img src="{% static 'images/map.png' %}" alt="Location Map">
-    </section>
-  </main>
-</div>
+        <li><a href="{% url 'faq' %}" class="hover:text-yellow-300">FAQ</a></li>
+      <li><a href="{% url 'help_center' %}" class="hover:text-yellow-300">Help Center</a></li>
 
-<script>
-  $(document).ready(function() {
-    $('#contact-form').on('submit', function(e) {
-      e.preventDefault();
-      const formData = $(this).serialize();
-      $.ajax({
-        url: "{% url 'contact_thank_you' %}",
-        type: "POST",
-        data: formData,
-        success: function(response) {
-          $('#confirmation-box').fadeIn();
-          $('#contact-form')[0].reset();
-        },
-        error: function(error) {
-          alert('An error occurred. Please try again.');
-        }
-      });
-    });
-  });
-</script>
+        <li><a href="{% url 'privacy_policy' %}" class="hover:text-yellow-300">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h4 class="text-lg font-semibold mb-2">Contact</h4>
+      <p>Email: support@tour365.com</p>
+      <p>Phone: +123-456-7890</p>
+      <div class="flex space-x-4 mt-4">
+        <img src="{% static 'images/you1.jpg' %}" alt="YouTube" class="w-6 h-6 rounded-full">
+        <img src="{% static 'images/facebook.jpg' %}" alt="Facebook" class="w-6 h-6 rounded-full">
+        <img src="{% static 'images/insta.jpg' %}" alt="Instagram" class="w-6 h-6 rounded-full">
+      </div>
+    </div>
+
+  </div>
+</footer>
 
 </body>
 </html>
-

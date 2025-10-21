@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Help Center</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="bg-white text-gray-900">
+
+<!-- HEADER -->
+<header
+  class="relative text-white shadow-md sticky top-0 z-50"
+  style="
+    background-image: url('https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b396/6778d1453ed9bf46a85ea7a6_hero-image-01.avif');
+    background-size: cover;
+    background-position: center 25%;
+    height: 320px;
+  "
+>
+  <div class="absolute inset-0 bg-black bg-opacity-25"></div>
+
+  <div class="relative max-w-7xl mx-auto w-full flex justify-between items-center px-6 pt-4">
+    <a href="{% url 'home' %}" class="z-10 text-xl font-bold tracking-wide hover:text-yellow-300">TOUR365</a>
+    <nav class="z-10 space-x-3 text-xs md:text-sm font-medium">
+      <a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a>
+      <a href="{% url 'destination_list' %}" class="hover:text-yellow-300">Destination</a>
+      <a href="{% url 'package-list' %}" class="hover:text-yellow-300">Packages</a>
+      <a href="{% url 'wishlist' %}" class="hover:text-yellow-300">Wishlist</a>
+      <a href="{% url 'contact' %}" class="hover:text-yellow-300">Contact</a>
+      
+    </nav>
+  </div>
+
+  <div class="relative z-10 mt-8 px-6 flex justify-start">
+    <h1 class="text-3xl md:text-4xl font-bold ml-12">How Can I Help You?</h1>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="bg-white py-12 px-6 md:px-12 text-center md:text-left">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+      We are dedicated to helping individuals and families navigate the complex world of visas and immigration with ease.
+      With years of experience and a commitment to personalized service, our team of experts provides end-to-end support,
+      from initial consultation to visa approval.
+      The user-friendly TOUR365 website  make it easy for enthusiastic travellers to plan and book a holiday simply at the click of a button. Just use the filters and select the city you want to visit along with your travel dates, travel duration, specific preferences, if any, on hotels, kind of holiday, etc. and TOUR365 offers you an extensive list of holiday packages to choose from. Pick any package that meets your needs. Else, you could also choose hotels of your choice, add sightseeing and activities to your list and have a package ready that best suits your requirement. You can choose to book your tour packages offline by dropping a query or chatting with our travel experts for immediate support. With TOUR365, planning and buying your ideal holiday has never been easier.
+    </p>
+
+    <div class="mb-8">
+      <a href="{% url 'blog_list' %}"
+         class="bg-green-700 text-white px-6 py-3 rounded-md font-semibold text-lg shadow-md hover:bg-green-800 transition">
+        Know more about us
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h3 class="text-3xl font-bold text-green-700">10K+</h3>
+        <p class="text-gray-600 mt-2">Assisting thousands of clients in achieving their global goals.</p>
+      </div>
+      <div>
+        <h3 class="text-3xl font-bold text-green-700">98%</h3>
+        <p class="text-gray-600 mt-2">Consistently achieving successful visa outcomes.</p>
+      </div>
+      <div>
+        <h3 class="text-3xl font-bold text-green-700">18+</h3>
+        <p class="text-gray-600 mt-2">Expert guidance throughout your immigration journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SERVICES SLIDER -->
+<!-- SERVICES SLIDER -->
+<section class="relative max-w-7xl mx-auto px-6 py-12">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold">Our Services</h2>
+    <div class="flex space-x-2">
+      <button id="prevBtn" class="p-2 bg-black text-white rounded">&#8592;</button>
+      <button id="nextBtn" class="p-2 bg-black text-white rounded">&#8594;</button>
+    </div>
+  </div>
+
+  <!-- Slider -->
+  <div id="slider" class="flex overflow-x-hidden space-x-6 transition-all duration-500">
+    
+    <!-- Card -->
+    <div style="width:390px" class="flex-shrink-0 bg-green-100 p-4 rounded-lg shadow-md">
+      <div class="relative overflow-hidden rounded-lg group">
+        <img src="https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b3bf/677e7240e3e34d7fa6783b18_service-01.avif"
+             class="w-full h-[280px] object-cover transform group-hover:scale-110 transition duration-500" />
+      </div>
+      <h3 class="mt-4 text-lg font-semibold">Visa Consultation</h3>
+      <p class="text-gray-700 text-base">Professional guidance to help you choose the right visa for your needs.</p>
+    </div>
+
+    <div style="width:390px" class="flex-shrink-0 bg-green-100 p-4 rounded-lg shadow-md">
+      <div class="relative overflow-hidden rounded-lg group">
+        <img src="https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b3bf/677e724aed0c2bd50318aff5_service-02.avif"
+             class="w-full h-[280px] object-cover transform group-hover:scale-110 transition duration-500" />
+      </div>
+      <h3 class="mt-4 text-lg font-semibold">Document Assistance</h3>
+      <p class="text-gray-700 text-base">Get help with preparing and organizing all required immigration documents.</p>
+    </div>
+
+    <div style="width:390px" class="flex-shrink-0 bg-green-100 p-4 rounded-lg shadow-md">
+      <div class="relative overflow-hidden rounded-lg group">
+        <img src="https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b3bf/677e72530d4acb3027e0ab80_service-03.avif"
+             class="w-full h-[280px] object-cover transform group-hover:scale-110 transition duration-500" />
+      </div>
+      <h3 class="mt-4 text-lg font-semibold">Application Submission</h3>
+      <p class="text-gray-700 text-base">We submit your visa applications accurately and on time.</p>
+    </div>
+
+    <div style="width:390px" class="flex-shrink-0 bg-green-100 p-4 rounded-lg shadow-md">
+      <div class="relative overflow-hidden rounded-lg group">
+        <img src="https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b3bf/678deff44e0e29a79d57d73b_immigration-04.jpg"
+             class="w-full h-[280px] object-cover transform group-hover:scale-110 transition duration-500" />
+      </div>
+      <h3 class="mt-4 text-lg font-semibold">Immigration Support</h3>
+      <p class="text-gray-700 text-base">Ongoing support throughout your immigration process.</p>
+    </div>
+
+    <div style="width:390px" class="flex-shrink-0 bg-green-100 p-4 rounded-lg shadow-md">
+      <div class="relative overflow-hidden rounded-lg group">
+        <img src="https://cdn.prod.website-files.com/6777c6ca4cd4fd1a5c59b3bf/678df0d05086324127c050f1_immigration-05.jpg"
+             class="w-full h-[280px] object-cover transform group-hover:scale-110 transition duration-500" />
+      </div>
+      <h3 class="mt-4 text-lg font-semibold">Travel Planning</h3>
+      <p class="text-gray-700 text-base">Plan your travel with our expert itinerary suggestions.</p>
+    </div>
+
+  </div>
+</section>
+<!-- GLOBAL REACH SECTION -->
+<section class="py-12 bg-green-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <!-- LEFT TEXT -->
+      <div>
+        <h2 class="text-4xl font-bold text-green-900">
+          Global reach - <span class="italic font-light">countries</span> we serve
+        </h2>
+        <p class="mt-4 text-green-800 text-lg">
+          <span class="text-3xl font-bold">15+</span> Visa services for major global destinations.
+        </p>
+        <a href="{% url 'home' %}" class="mt-6 inline-block">
+  <button class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+    Explore all
+  </button>
+</a>
+
+      </div>
+
+      <!-- RIGHT FLAGS -->
+      <div class="grid grid-cols-3 gap-6">
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/th.png" class="w-16 h-16 object-contain animate-float" alt="Thailand flag" />
+          <p class="mt-2 font-medium text-green-900">Thailand</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/ca.png" class="w-16 h-16 object-contain animate-float" alt="Canada flag" />
+          <p class="mt-2 font-medium text-green-900">Canada</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/ch.png" class="w-16 h-16 object-contain animate-float" alt="Switzerland flag" />
+          <p class="mt-2 font-medium text-green-900">Switzerland</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/de.png" class="w-16 h-16 object-contain animate-float" alt="Germany flag" />
+          <p class="mt-2 font-medium text-green-900">Germany</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/za.png" class="w-16 h-16 object-contain animate-float" alt="South Africa flag" />
+          <p class="mt-2 font-medium text-green-900">South Africa</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/au.png" class="w-16 h-16 object-contain animate-float" alt="Australia flag" />
+          <p class="mt-2 font-medium text-green-900">Australia</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/jp.png" class="w-16 h-16 object-contain animate-float" alt="Japan flag" />
+          <p class="mt-2 font-medium text-green-900">Japan</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/fr.png" class="w-16 h-16 object-contain animate-float" alt="France flag" />
+          <p class="mt-2 font-medium text-green-900">France</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/us.png" class="w-16 h-16 object-contain animate-float" alt="United States flag" />
+          <p class="mt-2 font-medium text-green-900">United States</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/it.png" class="w-16 h-16 object-contain animate-float" alt="Italy flag" />
+          <p class="mt-2 font-medium text-green-900">Italy</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/in.png" class="w-16 h-16 object-contain animate-float" alt="India flag" />
+          <p class="mt-2 font-medium text-green-900">India</p>
+        </div>
+
+        <div class="flex flex-col items-center bg-green-200 p-4 rounded-lg shadow-md">
+          <img src="https://flagcdn.com/w320/gb.png" class="w-16 h-16 object-contain animate-float" alt="United Kingdom flag" />
+          <p class="mt-2 font-medium text-green-900">United Kingdom</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const slider = document.getElementById('slider');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const cardWidth = 390 + 24; // card width + gap
+  let scrollPosition = 0;
+
+  function updateButtons() {
+    prevBtn.style.backgroundColor = scrollPosition <= 0 ? '#ccc' : 'black';
+    prevBtn.style.color = scrollPosition <= 0 ? '#333' : 'white';
+    nextBtn.style.backgroundColor =
+      scrollPosition >= slider.scrollWidth - slider.clientWidth - 5 ? '#ccc' : 'black';
+    nextBtn.style.color =
+      scrollPosition >= slider.scrollWidth - slider.clientWidth - 5 ? '#333' : 'white';
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (scrollPosition > 0) {
+      scrollPosition -= cardWidth;
+      slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+      updateButtons();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (scrollPosition < slider.scrollWidth - slider.clientWidth) {
+      scrollPosition += cardWidth;
+      slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+      updateButtons();
+    }
+  });
+
+  updateButtons();
+  
+</script>
+
+</body>
+</html>
+

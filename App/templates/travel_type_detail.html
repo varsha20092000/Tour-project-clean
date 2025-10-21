@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ travel_type.name|default:"Adventure Travel" }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+        }
+
+        /* Parallax Header */
+        .travel-header {
+            height: 70vh;
+            background-image: url('{% if travel_type.image %}{% if travel_type.image.url %}{{ travel_type.image.url }}{% else %}{% static travel_type.image %}{% endif %}{% else %}https://www.lux-reviews.com/wp-content/uploads/2023/10/luxury-adventure-tours-1171x656.jpg{% endif %}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .travel-header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .travel-header h1 {
+            position: relative;
+            color: white;
+            font-size: 3.5rem;
+            text-align: center;
+            z-index: 1;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        /* Back to Home Button in Header */
+        .back-btn-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #198754;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+        .back-btn-header:hover {
+            background: #146c43;
+        }
+
+        /* Description */
+        .description {
+            padding: 3rem 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Alternating Sections */
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 3rem 6%;
+            gap: 2rem;
+        }
+
+        .section img {
+            flex: 1 1 45%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: scale(1);
+            transition: transform 0.6s ease;
+        }
+
+        .section img:hover {
+            transform: scale(1.05);
+        }
+
+        .section-text {
+            flex: 1 1 45%;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+            background: #ffffff;
+        }
+
+        .section:nth-child(odd) {
+            background: #f1f5f9;
+        }
+
+        /* Animations */
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<header class="travel-header">
+    <a href="{% url 'home' %}" class="back-btn-header">Back to Home</a>
+  <h1>{{ travel_type.name }}</h1>
+
+</header>
+
+<section class="description">
+    <p>{{ travel_type.description|default:"Adventure travel is about exploring exciting destinations, embracing challenges, and making unforgettable memories along the way." }}</p>
+</section>
+
+{% for img in images %}
+<section class="section">
+    <img src="{{ img }}" alt="">
+    <div class="section-text">
+        <h2>{{ travel_type.name }} Experience {{ forloop.counter }}</h2>
+        <p>Description for this image can go here — or you can store them in your model if needed.</p>
+    </div>
+</section>
+{% endfor %}
+
+<script>
+    const sections = document.querySelectorAll('.section-text');
+    const revealOnScroll = () => {
+        const triggerBottom = window.innerHeight * 0.85;
+        sections.forEach(sec => {
+            const secTop = sec.getBoundingClientRect().top;
+            if (secTop < triggerBottom) {
+                sec.classList.add('visible');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+</script>
+
+</body>
+
+
+</html>

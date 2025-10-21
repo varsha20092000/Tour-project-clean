@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ post.title }} | TOUR365 Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Hero Section -->
+<section class="relative h-[400px] bg-cover bg-center"
+         style="background-image: url('https://www.leopard-tours.com/wp-content/uploads/2010/02/Flight2.jpg');">
+  <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white px-4">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ post.title }}</h1>
+    <p class="text-lg md:text-xl mb-2">{{ post.created_at|date:"F j, Y" }}</p>
+    <a href="{% url 'blog_list' %}" class="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg mt-4">← Back to Blog</a>
+  </div>
+</section>
+
+
+
+  <!-- Blog Content -->
+  <section class="max-w-4xl mx-auto py-12 px-4">
+    <article class="prose lg:prose-lg max-w-none">
+      {{ post.content|safe }}
+    </article>
+  </section>
+
+  <!-- Related Posts -->
+<main class="max-w-4xl mx-auto py-16 px-4">
+  <h1 class="text-4xl font-bold mb-6">{{ post.title }}</h1>
+ {% if post.image %}
+  <img src="{{ post.image }}" alt="{{ post.title }}" class="rounded-lg shadow-lg mb-6" />
+{% endif %}
+
+  <div class="text-gray-700 leading-relaxed">
+    {{ post.content|linebreaks }}
+  </div>
+</main>
+
+
+</body>
+</html>

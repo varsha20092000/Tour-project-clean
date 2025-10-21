@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ package.title }} - Travel Details</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1c1613;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header-image {
+            position: relative;
+            height: 50vh;
+            background: url("{% static package.image %}") center/cover no-repeat;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-custom {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+        }
+
+        .card-custom img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(60%);
+        }
+
+        .card-text-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+        }
+
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .view-btn:hover {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Background -->
+    <div class="header-image">
+        <a href="{% url 'home' %}" class="back-home">
+            <i class="fas fa-arrow-left"></i> Home
+        </a>
+    </div>
+
+    <!-- Package Title & Description -->
+    <div class="container py-5">
+        <h1 class="mb-4">{{ package.title }}</h1>
+        <p class="mb-5">{{ package.description }}</p>
+
+        <!-- Dynamic Card Grid -->
+        <div class="row g-4">
+            {% for i in "123456"|make_list %}
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+                <div class="card-custom">
+                    <img src="{% static 'images/'|add:package.title|lower|add:'-activity'|add:forloop.counter|stringformat:'i'|add:'.jpg' %}" alt="{{ package.title }} Activity {{ forloop.counter }}">
+                    <div class="card-text-overlay">
+                        <small>2025</small>
+                        <h5>{{ package.title }} Activity {{ forloop.counter }}</h5>
+                        <a href="#" class="view-btn">View <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+</html>
+

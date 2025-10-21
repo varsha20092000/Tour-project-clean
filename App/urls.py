@@ -51,6 +51,20 @@ urlpatterns = [
     path("send-login-otp/", views.send_login_otp, name="send_login_otp"),
     path("send-registration-otp/", views.send_registration_otp, name="send_registration_otp"),
     path("verify-otp/", views.verify_otp, name="verify_otp"),
+    path('blog/', views.blog_list, name='blog_list'),
+    path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
+    path('faq/', views.faq_view, name='faq'),
+    path('help-center/', views.help_center, name='help_center'),
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
+    path('travel-type/<str:type_name>/', views.travel_type_view, name='travel_type_detail'),
+# Travel sections (if separate from types)
+path('travel-section/<str:section_name>/', views.travel_section_detail_view, name='travel_section_detail'),
+
+# Travel countries (Canada, Finland, etc.)
+path('travel-country/<str:country_name>/', views.travel_detail_view, name='travel_country_detail'),
+
+
+
 ]
 
 

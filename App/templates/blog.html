@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TOUR365 Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-slide-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-slide-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-700">
+<header class="absolute top-0 left-0 w-full z-50 bg-transparent">
+  <div class="flex justify-between items-center w-full px-6 py-4">
+
+    <!-- Logo Left -->
+    <a href="{% url 'home' %}" class="flex items-center">
+      <h1 class="text-5xl font-extrabold tracking-wide text-white" style="font-family: 'Poppins', sans-serif;">
+        TOUR<span class="text-white-400">365</span>
+      </h1>
+    </a>
+
+    <!-- Nav Right -->
+    <nav class="flex space-x-8 text-lg font-medium">
+      <a href="{% url 'home' %}" class="text-white hover:text-green-400">Home</a>
+      <a href="{% url 'destination_list' %}" class="text-white hover:text-green-400">Destination</a>
+      <a href="{% url 'package-list' %}" class="text-white hover:text-green-400">Packages</a>
+      <a href="{% url 'wishlist' %}" class="text-white hover:text-green-400">Wishlist</a>
+      <a href="{% url 'contact' %}" class="text-white hover:text-green-400">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+  <!-- Hero Section -->
+ <section class="relative w-full max-w-none overflow-hidden"
+  style="height: 600px; min-height: 600px;
+         background-image: url('https://img.freepik.com/premium-photo/vector-world-with-landmarks-flat-style-01_923413-443.jpg?w=2000');
+         background-size: cover;
+         background-position: center 30%;
+         background-repeat: no-repeat;">
+  <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+
+  <div class="relative z-10 flex flex-col justify-center items-center text-center text-white px-4 h-full max-w-4xl mx-auto">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Explore the World</h1>
+    <p class="text-lg md:text-2xl mb-4 max-w-xl">
+      The journey isn’t just about where you go — it’s about the stories you create along the way.
+    </p>
+    <p class="text-lg md:text-xl italic">
+      Let every landmark, every culture, and every horizon inspire the next chapter of your adventure.
+    </p>
+  </div>
+</section>
+ 
+  <!-- Alternating Sections -->
+<main class="max-w-6xl mx-auto py-16 px-4 space-y-24" id="blog">
+  {% for post in posts %}
+  <article class="md:flex md:items-center md:gap-12 {% cycle '' 'flex-row-reverse' %}">
+    <div class="md:w-1/2 fade-slide-{{ forloop.counter|divisibleby:2|yesno:'right,left' }}">
+     <img src="{{ post.image }}" alt="{{ post.title }}" class="rounded-lg shadow-lg w-full" />
+
+    </div>
+    <div class="md:w-1/2 mt-8 md:mt-0 fade-slide-{{ forloop.counter|divisibleby:2|yesno:'left,right' }}">
+      <h2 class="text-3xl font-semibold mb-4">{{ post.title }}</h2>
+      <p class="text-gray-600 mb-4">
+        {{ post.description }}
+      </p>
+      <a href="{% url 'blog_detail' post.slug %}" class="text-green-600 font-semibold hover:underline">Read More →</a>
+    </div>
+  </article>
+  {% empty %}
+  <p>No blog posts available.</p>
+  {% endfor %}
+</main>
+
+
+
+  <script>
+    // Scroll Animation Observer
+    const fadersLeft = document.querySelectorAll('.fade-slide-left');
+    const fadersRight = document.querySelectorAll('.fade-slide-right');
+
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    fadersLeft.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    fadersRight.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+
+</body>
+
+</html>

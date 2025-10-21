@@ -418,9 +418,57 @@ from .models import Tour
 def tour_list(request):
     tours = Tour.objects.all()  # Fetch all tours from the database
     return render(request, 'tour_list.html', {'tours': tours})
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.conf import settings
+
 def contact(request):
-    form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        subject = f"Contact Form Submission from {name}"
+        body = f"""
+        Name: {name}
+        Email: {email}
+
+        Message:
+        {message}
+        """
+
+        try:
+            # Send to you
+            send_mail(
+                subject,
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.EMAIL_HOST_USER],
+                fail_silently=False,
+            )
+
+            # Optional auto-reply
+            send_mail(
+                "Thanks for contacting TOUR365",
+                f"Hi {name},\n\nWe’ve received your message and will respond shortly.\n\n- TOUR365 Team",
+                settings.DEFAULT_FROM_EMAIL,
+                [email],
+                fail_silently=False,
+            )
+
+            messages.success(request, "✅ Your message has been sent successfully!")
+            return redirect("contact")
+
+        except Exception as e:
+            messages.error(request, f"❌ Email failed to send: {e}")
+
+    return render(request, "contact.html")
+
 def contact_submit(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -695,12 +743,11 @@ def book_destination(request, destination_id):
 
 
 def booknow_home(request):
-    
-    if request.method == "POST":
-        # Process the booking (generic)
-        # ...
-        return redirect('booking_confirmation')
-    return render(request, 'booking_home.html')
+    if request.method == 'POST':
+        # Save booking form...
+        booking = Booking.objects.create(...)  # or however you save
+        return redirect('booking-success', booking_id=booking.id)
+    return render(request, 'booknow_home.html')
 
 from .forms import CompanyProfileForm
 from .models import CompanyImage
@@ -723,3 +770,196 @@ def company_profile_view(request):
 def activate_subscription(request):
     request.session['subscription_active'] = True
     return redirect('home')
+from .models import Blog
+from django.shortcuts import render, get_object_or_404
+from .models import Blog
+
+def blog_list(request):
+    posts = Blog.objects.all()
+    return render(request, "blog.html", {"posts": posts})
+
+def blog_detail(request, slug):
+    post = get_object_or_404(Blog, slug=slug)
+    return render(request, "blog_detail.html", {"post": post})
+
+from django.shortcuts import render
+from .models import FAQ
+
+def faq_view(request):
+    faqs = FAQ.objects.all().order_by('-created_at')
+    return render(request, 'faq_page.html', {'faqs': faqs})
+
+from django.shortcuts import render
+
+from django.templatetags.static import static
+
+def help_center(request):
+    context = {
+        'help_img': static('images/help.avif'),  # Use the static helper to get URL
+    }
+    return render(request, 'help_center.html', context)
+# views.py
+from django.shortcuts import render
+
+def privacy_policy(request):
+    return render(request, 'policy.html')
+
+from django.shortcuts import render
+
+def travel_type_view(request, type_name):
+    # Normalize URL param
+    type_name = type_name.strip().lower()
+
+    travel_types = {
+        "adventure": {
+            "name": "Adventure Travel",
+            "description": "Adventure travel is about exploring exciting destinations, embracing challenges, and making unforgettable memories along the way.",
+            "images": [
+                "https://www.lux-reviews.com/wp-content/uploads/2023/10/luxury-adventure-tours-1171x656.jpg",
+                "https://cdn.projectexpedition.com/photos/49265touractivityjungleandriveratvadventureprivatefromsanjose3_sized.jpg",
+                "https://adm.dookinternational.com/dook/images/experience/uz3tR1619416313.jpg",
+                "https://tse2.mm.bing.net/th/id/OIP.sV8tSQNicHt7QJGmcnX8nAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
+                "https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWR2ZW50dXJlJTIwdHJhdmVsfGVufDB8fDB8fHww",
+                "https://images.unsplash.com/photo-1707584145698-7a0b425a79e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWR2ZW50dXJlJTIwdHJhdmVsfGVufDB8fDB8fHww",
+            ]
+        },
+        "cultural": {
+            "name": "Cultural Travel",
+            "description": "Cultural travel lets you dive into history, traditions, and authentic local experiences.",
+            "images": [
+                "https://wallpapercave.com/wp/wp10918600.jpg",
+                "https://touristjourney.com/wp-content/uploads/2020/11/Witness-a-Kathakali-dance-performance-in-our-3-Day-Wildlife-and-culture-tour-of-Thekkady-from-Kochi-1024x684.jpg",
+                "https://tse2.mm.bing.net/th/id/OIP.xD3HMcNl5yklGeQfslWLeAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
+                "https://th.bing.com/th/id/R.ff93393bcbb6cc3c3c0bdef97d673acf?rik=U3Ypn1vC8sdW4g&riu=http%3a%2f%2fwww.springrainadventure.com%2fassets%2fTemplate%2fimages%2fpackages%2ftibet%2fTibet-Cultural-Tour%2fTibet_Cultural-Tours.jpg&ehk=jz%2b6T48oyQNfaEjvw9hzVfsxQcdWqo3U8kCKwMFjn7A%3d&risl=&pid=ImgRaw&r=0",
+                "https://tse1.mm.bing.net/th/id/OIP.-HtdyhimXr5Lqy11oNMAfgHaE9?rs=1&pid=ImgDetMain&o=7&rm=3",
+                "https://www.indusdiscoveries.com/images/category/banner/1584440392b20200317.jpg",
+                "https://blog.thomascook.in/wp-content/uploads/2015/09/Picture118.jpg"
+            ]
+        },
+        "eco": {
+            "name": "Eco Travel",
+            "description": "Eco travel focuses on sustainable tourism, preserving nature, and supporting local communities.",
+            "images": [
+                "https://www.thetravelteam.com/wp-content/uploads/2019/01/ecotourism.jpg",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+                "https://tse1.mm.bing.net/th/id/OIP.utYlcvJZqy9LwEiVuL833wHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
+                "https://res.cloudinary.com/worldpackers/image/upload/c_limit,f_auto,q_auto,w_1140/wwpxvfamijbpgi5gtbrv",
+                "https://th.bing.com/th/id/OIP.QAnffuBeswvXcNmr-iqAxwHaEK?w=326&h=183&c=7&r=0&o=5&dpr=1.6&pid=1.7",
+                "https://th.bing.com/th/id/OIP.pb9EoWhQn-aMV6-M-IbbjgHaEO?w=302&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7"
+            ]
+        },
+        "nature": {
+            "name": "Nature Travel",
+            "description": "Nature travel is all about connecting with landscapes, wildlife, and the great outdoors.",
+            "images": [
+                "https://www.adventuretravelcoach.com/wp-content/uploads/2020/06/68AFCE60-6D7A-40C0-BD33-497926A30147.jpeg",
+                "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+            ]
+        },
+        "wildlife": {
+            "name": "Wildlife Travel",
+            "description": "Wildlife travel brings you close to animals in their natural habitat while promoting conservation.",
+            "images": [
+                "https://cdn.tourradar.com/s3/content-pages/447/1536x1230/hWPDF2.jpeg",
+                "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+                "https://cdn.tourradar.com/s3/tour/original/139221_b9a8e264.jpg",
+                "https://th.bing.com/th/id/OADD2.8452611030250_1Y59KZ4SLXVUGFM275?pid=21.2&c=16&roil=0&roit=0&roir=1&roib=1&w=206&dpr=1.6&o=7&rm=3",
+                "https://th.bing.com/th/id/OIP.bgmzJwSqrUBNn9hc631dUAHaFj?w=226&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3",
+                "https://th.bing.com/th/id/OIP.vQ7VNW-b8LI5CrOhJ9V5_gHaED?w=324&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+            ]
+        },
+        "beach": {
+            "name": "Beach Travel",
+            "description": "Beach travel is all about sun, sand, and sea — the perfect way to relax or enjoy water adventures.",
+            "images": [
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                "https://images.unsplash.com/photo-1493558103817-58b2924bce98",
+                "https://cdn.adventure-life.com/81/11/3/3xenzkcc/1300x820.webp",
+                "https://th.bing.com/th/id/OIP.i_69XnPrGMxEqkyWIstWiAHaEw?w=241&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3",
+                "https://th.bing.com/th/id/OIP.m9KdaHOWTTveR2hwCGOhEAHaFL?w=258&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3",
+                "https://th.bing.com/th/id/OIP.OxZjm5-znolfRoqoGKj_8QHaE8?w=257&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+            ]
+        },
+        "explore": {
+            "name": "Exploration Travel",
+            "description": "Exploration travel is about discovering hidden gems, remote landscapes, and untouched cultures.",
+            "images": [
+                "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+                "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800",
+                "https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+            ]
+        }
+    }
+
+    # Pick selected travel type or default to adventure
+    selected_type = travel_types.get(type_name, travel_types["adventure"])
+
+    return render(request, "travel_type_detail.html", {
+        "travel_type": selected_type,
+        "images": selected_type["images"]
+    })
+def travel_detail_view(request, country_name):
+    packages = {
+        'canada': {
+            'title': 'Canada',
+            'description': 'Explore the charm of Ottawa with guided city tours and beautiful landscapes.',
+            'image': 'images/package1.jpg'
+        },
+        'finland': {
+            'title': 'Finland',
+            'description': 'Discover Finland’s serene lakes and the beauty of the Southside region.',
+            'image': 'images/package2.jpg'
+        },
+        'sweden': {
+            'title': 'Sweden',
+            'description': 'Enjoy the peaceful countryside and historic charm of Jönköping.',
+            'image': 'images/package3.jpg'
+        },
+        'england': {
+            'title': 'England',
+            'description': 'Visit iconic landmarks and explore London’s vibrant culture.',
+            'image': 'images/package4.jpg'
+        },
+        'iceland': {
+            'title': 'Iceland',
+            'description': 'Witness Iceland’s stunning volcanic landscapes and geothermal wonders.',
+            'image': 'images/package5.jpg'
+        },
+        'norway': {
+            'title': 'Norway',
+            'description': 'Explore the scenic fjords and rich history of Oslo.',
+            'image': 'images/package6.jpg'
+        },
+    }
+
+    package = packages.get(country_name.lower())
+    if not package:
+        return render(request, '404.html', status=404)
+
+    return render(request, 'travel_detail.html', {'package': package})
+
+
+def travel_section_detail_view(request, section_name):
+    sections = {
+        'beach': {
+            'title': 'Beach Paradise',
+            'description': 'Relax on golden sands, swim in crystal clear waters, and enjoy beachside sunsets.',
+            'image': 'images/beach.jpg'
+        },
+        'explore': {
+            'title': 'Adventure & Explore',
+            'description': 'Embark on thrilling adventures and explore breathtaking natural wonders.',
+            'image': 'images/explore.jpg'
+        },
+        'mountain': {
+            'title': 'Mountain Escape',
+            'description': 'Breathe fresh air, hike scenic trails, and enjoy panoramic views from mountain peaks.',
+            'image': 'images/mountain.jpg'
+        },
+    }
+
+    section = sections.get(section_name.lower())
+    if not section:
+        return render(request, '404.html', status=404)
+
+    return render(request, 'travel_section_detail.html', {'section': section})

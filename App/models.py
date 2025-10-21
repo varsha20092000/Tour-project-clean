@@ -125,16 +125,36 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'Payment for {self.booking}'
+from django.utils.text import slugify
+
 class Blog(models.Model):
     title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)  # <--- new field for the short paragraph
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='blog_images', blank=True, null=True)
+    image = models.ImageField(
+        upload_to='blog_images',
+        blank=True,
+        null=True,
+        default='blog_images/default-blog.jpg'
+    )
+    slug = models.SlugField(unique=True, blank=True)
+    def save(self, *args, **kwargs):
+        if not self.slug or self.slug.strip() == "":
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while Blog.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
@@ -234,3 +254,11 @@ class Company(models.Model):
 
     def __str__(self):
         return self.company_name
+
+class TravelType(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='travel_types/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

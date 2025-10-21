@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #8eac81;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            overflow: hidden; /* hides scrollbars */
+        }
+
+        /* HEADER STYLES */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .tour {
+            border-bottom: 4px solid #1e90ff; /* blue underline */
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover {
+            color: #22c55e; /* green hover */
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            width: 90%;
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 120px; /* pushes FAQ below header */
+        }
+
+        .faq-image {
+            flex: 1.2;
+            background: url('https://img.freepik.com/premium-vector/teamwork-office-problem-solving-brainstorming-what-concept-vector-illustration_143808-726.jpg') center/contain no-repeat white;
+            padding: 10px;
+        }
+.faq-container {
+  max-height: 80vh; /* or desired limit */
+  overflow-y: auto;
+}
+
+        .faq-content {
+            flex: 1.5;
+            padding: 30px;
+            overflow-y: auto; /* in case many questions, but no scrollbar outside */
+            scrollbar-width: none; /* Firefox */
+        }
+        .faq-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .faq-content h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-arrow {
+            font-size: 1rem;
+            flex-shrink: 0;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.open .faq-arrow {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            font-size: 16px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Remove underline entirely */
+.tour {
+    border-bottom: none;
+}
+
+/* Adjust nav spacing so "Contact" shifts left */
+header nav {
+    display: flex;
+    gap: 20px; /* space between links */
+    margin-right: 30px; /* moves entire nav left */
+}
+/* Remove underline from all nav and logo links */
+header a {
+    text-decoration: none !important;
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Logo Left -->
+   <a href="{% url 'home' %}" class="flex items-center logo">
+  <h1 class="text-5xl font-extrabold tracking-wide text-white" style="font-family: 'Poppins', sans-serif;">
+    TOUR<span class="text-white-400">365</span>
+  </h1>
+</a>
+
+    <!-- Nav Right -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'destination_list' %}">Destination</a>
+        <a href="{% url 'package-list' %}">Packages</a>
+        <a href="{% url 'wishlist' %}">Wishlist</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+</header>
+
+<div class="faq-container">
+    <div class="faq-image"></div>
+    <div class="faq-content">
+        <h2>FAQ</h2>
+
+        {% for faq in faqs %}
+        <div class="faq-item">
+            <div class="faq-question">
+                {{ faq.question }}
+                <span class="faq-arrow">&#9654;</span>
+            </div>
+            <div class="faq-answer">
+                {{ faq.answer }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

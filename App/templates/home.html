@@ -238,6 +238,44 @@
     margin-bottom: 20px;
   }
 }
+.package {
+    position: relative;
+    overflow: hidden;
+}
+
+.package img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.package-arrow {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+.package-arrow a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(241, 230, 230);
+    color: black;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.package-arrow a:hover {
+    transform: translateX(4px) rotate(45deg);
+    background-color: black;
+    color: white;
+}
 
 </style>
 </head>
@@ -312,60 +350,79 @@
 
 
     </section>
+<section class="packages">
+    <h2>Packages</h2>
+    <h3>Choose Best Packages</h3>
+    <div class="package-list">
 
-
-
-    <section class="packages">
-        <h2>Packages</h2>
-        <h3>Choose Best Packages</h3>
-        <div class="package-list">
-            <div class="package">
-                <img src="{% static 'images/package1.jpg' %}" alt="Canada">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> Canada</h3>
-                <p>4 days in Canada, Ottawa</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'canada' %}">⬈</a>
             </div>
-            <div class="package">
-                <img src="{% static 'images/package2.jpg' %}" alt="Finland">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> Finland</h3>
-                <p>4 days in Finland, Southside</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
-            </div>
-            <div class="package">
-                <img src="{% static 'images/package3.jpg' %}" alt="Sweden">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> Sweden</h3>
-                <p>4 days in Sweden, Jönköping</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
-            </div>
-            <div class="package">
-                <img src="{% static 'images/package4.jpg' %}" alt="England">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> England</h3>
-                <p>4 days in England, London</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
-            </div>
-            <div class="package">
-                <img src="{% static 'images/package5.jpg' %}" alt="Iceland">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> Iceland</h3>
-                <p>5 days in Iceland, Myvatn</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
-            </div>
-            <div class="package">
-                <img src="{% static 'images/package6.jpg' %}" alt="Norway">
-                <h3><i class="fas fa-map-marker-alt location-icon"></i> Norway</h3>
-                <p>4 days in Norway, Oslo</p>
-                <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
-                <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
-            </div>
-            <!-- Add more packages as needed -->
+            <img src="{% static 'images/package1.jpg' %}" alt="Canada">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> Canada</h3>
+            <p>4 days in Canada, Ottawa</p>
+            <h5>Explore the charm of Ottawa with guided city tours and beautiful landscapes.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
         </div>
-    </section>
-    
 
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'finland' %}">⬈</a>
+            </div>
+            <img src="{% static 'images/package2.jpg' %}" alt="Finland">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> Finland</h3>
+            <p>4 days in Finland, Southside</p>
+            <h5>Discover Finland’s serene lakes and the beauty of the Southside region.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        </div>
+
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'sweden' %}">⬈</a>
+            </div>
+            <img src="{% static 'images/package3.jpg' %}" alt="Sweden">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> Sweden</h3>
+            <p>4 days in Sweden, Jönköping</p>
+            <h5>Enjoy the peaceful countryside and historic charm of Jönköping.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        </div>
+
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'england' %}">⬈</a>
+            </div>
+            <img src="{% static 'images/package4.jpg' %}" alt="England">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> England</h3>
+            <p>4 days in England, London</p>
+            <h5>Visit iconic landmarks and explore London’s vibrant culture.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        </div>
+
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'iceland' %}">⬈</a>
+            </div>
+            <img src="{% static 'images/package5.jpg' %}" alt="Iceland">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> Iceland</h3>
+            <p>5 days in Iceland, Myvatn</p>
+            <h5>Witness Iceland’s stunning volcanic landscapes and geothermal wonders.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        </div>
+
+        <div class="package">
+            <div class="package-arrow">
+                <a href="{% url 'travel_country_detail' 'norway' %}">⬈</a>
+            </div>
+            <img src="{% static 'images/package6.jpg' %}" alt="Norway">
+            <h3><i class="fas fa-map-marker-alt location-icon"></i> Norway</h3>
+            <p>4 days in Norway, Oslo</p>
+            <h5>Explore the scenic fjords and rich history of Oslo.</h5>
+            <a href="{% url 'booknow_home' %}" class="book-button">Book Now</a>
+        </div>
+
+    </div>
+</section>
 
     <!-- Travel Types Section -->
     <section class="travel-types">
@@ -378,32 +435,44 @@
             The doing is often more important than the outcome.
         </strong></p>
         <div class="travel-options">
-            <div class="option">
-                <img src="{% static 'images/exp.jpg' %}" alt="Explore">
-                <div class="overlay-text">Explore</div>
-            </div>
-            <div class="option">
-                <img src="{% static 'images/adv.jpg' %}" alt="adventure">
-                <div class="overlay-text">Adventure</div>
-            </div>
-            <div class="option">
-                <img src="{% static 'images/culture.jpg' %}" alt="culture">
-                <div class="overlay-text">Cultural</div>
-            </div>
-            <div class="option">
-                <img src="{% static 'images/eco.jpg' %}" alt="Eco">
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Explore' %}">
+            <img src="{% static 'images/exp.jpg' %}" alt="Explore">
+            <div class="overlay-text">Explore</div>
+        </a>
+    </div>
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Adventure' %}">
+            <img src="{% static 'images/adv.jpg' %}" alt="Adventure">
+            <div class="overlay-text">Adventure</div>
+        </a>
+    </div>
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Cultural' %}">
+            <img src="{% static 'images/culture.jpg' %}" alt="Cultural">
+            <div class="overlay-text">Cultural</div>
+        </a>
+    </div>
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Eco' %}">
+            <img src="{% static 'images/eco.jpg' %}" alt="Eco">
+            <div class="overlay-text">Eco</div>
+        </a>
+    </div>
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Beach' %}">
+            <img src="{% static 'images/beach.webp' %}" alt="Beach">
+            <div class="overlay-text">Beach</div>
+        </a>
+    </div>
+    <div class="option">
+        <a href="{% url 'travel_type_detail' 'Wildlife' %}">
+            <img src="{% static 'images/wildlife.jpg' %}" alt="Wildlife">
+            <div class="overlay-text">Wildlife</div>
+        </a>
+    </div>
+</div>
 
-                <div class="overlay-text">Eco</div>
-            </div>
-            <div class="option">
-                <img src="{% static 'images/beach.webp' %}" alt="beach">
-                <div class="overlay-text">Beach</div>
-            </div>
-            <div class="option">
-                <img src="{% static 'images/wildlife.jpg' %}" alt="wildlife">
-                <div class="overlay-text">Wildlife</div>
-            </div>
-        </div>
     </section>
 
     <footer class="footer">

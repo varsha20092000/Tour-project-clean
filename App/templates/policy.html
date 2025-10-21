@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy - TOUR365</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    /* Footer animation */
+    footer {
+      animation: slideUp 1.5s ease-out;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center bg-green-800 text-white px-6 py-4">
+      <a href="{% url 'home' %}" class="text-2xl font-bold">TOUR365</a>
+      <nav class="space-x-4">
+          <a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a>
+          <a href="{% url 'destination_list' %}" class="hover:text-yellow-300">Destination</a>
+          <a href="{% url 'package-list' %}" class="hover:text-yellow-300">Packages</a>
+          <a href="{% url 'wishlist' %}" class="hover:text-yellow-300">Wishlist</a>
+          <a href="{% url 'contact' %}" class="hover:text-yellow-300">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+          <a href="{% url 'signin' %}" class="bg-red-500 px-3 py-1 rounded hover:bg-red-600">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </a>
+          <a href="{% url 'profile' %}" class="bg-yellow-500 px-3 py-1 rounded hover:bg-yellow-600">Profile</a>
+      </div>
+  </header>
+
+  <!-- Policies Section -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+      <h2 class="text-3xl font-bold mb-2">Our Policies</h2>
+      <h1 class="text-4xl font-bold mb-6">Welcome to TOUR365!</h1>
+      <p class="text-lg mb-8">
+        To ensure all our guests have a comfortable and enjoyable stay, please review our policies carefully.
+      </p>
+
+      <div class="space-y-8 text-gray-800">
+          <div>
+              <h3 class="text-2xl font-semibold">1. Booking and Reservation Policy</h3>
+              <ul class="list-disc pl-6">
+                  <li>Check-In Time: 3:00 PM</li>
+                  <li>Check-Out Time: 11:00 AM</li>
+                  <li>Minimum Stay: A two-night minimum stay is required on weekends and during peak seasons.</li>
+                  <li>Payment: A 50% deposit is required to secure your booking, with the remaining balance due 7 days before arrival.</li>
+                  <li>Age Requirement: Guests must be 21 years or older to book a reservation.</li>
+              </ul>
+          </div>
+
+          <div>
+              <h3 class="text-2xl font-semibold">2. Cancellation Policy</h3>
+              <ul class="list-disc pl-6">
+                  <li>Full Refund: Cancellations made at least 7 days before the arrival date will receive a full refund.</li>
+                  <li>Partial Refund: Cancellations made within 7 days of the arrival date will receive a 50% refund.</li>
+                  <li>No Refund: No refund will be issued for cancellations made within 24 hours of check-in.</li>
+              </ul>
+          </div>
+
+          <div>
+              <h3 class="text-2xl font-semibold">3. Security Deposit</h3>
+              <ul class="list-disc pl-6">
+                  <li>Deposit Requirement: A security deposit of $300 will be held and released within 3 days of check-out, provided there are no damages or policy violations.</li>
+                  <li>Damage Fees: Any damage to the property or excessive cleaning required will be deducted from the security deposit.</li>
+              </ul>
+          </div>
+
+          <div>
+              <h3 class="text-2xl font-semibold">4. House Rules</h3>
+              <ul class="list-disc pl-6">
+                  <li>No Smoking: Smoking is strictly prohibited inside the chalet. A $200 cleaning fee will be charged for any violation.</li>
+                  <li>No Pets: We love animals, but for the safety and comfort of all guests, pets are not allowed.</li>
+                  <li>Quiet Hours: Quiet hours are from 10:00 PM to 7:00 AM to respect our neighbors and other guests.</li>
+                  <li>Maximum Occupancy: The maximum number of guests allowed is 8. Exceeding this limit may result in additional charges or cancellation of your stay.</li>
+              </ul>
+          </div>
+
+          <div>
+              <h3 class="text-2xl font-semibold">5. Amenities and Usage</h3>
+              <ul class="list-disc pl-6">
+                  <li>Wi-Fi: Complimentary high-speed Wi-Fi is available throughout the property.</li>
+                  <li>Fire Pit: Guests are welcome to use the outdoor fire pit but must ensure it is fully extinguished before leaving the area.</li>
+                  <li>Hot Tub (if available): Please adhere to the safety guidelines posted near the hot tub. Use is at your own risk.</li>
+                  <li>Kitchen: The kitchen is fully equipped. We kindly ask guests to wash all dishes and return items to their original places before check-out.</li>
+              </ul>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-green-800 text-white py-5">
+    <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-between items-start">
+        
+        <!-- TOUR365 Section -->
+        <div class="w-full sm:w-1/2 md:w-1/4 mb-6 md:mb-0 text-left">
+          <h3 class="text-xl font-bold mb-2">TOUR365</h3>
+          <p>Explore new travel styles & tours with TOUR365. Travel the world with us! Capture your trips and memories in a personal way that goes beyond photos.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-2">Links</h4>
+          <ul class="space-y-1">
+            <li><a href="{% url 'home' %}" class="hover:text-yellow-300">Home</a></li>
+            <li><a href="{% url 'destination_list' %}" class="hover:text-yellow-300">Destination</a></li>
+            <li><a href="{% url 'wishlist' %}" class="hover:text-yellow-300">Wishlist</a></li>
+            <li><a href="{% url 'package-list' %}" class="hover:text-yellow-300">Packages</a></li>
+            <li><a href="{% url 'contact' %}" class="hover:text-yellow-300">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-lg font-semibold mb-2">Services</h4>
+          <ul class="space-y-1">
+            <li><a href="{% url 'blog_list' %}" class="hover:text-yellow-300">Blog</a></li>
+            <li><a href="{% url 'faq' %}" class="hover:text-yellow-300">FAQ</a></li>
+            <li><a href="{% url 'help_center' %}" class="hover:text-yellow-300">Help Center</a></li>
+            <li><a href="{% url 'privacy_policy' %}" class="hover:text-yellow-300">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-2">Contact</h4>
+          <p>Email: support@tour365.com</p>
+          <p>Phone: +123-456-7890</p>
+          <div class="flex space-x-4 mt-4">
+            <img src="{% static 'images/you1.jpg' %}" alt="YouTube" class="w-6 h-6 rounded-full">
+            <img src="{% static 'images/facebook.jpg' %}" alt="Facebook" class="w-6 h-6 rounded-full">
+            <img src="{% static 'images/insta.jpg' %}" alt="Instagram" class="w-6 h-6 rounded-full">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
