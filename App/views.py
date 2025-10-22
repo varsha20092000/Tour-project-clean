@@ -747,7 +747,7 @@ def booknow_home(request):
         # Save booking form...
         booking = Booking.objects.create(...)  # example logic
         return redirect('booking-success', booking_id=booking.id)
-    return render(request, 'booknow_home.html')  # ✅ correct filename
+    return render(request, 'booknow.html')  # ✅ correct filename
 
 
 
