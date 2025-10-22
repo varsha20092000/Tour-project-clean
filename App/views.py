@@ -747,7 +747,8 @@ def booknow_home(request):
         # Save booking form...
         booking = Booking.objects.create(...)  # or however you save
         return redirect('booking-success', booking_id=booking.id)
-    return render(request, 'booknow_home.html')
+    return render(request, 'booking_home.html')
+
 
 from .forms import CompanyProfileForm
 from .models import CompanyImage

@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-
-from .models import TeamMember
-
-# Check if the model is not already registered
-if not admin.site.is_registered(TeamMember):
-    admin.site.register(TeamMember)
 from django.contrib.sessions.models import Session
 from django.utils.timezone import now
+from .models import TeamMember
+
+# ✅ Proper safe registration
+try:
+    admin.site.register(TeamMember)
+except admin.sites.AlreadyRegistered:
+    pass
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
