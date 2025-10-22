@@ -57,6 +57,8 @@ urlpatterns = [
     path('help-center/', views.help_center, name='help_center'),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('travel-type/<str:type_name>/', views.travel_type_view, name='travel_type_detail'),
+    path("booknow/<int:package_id>/", views.booknow_home, name='booknow'),
+
 # Travel sections (if separate from types)
 path('travel-section/<str:section_name>/', views.travel_section_detail_view, name='travel_section_detail'),
 
