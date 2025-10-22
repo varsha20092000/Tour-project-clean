@@ -742,14 +742,27 @@ def book_destination(request, destination_id):
     return render(request, 'book_destination.html', context)
 
 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Booking, Tour
+
 def booknow_home(request):
     if request.method == 'POST':
-        # Save booking form...
-        booking = Booking.objects.create(...)  # example logic
+        tour = get_object_or_404(Tour, id=request.POST.get('tour_id'))  # adjust if tour comes from form
+        
+        booking = Booking.objects.create(
+            user=request.user,
+            tour=tour,
+            booking_date=request.POST.get('booking_date'),
+            number_of_people=request.POST.get('number_of_people'),
+            total_price=0,  # or calculate dynamically
+            status='Pending',
+            banking_details=request.POST.get('account_number'),
+            package=None  # or set from request.POST if applicable
+        )
+
         return redirect('booking-success', booking_id=booking.id)
-    return render(request, 'booking_home.html')  # ✅ correct filename
 
-
+    return render(request, 'booking_home.html')
 
 from .forms import CompanyProfileForm
 from .models import CompanyImage
