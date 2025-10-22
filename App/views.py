@@ -744,25 +744,27 @@ def book_destination(request, destination_id):
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking, Tour
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 def booknow_home(request):
+    tour = Tour.objects.first()  # or retrieve based on context
     if request.method == 'POST':
-        tour = get_object_or_404(Tour, id=request.POST.get('tour_id'))  # adjust if tour comes from form
-        
+        tour_id = request.POST.get('tour_id')
+        if not tour_id:
+            return HttpResponse("No tour selected", status=400)
+        tour = get_object_or_404(Tour, id=tour_id)
+
         booking = Booking.objects.create(
             user=request.user,
             tour=tour,
             booking_date=request.POST.get('booking_date'),
             number_of_people=request.POST.get('number_of_people'),
-            total_price=0,  # or calculate dynamically
-            status='Pending',
-            banking_details=request.POST.get('account_number'),
-            package=None  # or set from request.POST if applicable
+            total_price=0,
+            status='Pending'
         )
-
         return redirect('booking-success', booking_id=booking.id)
 
-    return render(request, 'booking_home.html')
+    return render(request, 'booking_home.html', {'tour': tour})
 
 from .forms import CompanyProfileForm
 from .models import CompanyImage
