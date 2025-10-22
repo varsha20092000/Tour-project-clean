@@ -190,7 +190,7 @@
             <h2>Book Your Trip</h2>
             <form method="post" action="{% url 'booknow_home' %}">
                 {% csrf_token %}
-
+ <input type="hidden" name="tour_id" value="{{ tour.id }}">
                 <!-- PERSONAL DETAILS -->
                 <h3 class="section-title">Personal Details</h3>
                 <label for="full_name">Full Name:</label>
