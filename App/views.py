@@ -742,12 +742,13 @@ def book_destination(request, destination_id):
     return render(request, 'book_destination.html', context)
 
 
-def booknow_home(request):
-    if request.method == 'POST':
-        # Save booking form...
-        booking = Booking.objects.create(...)  # example logic
-        return redirect('booking-success', booking_id=booking.id)
-    return render(request, 'booking_home.html')  # ✅ correct filename
+from django.shortcuts import render, get_object_or_404
+from .models import Package
+
+def booknow_home(request, package_id):
+    package = get_object_or_404(Package, id=package_id)
+    return render(request, 'booknow.html', {'package': package})
+
 
 
 
