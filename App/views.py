@@ -741,13 +741,34 @@ def book_destination(request, destination_id):
     }
     return render(request, 'book_destination.html', context)
 
+from django.shortcuts import render, redirect
+from .models import Booking, Tour, Package
+from django.utils import timezone
 
 def booknow_home(request):
     if request.method == 'POST':
-        # Save booking form...
-        booking = Booking.objects.create(...)  # or however you save
+        tour_id = request.POST.get('tour_id')
+        package_id = request.POST.get('package_id')
+        number_of_people = request.POST.get('number_of_people')
+
+        # Calculate price safely (example — adjust as per your logic)
+        tour = Tour.objects.get(id=tour_id)
+        total_price = tour.price * int(number_of_people)
+
+        booking = Booking.objects.create(
+            user=request.user,
+            tour=tour,
+            booking_date=timezone.now().date(),
+            number_of_people=number_of_people,
+            total_price=total_price,
+            status='Pending',
+            package_id=package_id or None,
+            banking_details=request.POST.get('banking_details', '')
+        )
+
         return redirect('booking-success', booking_id=booking.id)
-    return render(request, 'booking_home.html')
+
+    return render(request, 'booknow_home.html')
 
 
 from .forms import CompanyProfileForm
