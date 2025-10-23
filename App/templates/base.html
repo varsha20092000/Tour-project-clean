@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TOUR365{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-800 flex flex-col min-h-screen">
+
+    <!-- 🌍 Navbar -->
+    <header class="bg-green-600 text-white shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="{% static 'images/logo.png' %}" alt="TOUR365" class="w-10 h-10 rounded-full">
+                <span class="font-bold text-xl tracking-wide">TOUR365</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="{% url 'home' %}" class="hover:text-green-200">Home</a>
+                <a href="{% url 'tour_list' %}" class="hover:text-green-200">Tours</a>
+                <a href="{% url 'about' %}" class="hover:text-green-200">About</a>
+                <a href="{% url 'contact' %}" class="hover:text-green-200">Contact</a>
+                <a href="{% url 'profile' %}" class="hover:text-green-200">My Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 📄 Page Content -->
+    <main class="flex-grow">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </main>
+
+    <!-- 🧭 Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-6 mt-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm mb-3 md:mb-0">&copy; {{ now|date:"Y" }} TOUR365. All rights reserved.</p>
+            <div class="space-x-5 text-sm">
+                <a href="{% url 'about' %}" class="hover:text-white">About Us</a>
+                <a href="{% url 'contact' %}" class="hover:text-white">Contact</a>
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}No Tour Selected - TOUR365{% endblock %}
+
+{% block content %}
+<section class="flex flex-col items-center justify-center min-h-[70vh] bg-white text-center px-4">
+    <div class="p-8 rounded-2xl shadow-lg border border-gray-200 max-w-md">
+        <img src="{% static 'images/no-tour.png' %}" alt="No Tour" class="mx-auto mb-6 w-40 opacity-90">
+        <h1 class="text-3xl font-bold text-gray-800 mb-3">No Tour Selected</h1>
+        <p class="text-gray-600 mb-6">
+            It looks like you haven’t selected a tour yet.<br>
+            Please choose one to continue your booking.
+        </p>
+        <a href="{% url 'tour_list' %}" 
+           class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg transition">
+           Explore Tours
+        </a>
+    </div>
+</section>
+{% endblock %}
