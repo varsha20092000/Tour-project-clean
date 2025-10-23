@@ -746,23 +746,30 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Booking, Tour
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tour, Booking
 
 def booknow_home(request):
     if request.method == 'POST':
         tour_id = request.POST.get('tour_id')
         if not tour_id:
-            return render(request, 'no_tour_selected.html')  # 👈 show this page
-        try:
-            tour = Tour.objects.get(id=tour_id)
-        except Tour.DoesNotExist:
             return render(request, 'no_tour_selected.html')
 
-        booking = Booking.objects.create(tour=tour, user=request.user)
-        return redirect('booking-success', booking_id=booking.id)
+        tour = get_object_or_404(Tour, id=tour_id)
 
-    return render(request, 'booknow_home.html')
+        booking = Booking.objects.create(
+            user=request.user,
+            tour=tour,
+            booking_date=request.POST.get('booking_date'),
+            number_of_people=request.POST.get('number_of_people'),
+            total_price=tour.price * int(request.POST.get('number_of_people', 1)),
+            status='Pending'
+        )
+        return redirect('booking-success.html', booking_id=booking.id)
 
+    # GET request → show all available tours
+    tours = Tour.objects.all()
+    return render(request, 'booking_home.html', {'tours': tours})
 
 from .forms import CompanyProfileForm
 from .models import CompanyImage
